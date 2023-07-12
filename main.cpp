@@ -46,7 +46,7 @@ int main(int argc, char const *argv[])
     std::cout << "\n\n\n\n";
 
     //TODO add lambda expression here base of previous for loop
-    auto test_lbd = [&]()
+    auto test_lbd = [&beta]()
     {
     for (size_t i = 0; i < 100; i++)
     {
