@@ -30,6 +30,9 @@ int main(int argc, char const *argv[])
     // Create a character array of size 100
     char beta[100];
     
+    // Set the value of the beta array to "test"
+    std::cout << "Enter a string: ";
+
     // Read a line of input from the user and store it in the beta array
     std::cin.getline(beta, 100);
     
