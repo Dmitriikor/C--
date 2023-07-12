@@ -1,0 +1,44 @@
+[
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "-g",
+      "-o",
+      "MAIN.out",
+      "H.cpp",
+      "hh.cpp"
+    ],
+    "directory": "/home/dmitriy/Desktop/C++",
+    "file": "/home/dmitriy/Desktop/C++/H.cpp",
+    "output": "/home/dmitriy/Desktop/C++/MAIN.out"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "-g",
+      "-o",
+      "MAIN.out",
+      "hello.cpp",
+      "hh.cpp"
+    ],
+    "directory": "/home/dmitriy/Desktop/C++",
+    "file": "/home/dmitriy/Desktop/C++/hello.cpp",
+    "output": "/home/dmitriy/Desktop/C++/MAIN.out"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "-g",
+      "-o",
+      "MAIN.out",
+      "H.cpp",
+      "hh.cpp"
+    ],
+    "directory": "/home/dmitriy/Desktop/C++",
+    "file": "/home/dmitriy/Desktop/C++/hh.cpp",
+    "output": "/home/dmitriy/Desktop/C++/MAIN.out"
+  }
+]
