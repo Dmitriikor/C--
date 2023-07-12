@@ -1,0 +1,17 @@
+[
+{
+  "directory": "/home/dmitriy/Desktop/C++/build",
+  "command": "/usr/bin/g++   -g -o CMakeFiles/MAIN.out.dir/main.cpp.o -c /home/dmitriy/Desktop/C++/main.cpp",
+  "file": "/home/dmitriy/Desktop/C++/main.cpp"
+},
+{
+  "directory": "/home/dmitriy/Desktop/C++/build",
+  "command": "/usr/bin/g++   -g -o CMakeFiles/MAIN.out.dir/H.cpp.o -c /home/dmitriy/Desktop/C++/H.cpp",
+  "file": "/home/dmitriy/Desktop/C++/H.cpp"
+},
+{
+  "directory": "/home/dmitriy/Desktop/C++/build",
+  "command": "/usr/bin/g++   -g -o CMakeFiles/MAIN.out.dir/hh.cpp.o -c /home/dmitriy/Desktop/C++/hh.cpp",
+  "file": "/home/dmitriy/Desktop/C++/hh.cpp"
+}
+]

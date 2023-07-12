@@ -9,7 +9,7 @@
           "-g",
           "${workspaceFolder}/*.cpp",
           "-o",
-          "${workspaceFolder}/MAIN.out" // Например, "-o", "${workspaceFolder}/main.out"
+          "${workspaceFolder}/build/MAIN.out" // Например, "-o", "${workspaceFolder}/main.out"
         ],
         "group": {
           "kind": "build",

@@ -1,6 +1,6 @@
 {
-    "makefile.compileCommandsPath": "${workspaceFolder}/.vscode/compile_commands.json",
-    "sonarlint.pathToCompileCommands": "${workspaceFolder}/.vscode/compile_commands.json",
+    "makefile.compileCommandsPath": "${workspaceFolder}/build/compile_commands.json",
+    "sonarlint.pathToCompileCommands": "${workspaceFolder}/build/compile_commands.json",
     "makefile.configurations": [
 {
     "name": "MyConfiguration",
@@ -12,15 +12,17 @@
             ],
 
             "makeArgs": [
-                "-g",
-                "${workspaceFolder}/*.cpp",
-                "-o",
-                "${workspaceFolder}/MAIN.out" // Например, "-o", "${workspaceFolder}/main.out"
+                //"g++",
+                //"-g",
+                //"${workspaceFolder}/*.cpp",
+                //"-o",
+                //"${workspaceFolder}/MAIN.out" // Например, "-o", "${workspaceFolder}/main.out"
             ]
 
 }        
 ],
-"editor.renderWhitespace": "selection"
+"editor.renderWhitespace": "selection",
+"cmake.sourceDirectory": "/home/dmitriy/Desktop/C++"
 }
 
 
