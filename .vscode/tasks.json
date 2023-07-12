@@ -4,13 +4,13 @@
       {
         "label": "build",
         "type": "shell",
-        "command": "g++",
-        "args": [
-          "-g",
-          "${workspaceFolder}/*.cpp",
-          "-o",
-          "${workspaceFolder}/build/MAIN.out" // Например, "-o", "${workspaceFolder}/main.out"
-        ],
+        "command": "cd build && cmake .. && make",//"g++",
+        // "args": [
+        //   "-g",
+        //   "${workspaceFolder}/*.cpp",
+        //   "-o",
+        //   "${workspaceFolder}/build/MAIN.out" // Например, "-o", "${workspaceFolder}/main.out"
+        // ],
         "group": {
           "kind": "build",
           "isDefault": true
