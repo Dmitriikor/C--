@@ -13,19 +13,19 @@ int main(int argc, char const *argv[])
     H parameter(1,1);
     
     // Output a newline character
-    std::cout << "\n";
+    std::cout << '\n';
     
     // Output the summary of the parameter object
-    std::cout << parameter.summary();
+    std::cout << parameter.summary() << '\n';
     
     // Output two newline characters
-    std::cout << "\n\n";
+    std::cout << '\n';
     
     // Call the test_hh function
     test_hh();
     
     // Output two newline characters
-    std::cout << "\n\n";
+    std::cout << '\n';
     
     // Create a character array of size 100
     char beta[100];
@@ -42,29 +42,26 @@ int main(int argc, char const *argv[])
         std::cout << beta[i];
     }
 
-        // Output a newline character
+    // Output a newline character
     std::cout << "\n\n\n\n";
 
-    //TODO add lambda expression here base of previous for loop
+    // Lambda expression to iterate over the elements of the beta array and output each character
     auto test_lbd = [&beta]()
     {
-    for (size_t i = 0; i < 100; i++)
-    {
-        std::cout << beta[i];
-        if (beta[i] == '\0')
+        for (size_t i = 0; i < 100 && beta[i] != '\0'; i++)
         {
-            std::cout << "\n";
-            break;
+            std::cout << beta[i];
         }
-    }
+        std::cout << '\n';
     };
 
     test_lbd();
-    std::cout << "test_lbd";
+    std::cout << "test_lbd\n";
     
     // Output a newline character
-    std::cout << "\n";
+    std::cout << '\n';
     std::cout << "END_1\n";
+
     // Return 0 to indicate successful execution of the program
     return 0;
 }

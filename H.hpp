@@ -33,9 +33,9 @@ struct H
     {
     return b;
     }
-    int summary()
+    int summary() const
     {
-    return a + b;
+     return a + b;
     }
 };
 
