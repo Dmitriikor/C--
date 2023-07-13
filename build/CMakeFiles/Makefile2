@@ -71,6 +71,7 @@ preinstall:
 .PHONY : preinstall
 
 # The main recursive "clean" target.
+clean: CMakeFiles/MAIN.out.dir/clean
 clean: CMakeFiles/Experimental.dir/clean
 clean: CMakeFiles/Nightly.dir/clean
 clean: CMakeFiles/Continuous.dir/clean
@@ -99,8 +100,33 @@ clean: CMakeFiles/ContinuousTest.dir/clean
 clean: CMakeFiles/ContinuousCoverage.dir/clean
 clean: CMakeFiles/ContinuousMemCheck.dir/clean
 clean: CMakeFiles/ContinuousSubmit.dir/clean
-clean: CMakeFiles/MAIN.out.dir/clean
 .PHONY : clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/MAIN.out.dir
+
+# All Build rule for target.
+CMakeFiles/MAIN.out.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MAIN.out.dir/build.make CMakeFiles/MAIN.out.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MAIN.out.dir/build.make CMakeFiles/MAIN.out.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/dmitriy/Desktop/C++/build/CMakeFiles --progress-num=1,2,3,4 "Built target MAIN.out"
+.PHONY : CMakeFiles/MAIN.out.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/MAIN.out.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/dmitriy/Desktop/C++/build/CMakeFiles 4
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/MAIN.out.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/dmitriy/Desktop/C++/build/CMakeFiles 0
+.PHONY : CMakeFiles/MAIN.out.dir/rule
+
+# Convenience name for target.
+MAIN.out: CMakeFiles/MAIN.out.dir/rule
+.PHONY : MAIN.out
+
+# clean rule for target.
+CMakeFiles/MAIN.out.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MAIN.out.dir/build.make CMakeFiles/MAIN.out.dir/clean
+.PHONY : CMakeFiles/MAIN.out.dir/clean
 
 #=============================================================================
 # Target rules for target CMakeFiles/Experimental.dir
@@ -829,32 +855,6 @@ ContinuousSubmit: CMakeFiles/ContinuousSubmit.dir/rule
 CMakeFiles/ContinuousSubmit.dir/clean:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ContinuousSubmit.dir/build.make CMakeFiles/ContinuousSubmit.dir/clean
 .PHONY : CMakeFiles/ContinuousSubmit.dir/clean
-
-#=============================================================================
-# Target rules for target CMakeFiles/MAIN.out.dir
-
-# All Build rule for target.
-CMakeFiles/MAIN.out.dir/all:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/MAIN.out.dir/build.make CMakeFiles/MAIN.out.dir/depend
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/MAIN.out.dir/build.make CMakeFiles/MAIN.out.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/dmitriy/Desktop/C++/build/CMakeFiles --progress-num=1,2,3,4 "Built target MAIN.out"
-.PHONY : CMakeFiles/MAIN.out.dir/all
-
-# Build rule for subdir invocation for target.
-CMakeFiles/MAIN.out.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/dmitriy/Desktop/C++/build/CMakeFiles 4
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/MAIN.out.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/dmitriy/Desktop/C++/build/CMakeFiles 0
-.PHONY : CMakeFiles/MAIN.out.dir/rule
-
-# Convenience name for target.
-MAIN.out: CMakeFiles/MAIN.out.dir/rule
-.PHONY : MAIN.out
-
-# clean rule for target.
-CMakeFiles/MAIN.out.dir/clean:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/MAIN.out.dir/build.make CMakeFiles/MAIN.out.dir/clean
-.PHONY : CMakeFiles/MAIN.out.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

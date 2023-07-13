@@ -1,17 +1,17 @@
 [
 {
   "directory": "/home/dmitriy/Desktop/C++/build",
-  "command": "/usr/bin/g++   -g -o CMakeFiles/MAIN.out.dir/main.cpp.o -c /home/dmitriy/Desktop/C++/main.cpp",
-  "file": "/home/dmitriy/Desktop/C++/main.cpp"
-},
-{
-  "directory": "/home/dmitriy/Desktop/C++/build",
-  "command": "/usr/bin/g++   -g -o CMakeFiles/MAIN.out.dir/H.cpp.o -c /home/dmitriy/Desktop/C++/H.cpp",
+  "command": "/usr/bin/g++  -I/home/dmitriy/Desktop/C++/include -g -std=gnu++20 -o CMakeFiles/MAIN.out.dir/H.cpp.o -c /home/dmitriy/Desktop/C++/H.cpp",
   "file": "/home/dmitriy/Desktop/C++/H.cpp"
 },
 {
   "directory": "/home/dmitriy/Desktop/C++/build",
-  "command": "/usr/bin/g++   -g -o CMakeFiles/MAIN.out.dir/hh.cpp.o -c /home/dmitriy/Desktop/C++/hh.cpp",
+  "command": "/usr/bin/g++  -I/home/dmitriy/Desktop/C++/include -g -std=gnu++20 -o CMakeFiles/MAIN.out.dir/hh.cpp.o -c /home/dmitriy/Desktop/C++/hh.cpp",
   "file": "/home/dmitriy/Desktop/C++/hh.cpp"
+},
+{
+  "directory": "/home/dmitriy/Desktop/C++/build",
+  "command": "/usr/bin/g++  -I/home/dmitriy/Desktop/C++/include -g -std=gnu++20 -o CMakeFiles/MAIN.out.dir/main.cpp.o -c /home/dmitriy/Desktop/C++/main.cpp",
+  "file": "/home/dmitriy/Desktop/C++/main.cpp"
 }
 ]

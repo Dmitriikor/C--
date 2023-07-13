@@ -147,6 +147,19 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named MAIN.out
+
+# Build rule for target.
+MAIN.out: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 MAIN.out
+.PHONY : MAIN.out
+
+# fast build rule for target.
+MAIN.out/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MAIN.out.dir/build.make CMakeFiles/MAIN.out.dir/build
+.PHONY : MAIN.out/fast
+
+#=============================================================================
 # Target rules for targets named Experimental
 
 # Build rule for target.
@@ -509,19 +522,6 @@ ContinuousSubmit: cmake_check_build_system
 ContinuousSubmit/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ContinuousSubmit.dir/build.make CMakeFiles/ContinuousSubmit.dir/build
 .PHONY : ContinuousSubmit/fast
-
-#=============================================================================
-# Target rules for targets named MAIN.out
-
-# Build rule for target.
-MAIN.out: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 MAIN.out
-.PHONY : MAIN.out
-
-# fast build rule for target.
-MAIN.out/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/MAIN.out.dir/build.make CMakeFiles/MAIN.out.dir/build
-.PHONY : MAIN.out/fast
 
 H.o: H.cpp.o
 .PHONY : H.o

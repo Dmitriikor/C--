@@ -1,6 +1,8 @@
 #include "H.hpp"
 #include <iostream>
 #include "hh.hpp"
+#include "nana/gui.hpp"
+#include "nana/gui/widgets/label.hpp"
 
 int main(int argc, char const *argv[])
 {
@@ -60,7 +62,14 @@ int main(int argc, char const *argv[])
     
     // Output a newline character
     std::cout << '\n';
-    std::cout << "END_1\n";
+    std::cout << "END_2\n";
+
+    nana::form fm;
+   nana::label lb{ fm, nana::rectangle{ 10, 10, 100, 100 } };
+    lb.caption("Hello World!");
+    fm.show();
+    nana::exec();
+
 
     // Return 0 to indicate successful execution of the program
     return 0;

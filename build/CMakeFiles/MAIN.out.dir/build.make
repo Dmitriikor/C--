@@ -69,24 +69,10 @@ include CMakeFiles/MAIN.out.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/MAIN.out.dir/flags.make
 
-CMakeFiles/MAIN.out.dir/main.cpp.o: CMakeFiles/MAIN.out.dir/flags.make
-CMakeFiles/MAIN.out.dir/main.cpp.o: ../main.cpp
-CMakeFiles/MAIN.out.dir/main.cpp.o: CMakeFiles/MAIN.out.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/dmitriy/Desktop/C++/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/MAIN.out.dir/main.cpp.o"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/MAIN.out.dir/main.cpp.o -MF CMakeFiles/MAIN.out.dir/main.cpp.o.d -o CMakeFiles/MAIN.out.dir/main.cpp.o -c /home/dmitriy/Desktop/C++/main.cpp
-
-CMakeFiles/MAIN.out.dir/main.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/MAIN.out.dir/main.cpp.i"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/dmitriy/Desktop/C++/main.cpp > CMakeFiles/MAIN.out.dir/main.cpp.i
-
-CMakeFiles/MAIN.out.dir/main.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/MAIN.out.dir/main.cpp.s"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/dmitriy/Desktop/C++/main.cpp -o CMakeFiles/MAIN.out.dir/main.cpp.s
-
 CMakeFiles/MAIN.out.dir/H.cpp.o: CMakeFiles/MAIN.out.dir/flags.make
 CMakeFiles/MAIN.out.dir/H.cpp.o: ../H.cpp
 CMakeFiles/MAIN.out.dir/H.cpp.o: CMakeFiles/MAIN.out.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/dmitriy/Desktop/C++/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/MAIN.out.dir/H.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/dmitriy/Desktop/C++/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/MAIN.out.dir/H.cpp.o"
 	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/MAIN.out.dir/H.cpp.o -MF CMakeFiles/MAIN.out.dir/H.cpp.o.d -o CMakeFiles/MAIN.out.dir/H.cpp.o -c /home/dmitriy/Desktop/C++/H.cpp
 
 CMakeFiles/MAIN.out.dir/H.cpp.i: cmake_force
@@ -100,7 +86,7 @@ CMakeFiles/MAIN.out.dir/H.cpp.s: cmake_force
 CMakeFiles/MAIN.out.dir/hh.cpp.o: CMakeFiles/MAIN.out.dir/flags.make
 CMakeFiles/MAIN.out.dir/hh.cpp.o: ../hh.cpp
 CMakeFiles/MAIN.out.dir/hh.cpp.o: CMakeFiles/MAIN.out.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/dmitriy/Desktop/C++/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/MAIN.out.dir/hh.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/dmitriy/Desktop/C++/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/MAIN.out.dir/hh.cpp.o"
 	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/MAIN.out.dir/hh.cpp.o -MF CMakeFiles/MAIN.out.dir/hh.cpp.o.d -o CMakeFiles/MAIN.out.dir/hh.cpp.o -c /home/dmitriy/Desktop/C++/hh.cpp
 
 CMakeFiles/MAIN.out.dir/hh.cpp.i: cmake_force
@@ -111,19 +97,38 @@ CMakeFiles/MAIN.out.dir/hh.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/MAIN.out.dir/hh.cpp.s"
 	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/dmitriy/Desktop/C++/hh.cpp -o CMakeFiles/MAIN.out.dir/hh.cpp.s
 
+CMakeFiles/MAIN.out.dir/main.cpp.o: CMakeFiles/MAIN.out.dir/flags.make
+CMakeFiles/MAIN.out.dir/main.cpp.o: ../main.cpp
+CMakeFiles/MAIN.out.dir/main.cpp.o: CMakeFiles/MAIN.out.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/dmitriy/Desktop/C++/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/MAIN.out.dir/main.cpp.o"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/MAIN.out.dir/main.cpp.o -MF CMakeFiles/MAIN.out.dir/main.cpp.o.d -o CMakeFiles/MAIN.out.dir/main.cpp.o -c /home/dmitriy/Desktop/C++/main.cpp
+
+CMakeFiles/MAIN.out.dir/main.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/MAIN.out.dir/main.cpp.i"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/dmitriy/Desktop/C++/main.cpp > CMakeFiles/MAIN.out.dir/main.cpp.i
+
+CMakeFiles/MAIN.out.dir/main.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/MAIN.out.dir/main.cpp.s"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/dmitriy/Desktop/C++/main.cpp -o CMakeFiles/MAIN.out.dir/main.cpp.s
+
 # Object files for target MAIN.out
 MAIN_out_OBJECTS = \
-"CMakeFiles/MAIN.out.dir/main.cpp.o" \
 "CMakeFiles/MAIN.out.dir/H.cpp.o" \
-"CMakeFiles/MAIN.out.dir/hh.cpp.o"
+"CMakeFiles/MAIN.out.dir/hh.cpp.o" \
+"CMakeFiles/MAIN.out.dir/main.cpp.o"
 
 # External object files for target MAIN.out
 MAIN_out_EXTERNAL_OBJECTS =
 
-MAIN.out: CMakeFiles/MAIN.out.dir/main.cpp.o
 MAIN.out: CMakeFiles/MAIN.out.dir/H.cpp.o
 MAIN.out: CMakeFiles/MAIN.out.dir/hh.cpp.o
+MAIN.out: CMakeFiles/MAIN.out.dir/main.cpp.o
 MAIN.out: CMakeFiles/MAIN.out.dir/build.make
+MAIN.out: ../lib/libnana.a
+MAIN.out: /usr/lib/x86_64-linux-gnu/libX11.so
+MAIN.out: /usr/lib/x86_64-linux-gnu/libfreetype.so
+MAIN.out: /usr/lib/x86_64-linux-gnu/libX11.so
+MAIN.out: /usr/lib/x86_64-linux-gnu/libfreetype.so
 MAIN.out: CMakeFiles/MAIN.out.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/dmitriy/Desktop/C++/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable MAIN.out"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/MAIN.out.dir/link.txt --verbose=$(VERBOSE)

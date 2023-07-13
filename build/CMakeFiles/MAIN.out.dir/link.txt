@@ -1,1 +1,1 @@
-/usr/bin/g++ -g -rdynamic CMakeFiles/MAIN.out.dir/main.cpp.o CMakeFiles/MAIN.out.dir/H.cpp.o CMakeFiles/MAIN.out.dir/hh.cpp.o -o MAIN.out 
+/usr/bin/g++ -g -rdynamic CMakeFiles/MAIN.out.dir/H.cpp.o CMakeFiles/MAIN.out.dir/hh.cpp.o CMakeFiles/MAIN.out.dir/main.cpp.o -o MAIN.out  ../lib/libnana.a -lstdc++fs -lX11 -lrt -lXft -lfontconfig -lfreetype -lstdc++fs -lX11 -lrt -lXft -lfontconfig -lfreetype 
