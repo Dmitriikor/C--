@@ -1,6 +1,6 @@
 {
     "makefile.compileCommandsPath": "${workspaceFolder}/build/compile_commands.json",
-    "sonarlint.pathToCompileCommands": "${workspaceFolder}/build/compile_commands.json",
+    "sonarlint.pathToCompileCommands": "${workspaceFolder}/compile_commands.json",
     "makefile.configurations": [
 {
     "name": "MyConfiguration",
