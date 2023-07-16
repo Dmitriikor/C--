@@ -21,6 +21,12 @@ file(GLOB SOURCES *.cpp)
 # Поиск и добавление всех файлов hpp в директории include
 file(GLOB HEADERS *.hpp)
 
+# Создаем папку build
+file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/build)
+set(MY_BUILD_DIR ${CMAKE_BINARY_DIR}/build)
+# Устанавливаем директорию сборки
+set(CMAKE_BINARY_DIR ${MY_BUILD_DIR})
+
 # Поиск директорий lib и include в вашем проекте
 find_package (Threads REQUIRED)
 find_package(Freetype REQUIRED)
@@ -50,9 +56,6 @@ add_executable(MAIN.out ${SOURCES} ${HEADERS})
 
 # Линковка с библиотекой Nana
 target_link_libraries(MAIN.out PUBLIC ${CMAKE_SOURCE_DIR}/lib/libnana.a ${RUNNANA_LINK_LIBS} stdc++fs)
-
-# Создаем папку build
-file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/build)
 
 # Создаем пользовательскую команду с помощью add_custom_target
 add_custom_target(run_custom_command ALL
