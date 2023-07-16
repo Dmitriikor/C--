@@ -4,7 +4,7 @@
     {
       "label": "build",
       "type": "shell",
-      "command": "cd build && cmake .. && make 2> ../compile_out.shell && cp MAIN.out .. && cd .. && rm -r build && mkdir build",
+      "command": "cd build && cmake .. && make 2> ../compile_out.shell && cp -f MAIN.out ..&& cp -f compile_commands.json ..&& cd .. && rm -r build && mkdir build",
       "group": {
         "kind": "build",
         "isDefault": true

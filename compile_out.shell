@@ -1,7 +1,0 @@
-/home/dmitriy/Desktop/C++/main.cpp: In function ‘int main(int, const char**)’:
-/home/dmitriy/Desktop/C++/main.cpp:8:14: warning: unused parameter ‘argc’ [-Wunused-parameter]
-    8 | int main(int argc, char const *argv[])
-      |          ~~~~^~~~
-/home/dmitriy/Desktop/C++/main.cpp:8:32: warning: unused parameter ‘argv’ [-Wunused-parameter]
-    8 | int main(int argc, char const *argv[])
-      |                    ~~~~~~~~~~~~^~~~~~
