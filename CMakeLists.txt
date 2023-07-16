@@ -1,6 +1,11 @@
 cmake_minimum_required(VERSION 3.0.0)
 project(test_neon VERSION 0.1.0 LANGUAGES C CXX)
 
+#denail create temp file in root floader
+if ( ${CMAKE_SOURCE_DIR} STREQUAL ${CMAKE_BINARY_DIR} )
+    message( FATAL_ERROR "In-source builds not allowed. Please make a new directory (called a build directory) and run CMake from there. You may need to remove CMakeCache.txt." )
+endif()
+
 #set(CMAKE_VERBOSE_MAKEFILE ON)
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
