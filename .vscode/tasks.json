@@ -1,21 +1,46 @@
 {
-    "version": "2.0.0",
-    "tasks": [
-      {
-        "label": "build",
-        "type": "shell",
-        "command": "cd build && cmake .. && make",//"g++",
-        // "args": [
-        //   "-g",
-        //   "${workspaceFolder}/*.cpp",
-        //   "-o",
-        //   "${workspaceFolder}/build/MAIN.out" // Например, "-o", "${workspaceFolder}/main.out"
-        // ],
-        "group": {
-          "kind": "build",
-          "isDefault": true
-        }
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "build",
+      "type": "shell",
+      "command": "cd build && cmake .. && make 2> ../compile_out.shell && cp MAIN.out .. && cd .. && rm -r build && mkdir build",
+      "group": {
+        "kind": "build",
+        "isDefault": true
       }
-    ]
-  }
+    }
+  ]
+}
+
+
+
+
+
+// {
+//     "version": "2.0.0",
+//     "tasks": [
+//       {
+//         "label": "build",
+//         "type": "shell",
+//         //"command": "cd build && cmake .. && make >> compile_commands.json",//"g++",
+
+//         "command": "cd build >> compile_commands.json",//"g++",
+//         "command": "cmake >> compile_commands.json",//"g++",
+//         "command": ".. && make >> compile_commands.json",//"g++",
+
+        
+//         // "args": [
+//         //   "-g",
+//         //   "${workspaceFolder}/*.cpp",
+//         //   "-o",
+//         //   "${workspaceFolder}/build/MAIN.out" // Например, "-o", "${workspaceFolder}/main.out"
+//         // ],
+//         "group": {
+//           "kind": "build",
+//           "isDefault": true
+//         }
+//       }
+//     ]
+//   }
   

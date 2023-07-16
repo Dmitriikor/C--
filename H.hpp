@@ -21,7 +21,7 @@ struct H
     int b;
 
     public:
-    H(int a, int b) : a(a), b(b)
+    H(int inpt_a, int inpt_b) : a(inpt_a), b(inpt_b)
     {
        
     }
