@@ -56,7 +56,8 @@ file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/build)
 
 # Создаем пользовательскую команду с помощью add_custom_target
 add_custom_target(run_custom_command ALL
-    COMMAND ${CMAKE_COMMAND} -E chdir ${CMAKE_BINARY_DIR}/build ${CMAKE_COMMAND} ..
+    COMMAND ${CMAKE_COMMAND} -E chdir ${CMAKE_BINARY_DIR} cd build
+    COMMAND ${CMAKE_COMMAND} -E chdir ${CMAKE_BINARY_DIR}/build cmake ..
     COMMAND ${CMAKE_COMMAND} -E chdir ${CMAKE_BINARY_DIR}/build make 2> ../compile_out.shell
     COMMAND ${CMAKE_COMMAND} -E chdir ${CMAKE_BINARY_DIR}/build cp -f MAIN.out ..
     COMMAND ${CMAKE_COMMAND} -E chdir ${CMAKE_BINARY_DIR}/build cp -f compile_commands.json ..
