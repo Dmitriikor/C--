@@ -12,7 +12,7 @@ int main(int argc, char const *argv[])
     nnn::test_2();
     nnn::test_3();
     
-    /// Create an instance of the H class with parameters 1 and 1
+    // Create an instance of the H class with parameters 1 and 1
     H parameter(1,1);
     
     // Output a newline character

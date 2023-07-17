@@ -26,11 +26,7 @@ file(GLOB SOURCES *.cpp)
 # Поиск и добавление всех файлов hpp в директории include
 file(GLOB HEADERS *.hpp)
 
-# Создаем папку build
-file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/build)
-set(MY_BUILD_DIR ${CMAKE_BINARY_DIR}/build)
-# Устанавливаем директорию сборки
-set(CMAKE_BINARY_DIR ${MY_BUILD_DIR})
+
 
 # Поиск директорий lib и include в вашем проекте
 find_package (Threads REQUIRED)
@@ -62,20 +58,8 @@ add_executable(MAIN.out ${SOURCES} ${HEADERS})
 # Линковка с библиотекой Nana
 target_link_libraries(MAIN.out PUBLIC ${CMAKE_SOURCE_DIR}/lib/libnana.a ${RUNNANA_LINK_LIBS} stdc++fs)
 
-# Создаем пользовательскую команду с помощью add_custom_target
-add_custom_target(run_custom_command ALL
-    COMMAND ${CMAKE_COMMAND} -E chdir ${CMAKE_BINARY_DIR} cd build
-    COMMAND ${CMAKE_COMMAND} -E chdir ${CMAKE_BINARY_DIR}/build cmake ..
-    COMMAND ${CMAKE_COMMAND} -E chdir ${CMAKE_BINARY_DIR}/build make 2> ../compile_out.shell
-    COMMAND ${CMAKE_COMMAND} -E chdir ${CMAKE_BINARY_DIR}/build cp -f MAIN.out ..
-    COMMAND ${CMAKE_COMMAND} -E chdir ${CMAKE_BINARY_DIR}/build cp -f compile_commands.json ..
-    COMMAND ${CMAKE_COMMAND} -E chdir ${CMAKE_BINARY_DIR} rm -r build
-    COMMAND ${CMAKE_COMMAND} -E chdir ${CMAKE_BINARY_DIR} mkdir build
-    COMMENT "Running custom build command"
-)
 
-# Устанавливаем зависимость для пользовательской команды от целевой команды сборки
-add_dependencies(run_custom_command MAIN.out)
+
 
 elseif(CMAKE_SYSTEM_NAME STREQUAL "Windows")
     # Конфигурации для Windows
