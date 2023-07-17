@@ -22,7 +22,7 @@
 }        
 ],
 "editor.renderWhitespace": "selection",
-"cmake.sourceDirectory": "/home/dmitriy/Desktop/C++",
+"cmake.sourceDirectory": "Z:/c++/VS_CODE_C--/C--",
 "files.encoding": "utf8bom",
 "files.associations": {
     "random": "cpp"
