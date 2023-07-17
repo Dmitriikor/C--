@@ -5,7 +5,8 @@
         "name": "C++ Debug",
         "type": "cppdbg",
         "request": "launch",
-        "program": "${workspaceFolder}/MAIN.out", // Например, "program": "${workspaceFolder}/main.out"
+        "program": "${workspaceFolder}/MAIN.out", // "${workspaceFolder}/a.exe",
+        //"program": "${fileDirname}\\${fileBasenameNoExtension}.exe",
         "args": [],
         "stopAtEntry": false,
         "cwd": "${workspaceFolder}",

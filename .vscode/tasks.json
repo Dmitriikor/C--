@@ -16,33 +16,44 @@
 }
 
 
-
-
-
 // {
-//     "version": "2.0.0",
-//     "tasks": [
-//       {
-//         "label": "build",
+//   "tasks": [
+//     {
 //         "type": "shell",
-//         //"command": "cd build && cmake .. && make >> compile_commands.json",//"g++",
-
-//         "command": "cd build >> compile_commands.json",//"g++",
-//         "command": "cmake >> compile_commands.json",//"g++",
-//         "command": ".. && make >> compile_commands.json",//"g++",
-
-        
-//         // "args": [
-//         //   "-g",
-//         //   "${workspaceFolder}/*.cpp",
-//         //   "-o",
-//         //   "${workspaceFolder}/build/MAIN.out" // Например, "-o", "${workspaceFolder}/main.out"
-//         // ],
+//         "label": "build",
+//         "command": "C:\\ProgramData\\chocolatey\\lib\\mingw\\tools\\install\\mingw64\\bin\\g++.exe",
+//         "args": [
+//             "-g",
+//             "${workspaceFolder}/*.cpp",
+//             "-Wall",
+//             "-Wextra",
+//             "-pedantic",
+//             "-std=c++11",
+//             //"-O2",
+//             "-Wformat=2",
+//             "-Wfloat-equal",
+//             "-Wconversion",
+//             "-Wlogical-op",
+//             "-Wshift-overflow=2",
+//             "-Wduplicated-cond",
+//             "-Wcast-qual",
+//             "-Wcast-align",
+//             "-D_GLIBCXX_DEBUG",
+//             "-D_GLIBCXX_DEBUG_PEDANTIC",
+//             "-D_FORTIFY_SOURCE=2",
+//             "-fno-sanitize-recover",
+//             "-fstack-protector",
+//             "-o",
+//             "${fileDirname}\\${fileBasenameNoExtension}.exe"
+//         ],
+//         "options": {
+//             "cwd": "${workspaceFolder}" //C:\\MinGW\\mingw64\\bin"
+//         },
 //         "group": {
-//           "kind": "build",
-//           "isDefault": true
+//             "kind": "build",
+//             "isDefault": true
 //         }
-//       }
-//     ]
-//   }
-  
+//     }
+// ],
+//   "version": "2.0.0"
+// }
