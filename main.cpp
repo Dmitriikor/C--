@@ -66,30 +66,31 @@ public:
         ++index;
     }
 
-    void push_front(const T &value)
+void push_front(const T &value)
+{
+    index = 0;  // Initialize index to 0
+
+    // If the linked list is empty, create a new node and make it the head
+    if (head == nullptr)
     {
-        index = 0;
-        // If the linked list is empty, create a new node and make it the head
-        if (head == nullptr)
-        {
-            head = new Node<T>(value, index);
-            ++index;
-            return;
-        }
-        // Create a new node and attach it to the first node
-        Node<T> *temp = new Node<T>(value, index);
-        temp->next = head;
-        head = temp;
-
-        Node<T> *current = head;
-        while (current != nullptr)
-        {
-            current->index = index;
-            ++index;
-            current = current->next;
-        }
-
+        head = new Node<T>(value, index);  // Create new node with value and index
+        ++index;  // Increment index by 1
+        return;  // Exit the function
     }
+
+    // Create a new node and attach it to the first node
+    Node<T> *temp = new Node<T>(value, index);  // Create new node with value and index
+    temp->next = head;  // Set the next pointer of the new node to the current head
+    head = temp;  // Set the head to the new node
+
+    Node<T> *current = head;  // Create a pointer to traverse the linked list starting from the head
+    while (current != nullptr)
+    {
+        current->index = index;  // Set the index of the current node to the current index value
+        ++index;  // Increment index by 1
+        current = current->next;  // Move to the next node
+    }
+}
 
     void print() const
     {
