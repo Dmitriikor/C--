@@ -7,6 +7,8 @@ struct Node
 {
     T data;
     Node *next;
+
+    
     int index;
 
     explicit Node(const T &value, const int index) : data(value), next(nullptr), index(index) {}
