@@ -11,6 +11,11 @@
 },
 {
   "directory": "/home/dmitriy/Desktop/C++/build",
+  "command": "/usr/bin/c++  -I/home/dmitriy/Desktop/C++/include  -g -Wall -Wextra -Wpedantic -Wconversion -Wformat=2 -Wfloat-equal -Wlogical-op -Wshift-overflow=2 -Wduplicated-cond -Wcast-align -fstack-protector -O -march=native -g -std=gnu++20 -o CMakeFiles/MAIN.out.dir/TEST.cpp.o -c /home/dmitriy/Desktop/C++/TEST.cpp",
+  "file": "/home/dmitriy/Desktop/C++/TEST.cpp"
+},
+{
+  "directory": "/home/dmitriy/Desktop/C++/build",
   "command": "/usr/bin/c++  -I/home/dmitriy/Desktop/C++/include  -g -Wall -Wextra -Wpedantic -Wconversion -Wformat=2 -Wfloat-equal -Wlogical-op -Wshift-overflow=2 -Wduplicated-cond -Wcast-align -fstack-protector -O -march=native -g -std=gnu++20 -o CMakeFiles/MAIN.out.dir/hh.cpp.o -c /home/dmitriy/Desktop/C++/hh.cpp",
   "file": "/home/dmitriy/Desktop/C++/hh.cpp"
 },
