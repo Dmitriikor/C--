@@ -24,18 +24,20 @@ public:
     Node<T> *head = nullptr;
 
     List() = default;
+
     ~List()
     {
         while (head != nullptr)
         {
             Node<T> *temp = head;
-            head = head->next;
-
+            head = head->next;  
+            //std::cout<< "\n Destruct\n";
             temp->data.~T();
             
             delete temp;
         }
     }
+
     // This function returns the size of the object.
     int size() const 
     {
