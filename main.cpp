@@ -11,15 +11,18 @@ struct Node
     
     int index;
 
-    explicit Node(const T &value, const int index) : data(value), next(nullptr), index(index) {}
+    explicit Node(const T &value /*const int index*/) :    data(value), 
+                                                            next(nullptr)
+                                                        //index(index) 
+                                                        {}
 };
 
 template <typename T>
 struct List
 {
 private:
-int index = 0;
-Node<T> *tail;
+    Node<T> *tail;
+    int index = 0;
 
 public:
     Node<T> *head = nullptr;
@@ -41,7 +44,6 @@ public:
     
     int size() const // This function returns the size of the object.
     {
-        
         return index; // Return the value of the 'index' variable.
     }
     
@@ -49,7 +51,7 @@ public:
     {
         if (head == nullptr) // If the linked list is empty, create a new node and make it the head
         {
-            head = new Node<T>(value, index);
+            head = new Node<T>(value);
             ++index;
             return;
         }
@@ -60,30 +62,53 @@ public:
             temp = temp->next;
         }
 
-        temp->next = new Node<T>(value, index); // Create a new node and attach it to the last node
+        temp->next = new Node<T>(value); // Create a new node and attach it to the last node
         tail = temp->next;
         ++index;
     }
-void pop_back() // Function to remove the last element
-{
-    if (head->next == nullptr) // If there is only one element in the list
-        return; // Return as there is nothing to remove
-
-    Node<T> *temp = head; // Create a temporary pointer and point it to the head of the list
-
-    while ((index - 2) != temp->index) // Traverse the list until the second-to-last element
+    void pop_back() // Function to remove the last element  
     {
-        temp = temp->next; // Move to the next element
+        if (head->next == nullptr) // If there is only one element in the list
+            return; // Return as there is nothing to remove
+
+        Node<T> *temp = head; // Create a temporary pointer and point it to the head of the list
+
+        while ((index - 2) != temp->index) // Traverse the list until the second-to-last element
+        {
+            temp = temp->next; // Move to the next element
+        }
+
+        tail = temp; // Update the tail to point to the second-to-last element
+        tail->next = nullptr; // Set the next pointer of the new tail to nullptr
+        index--; // Decrement the index as the last element is being removed
+        
+        temp = temp->next; // Move the temporary pointer to the last element
+        temp->data.~T(); // Destroy the data of the last element
+        delete temp; // Delete the last element
     }
 
-    tail = temp; // Update the tail to point to the second-to-last element
-    tail->next = nullptr; // Set the next pointer of the new tail to nullptr
-    index--; // Decrement the index as the last element is being removed
-    
-    temp = temp->next; // Move the temporary pointer to the last element
-    temp->data.~T(); // Destroy the data of the last element
-    delete temp; // Delete the last element
-}
+    void pop_front() // Function to remove the first element
+    {
+        if (head->next == nullptr) // If there is only one element in the list
+            return; // Return as there is nothing to remove
+        
+        Node<T> *temp = head; // Create a temporary pointer and point it to the head of the list
+        Node<T> *delited = head; // Create a pointer to store the deleted node
+        head = temp->next; // Move the head pointer to the next element
+
+        delited->data.~T(); // Destroy the data of the deleted node
+        delete delited;
+
+        index = 0;
+
+        while (temp->next != nullptr)
+        {
+            temp->index = index;  // Set the index of the current node to the current index value
+            ++index;  // Increment index by 1
+            temp = temp->next;  // Move to the next node
+        }
+        ++index;
+    }
 
     const Node<T>& get_head() const 
     {
@@ -97,27 +122,27 @@ void pop_back() // Function to remove the last element
 
     void push_front(const T &value)
     {
-    index = 0;  // Initialize index to 0
 
-    if (head == nullptr) // If the linked list is empty, create a new node and make it the head
-    {
-        head = new Node<T>(value, index);  // Create new node with value and index
-        ++index;  // Increment index by 1
-        return;  // Exit the function
-    }
+        if (head == nullptr) // If the linked list is empty, create a new node and make it the head
+        {
+            index = 0;
+            head = new Node<T>(value);  // Create new node with value and index
+            head->index = index;
+            ++index;  // Increment index by 1
+            return;  // Exit the function
+        }
 
-    Node<T> *temp = new Node<T>(value, index);  // Create new node with value and index
-    temp->next = head;  // Set the next pointer of the new node to the current head
-    head = temp;  // Set the head to the new node
-
-    Node<T> *current = head;  // Create a pointer to traverse the linked list starting from the head
-    
-    while (current != nullptr)
-    {
-        current->index = index;  // Set the index of the current node to the current index value
-        ++index;  // Increment index by 1
-        current = current->next;  // Move to the next node
-    }
+        Node<T> *temp = new Node<T>(value);  // Create new node with value and index
+        temp->next = head;  // Set the next pointer of the new node to the current head
+        head = temp;  // Set the head to the new node
+        
+        index = 0;  // Initialize index to 0
+        while (temp != nullptr)
+        {
+            temp->index = index;  // Set the index of the current node to the current index value
+            ++index;  // Increment index by 1
+            temp = temp->next;  // Move to the next node
+        }
     }
 
     void print() const
@@ -125,7 +150,7 @@ void pop_back() // Function to remove the last element
         Node<T> *current = head;  // Create a pointer variable to keep track of the current node, starting from the head
         while (current != nullptr) // Loop through the linked list until we reach the end (nullptr)
         {
-            std::cout << current->data << " | " << current->index << "; "; // Print the data stored in the current node
+            std::cout << current->data << "/" << current->index << "; "; // Print the data stored in the current node
             current = current->next; // Move to the next node
         }
     }
@@ -135,9 +160,8 @@ void pop_back() // Function to remove the last element
     {
         Node<T> *current = head; // Start at the head of the linked list.
 
-        while (current != nullptr) // Traverse the linked list until the current node is nullptr or the desired index is found.
+        while (current != tail) // Traverse the linked list until the current node is nullptr or the desired index is found.
         {
-        
             if (current->index == id) // Check if the current node's index matches the desired index.
             {
                 return current->data; // Return the data of the current node.
@@ -192,7 +216,10 @@ int main()
     //std::cout << "\n\n\n";
     
     assert(myList[2]==30);
-    
+
+    myList.print();
+    std::cout << "\n" << myList.size() << "\n";
+
     myList.push_front(-10);
     std::vector<int> expected_front = {-10, 10, 20, 30};
     std::vector<int> to_vector_front = myList.to_vector();
@@ -200,6 +227,8 @@ int main()
     {
         assert(to_vector_front[i] == expected_front[i]);
     }
+    myList.print();
+    std::cout << "\n" << myList.size()<< "\n";
  
     assert(myList.get_head().data == -10);
     assert(myList.get_tail().data == 30);
@@ -209,6 +238,9 @@ int main()
     myList.pop_back();
     assert(myList. get_tail().data == 20);
 
+
+
+    myList.print();
     std::cout << "\nAll tests passed successfully!\n\n" << std::endl;
     return 0;
 }
