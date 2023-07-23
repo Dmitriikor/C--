@@ -47,30 +47,32 @@ public:
         return index; // Return the value of the 'index' variable.
     }
 
-    void push_back(const T& value) // Function to add a new element at the end of the linked list
+void push_back(const T& value) // Function to add a new element at the end of the linked list
+{
+    if (head == nullptr) // If the linked list is empty
     {
-        // If the linked list is empty, create a new node and make it the head
-        if (head == nullptr)
-        {
-            head = new Node<T>(value);
-            head->index = index;
-            
-            ++index;
-            return;
-        }
-        // Traverse to the last node
-        Node<T>* temp = head;
-        while (temp->next != nullptr)
-        {
-            temp = temp->next;
-        } 
-
-        temp->next = new Node<T>(value);
-        temp = temp->next;
-        temp->index = index;
-        tail = temp;
-        ++index;
+        // Create a new node with the given value and make it the head
+        head = new Node<T>(value);
+        head->index = index;
+        tail=head;
+        ++index; // Increment the index
+        return; // Exit the function
     }
+    
+    // Traverse to the last node
+    Node<T>* temp = tail;
+    // while (temp->next != nullptr)
+    // {
+    //     temp = temp->next;
+    // } 
+
+    // Create a new node with the given value
+    temp->next = new Node<T>(value);
+    temp = temp->next;
+    temp->index = index;
+    tail = temp;
+    ++index; // Increment the index
+}
     void pop_back() // Function to remove the last element  
     {
         if (head->next == nullptr) // If there is only one element in the list
@@ -217,13 +219,13 @@ int main()
         assert(to_vector[i] == expected[i]);
     }
 
-    myList.print(); // Выведет: 10 20 30
+    //myList.print(); // Выведет: 10 20 30
     //std::cout << "\n\n\n";
 
     assert(myList[2] == 30);
 
-    myList.print();
-    std::cout << "\n" << myList.size() << "\n";
+    //myList.print();
+    //std::cout << "\n" << myList.size() << "\n";
 
     myList.push_front(-10);
     std::vector<int> expected_front = { -10, 10, 20, 30 };
@@ -232,18 +234,18 @@ int main()
     {
         assert(to_vector_front[i] == expected_front[i]);
     }
-    myList.print();
-    std::cout << "\n" << myList.size() << "\n";
+    //myList.print();
+    //std::cout << "\n" << myList.size() << "\n";
 
     assert(myList.get_head().data == -10);
     assert(myList.get_tail().data == 30);
     myList.pop_back();
     assert(myList.get_tail().data == 20);
     myList.push_back(30);
+    assert(myList.get_tail().data == 30);
     myList.pop_back();
     assert(myList.get_tail().data == 20);
-
-
+    assert(myList.get_head().data == -10);
 
     myList.print();
     std::cout << "\nAll tests passed successfully!\n\n" << std::endl;
