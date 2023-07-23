@@ -1,19 +1,28 @@
 {
-    "version": "0.2.0",
-    "configurations": [
-      {
-        "name": "C++ Debug",
-        "type": "cppdbg",
-        "request": "launch",
-        "program": "${workspaceFolder}/MAIN.out", // Например, "program": "${workspaceFolder}/main.out"
-        "args": [],
-        "stopAtEntry": false,
-        "cwd": "${workspaceFolder}",
-        "environment": [],
-        "externalConsole": true,
-        "MIMode": "gdb",
-        "preLaunchTask": "build"
-      }
-    ]
-  }
-  
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "C++ Debug",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${workspaceFolder}/MAIN.out",
+      "args": [],
+      "stopAtEntry": false,
+      "cwd": "${workspaceFolder}",
+      "environment": [],
+      "externalConsole": true,
+      "MIMode": "gdb",
+      "preLaunchTask": "build"
+    },
+    {
+      "name": "C/C++ Runner: Debug Session",
+      "type": "cppvsdbg",
+      "request": "launch",
+      "args": [],
+      "stopAtEntry": false,
+      "console": "externalTerminal",
+      "cwd": "z:/c++/c--",
+      "program": "z:/c++/c--/build/Debug/outDebug"
+    }
+  ]
+}
