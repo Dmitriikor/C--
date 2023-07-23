@@ -1,1 +1,5 @@
 ﻿build/
+.vscode/
+CMakeFiles/
+.vs/
+.github/

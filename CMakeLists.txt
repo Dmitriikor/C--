@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.0.0)
+cmake_minimum_required(VERSION 3.5.0)
 project(test_neon VERSION 0.1.0 LANGUAGES C CXX)
 
 #denail create temp file in root floader
@@ -63,7 +63,37 @@ target_link_libraries(MAIN.out PUBLIC ${CMAKE_SOURCE_DIR}/lib/libnana.a ${RUNNAN
 
 elseif(CMAKE_SYSTEM_NAME STREQUAL "Windows")
     # Конфигурации для Windows
+    # Конфигурации для Windows
 
+# Установка флагов компилятора
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall")
+
+
+# Поиск и добавление всех файлов cpp в директории src
+file(GLOB SOURCES *.cpp)
+# Поиск и добавление всех файлов hpp в директории include
+file(GLOB HEADERS *.hpp)
+
+set (NANA_INCLUDE include/)
+set (NANA_LINK build/)
+# Добавление пути к заголовочным файлам Nana
+include_directories(${CMAKE_SOURCE_DIR}/include)
+
+include(CTest)
+enable_testing()
+
+add_definitions(-D__STDC_WANT_SECURE_LIB__)
+
+# Добавление исполняемого файла
+add_executable(MAIN.exe ${SOURCES} ${HEADERS})
+
+set (RUNNANA_LINK_LIBS
+ 
+)
+
+# Линковка с библиотекой Nana
+target_link_libraries(MAIN.exe PUBLIC ${CMAKE_SOURCE_DIR}/lib/nana_v143_Debug_x64.lib ${RUNNANA_LINK_LIBS})
 
 
     endif()
