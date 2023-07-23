@@ -12,11 +12,11 @@
             ],
 
             "makeArgs": [
-                //"g++",
-                //"-g",
-                //"${workspaceFolder}/*.cpp",
-                //"-o",
-                //"${workspaceFolder}/MAIN.out" // Например, "-o", "${workspaceFolder}/main.out"
+                "g++",
+                "-g",
+                "${workspaceFolder}/*.cpp",
+                "-o",
+                "${workspaceFolder}/MAIN.out" // Например, "-o", "${workspaceFolder}/main.out"
             ]
 
 }        
