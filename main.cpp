@@ -45,32 +45,32 @@ public:
         return index; // Return the value of the 'index' variable.
     }
 
-void push_back(const T& value) // Function to add a new element at the end of the linked list
-{
-    if (head == nullptr) // If the linked list is empty
+    void push_back(const T& value) // Function to add a new element at the end of the linked list
     {
-        // Create a new node with the given value and make it the head
-        head = new Node<T>(value);
-        head->index = index;
-        tail=head;
-        ++index; // Increment the index
-        return; // Exit the function
-    }
-    
-    // Traverse to the last node
-    Node<T>* temp = tail;
-    // while (temp->next != nullptr)
-    // {
-    //     temp = temp->next;
-    // } 
+        if (head == nullptr) // If the linked list is empty
+        {
+            // Create a new node with the given value and make it the head
+            head = new Node<T>(value);
+            head->index = index;
+            tail=head;
+            ++index; // Increment the index
+            return; // Exit the function
+        }
+        
+        // Traverse to the last node
+        Node<T>* temp = tail;
+        // while (temp->next != nullptr)
+        // {
+        //     temp = temp->next;
+        // } 
 
-    // Create a new node with the given value
-    temp->next = new Node<T>(value);
-    temp = temp->next;
-    temp->index = index;
-    tail = temp;
-    ++index; // Increment the index
-}
+        // Create a new node with the given value
+        temp->next = new Node<T>(value);
+        temp = temp->next;
+        temp->index = index;
+        tail = temp;
+        ++index; // Increment the index
+    }
     void pop_back() // Function to remove the last element  
     {
         if (head->next == nullptr) // If there is only one element in the list
