@@ -178,7 +178,8 @@ public:
             }
             current = current->next; // Move to the next node in the linked list.
         }
-        return T();   // If the desired index is not found, return a default value of type T.
+        
+        //return T();   // If the desired index is not found, return a default value of type T.
     }
 
 
