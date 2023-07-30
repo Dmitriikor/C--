@@ -75,7 +75,11 @@ public:
     {
         if (head->next == nullptr) // If there is only one element in the list
             return; // Return as there is nothing to remove
-
+        /*
+            if (head->next == nullptr) {
+                delete head; 
+                head = nullptr;// Если в списке только один элемент, удаляем его и делаем head nullptr
+        */
         Node<T>* temp = head; // Create a temporary pointer and point it to the head of the list
 
         while ((index - 2) != temp->index) // Traverse the list until the second-to-last element
@@ -106,7 +110,7 @@ public:
 
         index = 0;
 
-        while (temp->next != nullptr)
+        while (temp != nullptr)
         {
             temp->index = index;  // Set the index of the current node to the current index value
             ++index;  // Increment index by 1
@@ -190,6 +194,48 @@ public:
 
         return data_accum; // Return the vector containing the data from the linked list
     }
+
+    void insert(int id, const T& value)
+    {
+        auto* inserted = new Node<T>(value); // Create a new Node with the provided value
+
+        if (head == nullptr || id == 0) // If the list is empty or we want to insert at the beginning
+        {
+            inserted->next = head; // Set the next pointer of the new Node to the current head
+            head = inserted; // Set the new Node as the new head
+            return; // Exit the function
+        }
+
+        auto* temp = head; // Create a temporary Node pointer and set it to the head
+
+        while (temp != nullptr && temp->index < id-1) // Find the Node before the insertion point
+        {
+            temp = temp->next; // Move to the next Node in the list
+        }
+
+        if (temp == nullptr) // If the insertion point is beyond the end of the list
+        {
+            inserted->data.~T(); // Destruct the data in the new Node
+            delete inserted; // Delete the new Node
+            return; // Exit the function
+        }
+
+        inserted->next = temp->next; // Set the next pointer of the new Node to the next Node after the insertion point
+
+        temp->next = inserted; // Set the next pointer of the Node before the insertion point to the new Node
+
+        index = 0; // Initialize an index counter to 0
+        temp = head; // Reset the temporary Node pointer to the head
+
+        while (temp != nullptr) // Update the index of each Node in the list
+        {
+            temp->index = index; // Set the index of the current Node
+            ++index; // Increment the index counter
+            temp = temp->next; // Move to the next Node in the list
+        }
+        ++index; // Increment the index counter for the newly inserted Node
+    }
+
 };
 
 int main()
@@ -229,9 +275,8 @@ int main()
     std::vector<int> expected_front = { -10, 10, 20, 30 };
     std::vector<int> to_vector_front = myList.to_vector();
     for (size_t i = 0; i < to_vector_front.size(); i++)
-    {
         assert(to_vector_front[i] == expected_front[i]);
-    }
+    
     //myList.print();
     //std::cout << "\n" << myList.size() << "\n";
 
@@ -244,6 +289,14 @@ int main()
     myList.pop_back();
     assert(myList.get_tail().data == 20);
     assert(myList.get_head().data == -10);
+
+    std::vector<int> expected_2 = { -10, 10,-20, 20 };
+    myList.insert(2,-20);
+    std::vector<int> to_vector_2 = myList.to_vector();
+
+     for (size_t i = 0; i < to_vector_2.size(); i++)
+         assert(to_vector_2[i] == expected_2[i]);
+    
 
     myList.print();
     std::cout << "\nAll tests passed successfully!\n\n" << std::endl;
