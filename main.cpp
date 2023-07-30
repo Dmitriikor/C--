@@ -166,7 +166,7 @@ public:
     }
 
 
-    T operator [](int id) const  // Get the element at the given index.
+    T& operator [](int id) const  // Get the element at the given index.
     {
         Node<T>* current = head; // Start at the head of the linked list.
 
