@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <cassert>
+#include "LinkedListIterator.hpp"
 
 template <typename T>
 struct Node
@@ -235,6 +236,52 @@ public:
         }
         ++index; // Increment the index counter for the newly inserted Node
     }
+    class iterator 
+    {
+        public:
+            explicit iterator(Node<T>* startNode) : current(startNode) {}
+
+            bool operator!=(const iterator& other) const
+            {
+                return current != other.current;
+            }
+
+            iterator& operator ++() 
+            {
+                current = current->next;
+                return *this;
+            }
+
+
+            bool End() const 
+            {
+                return current == nullptr;
+            }
+
+            Node<T>* getNode() const 
+            {
+                return current;
+            }
+
+            T& value() const 
+            {
+                return current->data;
+            }
+            int index() const 
+            {
+                return current->index;
+            }
+
+        private:
+            Node<T>* current;
+    };
+    iterator begin() {
+        return iterator(head);
+    }
+
+    iterator end() {
+        return iterator(nullptr);
+    }
 
 };
 
@@ -294,8 +341,13 @@ int main()
     myList.insert(2,-20);
     std::vector<int> to_vector_2 = myList.to_vector();
 
-     for (size_t i = 0; i < to_vector_2.size(); i++)
+    for (size_t i = 0; i < to_vector_2.size(); i++)
          assert(to_vector_2[i] == expected_2[i]);
+
+    for (auto it = myList.begin(); it != myList.end(); ++it)
+         assert(it.value() == expected_2[it.index()]);
+
+        
     
 
     myList.print();
