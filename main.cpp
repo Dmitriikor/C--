@@ -236,6 +236,7 @@ public:
         }
         ++index; // Increment the index counter for the newly inserted Node
     }
+
     class iterator 
     {
         public:
@@ -275,6 +276,7 @@ public:
         private:
             Node<T>* current;
     };
+
     iterator begin() {
         return iterator(head);
     }
