@@ -166,10 +166,10 @@ public:
     }
 
 
-    T& operator [](int id) const  // Get the element at the given index.
+    T operator [](int id) const  // Get the element at the given index.
     {
         Node<T>* current = head; // Start at the head of the linked list.
-
+        if (id < index)
         while (current->index <= index) // Traverse the linked list until the current node is nullptr or the desired index is found.
         {
             if (current->index == id) // Check if the current node's index matches the desired index.
@@ -179,7 +179,7 @@ public:
             current = current->next; // Move to the next node in the linked list.
         }
         
-        //return T();   // If the desired index is not found, return a default value of type T.
+        return T();   // If the desired index is not found, return a default value of type T.
     }
 
 
@@ -317,7 +317,7 @@ int main()
     //std::cout << "\n\n\n";
 
     assert(myList[2] == 30);
-
+    int tt = myList[100];
     //myList.print();
     //std::cout << "\n" << myList.size() << "\n";
 
