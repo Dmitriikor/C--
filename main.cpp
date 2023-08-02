@@ -285,6 +285,23 @@ public:
     iterator end() {
         return iterator(nullptr);
     }
+    
+    void reverse(Node<T>* current = nullptr)
+    {
+        if (current == nullptr)
+        {
+            current = head;  
+        }
+
+        if (current->next == nullptr)
+        {
+            std::cout << current->data << "/" << current->index << ";\n";
+            return;
+        }
+
+        reverse(current->next);
+        std::cout << current->data << "/" << current->index << ";\n";
+    }
 
 };
 
