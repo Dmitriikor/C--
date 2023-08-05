@@ -7,12 +7,9 @@ template <typename T>
 struct Node
 {
     T data;
-    Node* next;
-    int index;
+    Node* next = nullptr;
 
-    explicit Node(const T& value /*const int index*/) : data(value),
-        next(nullptr)
-        //index(index) 
+    explicit Node(const T& value /*const int index*/) : data(value)
     {}
 };
 
@@ -21,11 +18,10 @@ struct List
 {
 private:
     Node<T>* tail=nullptr;
-    int index = 0;
 
 public:
     Node<T>* head = nullptr;
-
+    
     List() = default;
 
     ~List()
@@ -41,201 +37,171 @@ public:
         }
     }
 
-    int size() const // This function returns the size of the object.
+    int size() const 
     {
-        return index; // Return the value of the 'index' variable.
+        int size = 0;
+        Node<T>* current = head;
+        while (current != nullptr)
+        {
+            ++size;
+            current=current->next;
+        }
+        return size;
     }
 
-    void push_back(const T& value) // Function to add a new element at the end of the linked list
+    void push_back(const T& value) 
     {
-        if (head == nullptr) // If the linked list is empty
+        if (head == nullptr) 
         {
-            // Create a new node with the given value and make it the head
             head = new Node<T>(value);
-            head->index = index;
-            tail=head;
-            ++index; // Increment the index
-            return; // Exit the function
+            tail = head;
+            return;
         }
-        
-        // Traverse to the last node
-        Node<T>* temp = tail;
-        // while (temp->next != nullptr)
-        // {
-        //     temp = temp->next;
-        // } 
 
-        // Create a new node with the given value
-        temp->next = new Node<T>(value);
-        temp = temp->next;
-        temp->index = index;
+        tail->next = new Node<T>(value);
+        tail = tail->next;
+    }
+
+    void pop_back() 
+    {   
+        if (head == nullptr) 
+        {
+            return;
+        }
+
+        if (head->next == nullptr) 
+        {
+            delete head;
+            head = nullptr;
+            return;
+        }
+
+        Node<T>* temp = head;
+        while (temp->next != tail) 
+        {
+            temp = temp->next;
+        }
+
+        Node<T>* deleted = tail;
         tail = temp;
-        ++index; // Increment the index
-    }
-    void pop_back() // Function to remove the last element  
-    {
-        if (head->next == nullptr) // If there is only one element in the list
-            return; // Return as there is nothing to remove
-        /*
-            if (head->next == nullptr) {
-                delete head; 
-                head = nullptr;// Если в списке только один элемент, удаляем его и делаем head nullptr
-        */
-        Node<T>* temp = head; // Create a temporary pointer and point it to the head of the list
+        tail->next = nullptr;
 
-        while ((index - 2) != temp->index) // Traverse the list until the second-to-last element
+        delete deleted;
+    }
+
+    void pop_front() 
+    {
+        if (head == nullptr)
+            return;
+
+        if (head->next == nullptr) 
         {
-            temp = temp->next; // Move to the next element
+            delete head;
+            head = nullptr;
+            return; 
         }
 
-        tail = temp; // Update the tail to point to the second-to-last element
-        tail->next = nullptr; // Set the next pointer of the new tail to nullptr
-        index--; // Decrement the index as the last element is being removed
+        Node<T>* deleted = head; 
+        head = head->next;
 
-        temp = temp->next; // Move the temporary pointer to the last element
-        temp->data.~T(); // Destroy the data of the last element
-        delete temp; // Delete the last element
+        delete deleted;
     }
 
-    void pop_front() // Function to remove the first element
+    const T& get_head_data() const
     {
-        if (head->next == nullptr) // If there is only one element in the list
-            return; // Return as there is nothing to remove
-
-        Node<T>* temp = head; // Create a temporary pointer and point it to the head of the list
-        Node<T>* delited = head; // Create a pointer to store the deleted node
-        head = temp->next; // Move the head pointer to the next element
-
-        delited->data.~T(); // Destroy the data of the deleted node
-        delete delited;
-
-        index = 0;
-
-        while (temp != nullptr)
-        {
-            temp->index = index;  // Set the index of the current node to the current index value
-            ++index;  // Increment index by 1
-            temp = temp->next;  // Move to the next node
-        }
-        ++index;
+        return head->data;
     }
 
-    const Node<T>& get_head() const
+    const T& get_tail_data() const
     {
-        return *head;
-    }
-
-    const Node<T>& get_tail() const
-    {
-        return *tail;
+        return tail->data;
     }
 
     void push_front(const T& value)
     {
 
-        if (head == nullptr) // If the linked list is empty, create a new node and make it the head
+        if (head == nullptr) 
         {
-            index = 0;
-            head = new Node<T>(value);  // Create new node with value and index
-            head->index = index;
-            ++index;  // Increment index by 1
-            return;  // Exit the function
+            head = new Node<T>(value);  
+            return;  
         }
 
-        Node<T>* temp = new Node<T>(value);  // Create new node with value and index
-        temp->next = head;  // Set the next pointer of the new node to the current head
-        head = temp;  // Set the head to the new node
-
-        index = 0;  // Initialize index to 0
-        while (temp != nullptr)
-        {
-            temp->index = index;  // Set the index of the current node to the current index value
-            ++index;  // Increment index by 1
-            temp = temp->next;  // Move to the next node
-        }
+        auto* temp = new Node<T>(value); 
+        temp->next = head;  
+        head = temp;  
     }
 
     void print() const
     {
-        Node<T>* current = head;  // Create a pointer variable to keep track of the current node, starting from the head
-        while (current != nullptr) // Loop through the linked list until we reach the end (nullptr)
+        Node<T>* current = head;  
+        while (current != nullptr) 
         {
-            std::cout << current->data << "/" << current->index << "; "; // Print the data stored in the current node
-            current = current->next; // Move to the next node
+            std::cout << current->data <<"; "; 
+            current = current->next; 
         }
     }
 
-
-    T operator [](int id) const  // Get the element at the given index.
+    T at(int id) const   
     {
-        Node<T>* current = head; // Start at the head of the linked list.
-        if (id < index)
-        while (current->index <= index) // Traverse the linked list until the current node is nullptr or the desired index is found.
-        {
-            if (current->index == id) // Check if the current node's index matches the desired index.
-            {
-                return current->data; // Return the data of the current node.
-            }
-            current = current->next; // Move to the next node in the linked list.
-        }
-        
-        return T();   // If the desired index is not found, return a default value of type T.
+        Node<T>* current = head;  
+
+        for (int i = 0; current != nullptr; ++i)  
+		{
+			if (i == id)  
+			{
+				return current->data;  
+			}
+			current = current->next;  
+		}
+
+		throw std::out_of_range("Index out of range"); 
     }
 
 
-    std::vector<T> to_vector() const // Returns a vector containing the data from the linked list
+    std::vector<T> to_vector() const  
     {
-        Node<T>* current = head;  // Start at the head of the linked list
-        std::vector<T> data_accum; // Create an empty vector to store the data
+        Node<T>* current = head;   
+        std::vector<T> data_accum;  
 
-        while (current != nullptr) // Traverse the linked list and append each element to the vector
+        while (current != nullptr)  
         {
             data_accum.push_back(current->data);
             current = current->next;
         }
 
-        return data_accum; // Return the vector containing the data from the linked list
+        return data_accum;  
     }
 
     void insert(int id, const T& value)
     {
-        auto* inserted = new Node<T>(value); // Create a new Node with the provided value
+        auto* inserted = new Node<T>(value);  
 
-        if (head == nullptr || id == 0) // If the list is empty or we want to insert at the beginning
+        if (head == nullptr || id == 0)  
         {
-            inserted->next = head; // Set the next pointer of the new Node to the current head
-            head = inserted; // Set the new Node as the new head
-            return; // Exit the function
+            inserted->next = head;  
+            head = inserted;  
+            return;  
         }
 
-        auto* temp = head; // Create a temporary Node pointer and set it to the head
+        auto* temp = head;
 
-        while (temp != nullptr && temp->index < id-1) // Find the Node before the insertion point
+        int cntr = 0;       
+        while (temp != nullptr && cntr != id-1)  
         {
-            temp = temp->next; // Move to the next Node in the list
+            temp = temp->next;
+            ++cntr;
         }
 
-        if (temp == nullptr) // If the insertion point is beyond the end of the list
+        if (temp == nullptr)  
         {
-            inserted->data.~T(); // Destruct the data in the new Node
-            delete inserted; // Delete the new Node
-            return; // Exit the function
+            delete inserted;  
+            return;  
         }
 
-        inserted->next = temp->next; // Set the next pointer of the new Node to the next Node after the insertion point
+        inserted->next = temp->next;  
 
-        temp->next = inserted; // Set the next pointer of the Node before the insertion point to the new Node
+        temp->next = inserted;  
 
-        index = 0; // Initialize an index counter to 0
-        temp = head; // Reset the temporary Node pointer to the head
-
-        while (temp != nullptr) // Update the index of each Node in the list
-        {
-            temp->index = index; // Set the index of the current Node
-            ++index; // Increment the index counter
-            temp = temp->next; // Move to the next Node in the list
-        }
-        ++index; // Increment the index counter for the newly inserted Node
     }
 
     class iterator 
@@ -254,25 +220,22 @@ public:
                 return *this;
             }
 
-
-            bool End() const 
-            {
-                return current == nullptr;
-            }
-
-            Node<T>* getNode() const 
+            Node<T>* operator->() const
             {
                 return current;
+                
             }
 
-            T& value() const 
+            const T& operator *() const
             {
                 return current->data;
             }
-            int index() const 
+
+            const T& value() const 
             {
-                return current->index;
+                return current->data;
             }
+
 
         private:
             Node<T>* current;
@@ -333,8 +296,8 @@ int main()
     //myList.print(); // Выведет: 10 20 30
     //std::cout << "\n\n\n";
 
-    assert(myList[2] == 30);
-    int tt = myList[100];
+    assert(myList.at(2) == 30);
+ 
     //myList.print();
     //std::cout << "\n" << myList.size() << "\n";
 
@@ -347,30 +310,33 @@ int main()
     //myList.print();
     //std::cout << "\n" << myList.size() << "\n";
 
-    assert(myList.get_head().data == -10);
-    assert(myList.get_tail().data == 30);
+    assert(myList.get_head_data() == -10);
+    assert(myList.get_tail_data() == 30);
     myList.pop_back();
-    assert(myList.get_tail().data == 20);
+    assert(myList.get_tail_data() == 20);
     myList.push_back(30);
-    assert(myList.get_tail().data == 30);
+    assert(myList.get_tail_data() == 30);
     myList.pop_back();
-    assert(myList.get_tail().data == 20);
-    assert(myList.get_head().data == -10);
+    assert(myList.get_tail_data() == 20);
+    assert(myList.get_head_data() == -10);
 
     std::vector<int> expected_2 = { -10, 10,-20, 20 };
     myList.insert(2,-20);
+
     std::vector<int> to_vector_2 = myList.to_vector();
 
     for (size_t i = 0; i < to_vector_2.size(); i++)
          assert(to_vector_2[i] == expected_2[i]);
 
-    for (auto it = myList.begin(); it != myList.end(); ++it)
-         assert(it.value() == expected_2[it.index()]);
+    int i = 0;
+    for ( auto it = myList.begin(); it != myList.end(); ++it, ++i)
+        assert(it.value() == expected_2[i]);
+
 
         
     
-
     myList.print();
+    std::cout << std::endl;
     std::cout << "\nAll tests passed successfully!\n\n" << std::endl;
     return 0;
 }
