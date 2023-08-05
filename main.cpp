@@ -33,7 +33,7 @@ public:
             //std::cout<< "\n Destruct\n";
             temp->data.~T();
 
-            delete temp;
+             delete temp;
         }
     }
 
@@ -201,8 +201,8 @@ public:
         inserted->next = temp->next;  
 
         temp->next = inserted;  
-
     }
+
 
     class iterator 
     {
@@ -212,6 +212,11 @@ public:
             bool operator!=(const iterator& other) const
             {
                 return current != other.current;
+            }
+            
+            bool operator==(const iterator& other) const
+            {
+                return current == other.current;
             }
 
             iterator& operator ++() 
@@ -223,7 +228,6 @@ public:
             Node<T>* operator->() const
             {
                 return current;
-                
             }
 
             const T& operator *() const
@@ -248,7 +252,63 @@ public:
     iterator end() {
         return iterator(nullptr);
     }
+
+    void insert(iterator it, const T& value) const
+    {
+        auto* inserted = new Node<T>(value);
+
+        inserted->next = it->next;
+        it->next = inserted;
+    }
+
+    void insert(const T& value, iterator it)
+    {
+        auto* inserted = new Node<T>(value);
+
+        if (it == begin()) 
+        {
+            inserted->next = head;
+            head = inserted;
+            return;
+        }
+
+        auto previous = head;
+
+        for (auto current = begin(); current != it; ++current) 
+            previous = current->next;
+        
+        inserted->next = it->next;
+        previous->next = inserted;
+
+    }
+
+void erase(iterator &it)
+{
+    if(it == begin())
+    {
+        auto* temp = head;
+        head = head->next;
+        delete temp;
+        return;
+    }
+
+
+    auto current = head;
+    auto old = head;
+    for (auto cntr = begin(); cntr != it; ++cntr) 
+    {
+        old=current;
+        current = current->next;
+
+    }
+    std::cout << old->data << "/" << ";\n";
+
+    old->next = it->next;
     
+    delete current;
+}
+
+
     void reverse(Node<T>* current = nullptr)
     {
         if (current == nullptr)
@@ -328,15 +388,36 @@ int main()
     for (size_t i = 0; i < to_vector_2.size(); i++)
          assert(to_vector_2[i] == expected_2[i]);
 
+
     int i = 0;
     for ( auto it = myList.begin(); it != myList.end(); ++it, ++i)
         assert(it.value() == expected_2[i]);
 
-
-        
-    
     myList.print();
     std::cout << std::endl;
+    {
+    auto it = myList.begin();
+    myList.insert(100, it);
+    myList.print();
+    std::cout << std::endl;
+    }
+
+    {
+    auto it = myList.begin();
+    ++it;
+    myList.insert(it, 99);
+    myList.print();
+    std::cout << std::endl;
+    } 
+
+
+    auto it_2 = myList.begin();
+    ++it_2;
+    myList.erase(it_2);
+
+    myList.print();
+    std::cout << std::endl;
+
     std::cout << "\nAll tests passed successfully!\n\n" << std::endl;
     return 0;
 }
