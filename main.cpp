@@ -301,7 +301,7 @@ void erase(iterator &it)
         current = current->next;
 
     }
-    std::cout << old->data << "/" << ";\n";
+    //std::cout << old->data << "/" << ";\n";
 
     old->next = it->next;
     
