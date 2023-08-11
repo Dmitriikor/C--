@@ -3,421 +3,498 @@
 #include <cassert>
 #include "LinkedListIterator.hpp"
 
+#include <stack>
+
 template <typename T>
 struct Node
 {
-    T data;
-    Node* next = nullptr;
+	T data;
+	Node* next = nullptr;
 
-    explicit Node(const T& value /*const int index*/) : data(value)
-    {}
+	explicit Node(const T& value) : data(value)
+	{}
 };
 
 template <typename T>
-struct List
+class List
 {
 private:
-    Node<T>* tail=nullptr;
+	Node<T>* tail = nullptr;
 
 public:
-    Node<T>* head = nullptr;
-    
-    List() = default;
+	Node<T>* head = nullptr;
 
-    ~List()
-    {
-        while (head != nullptr)
-        {
-            Node<T>* temp = head;
-            head = head->next;
-            //std::cout<< "\n Destruct\n";
-            temp->data.~T();
+	List() = default;
 
-             delete temp;
-        }
-    }
-
-    int size() const 
-    {
-        int size = 0;
-        Node<T>* current = head;
-        while (current != nullptr)
-        {
-            ++size;
-            current=current->next;
-        }
-        return size;
-    }
-
-    void push_back(const T& value) 
-    {
-        if (head == nullptr) 
-        {
-            head = new Node<T>(value);
-            tail = head;
-            return;
-        }
-
-        tail->next = new Node<T>(value);
-        tail = tail->next;
-    }
-
-    void pop_back() 
-    {   
-        if (head == nullptr) 
-        {
-            return;
-        }
-
-        if (head->next == nullptr) 
-        {
-            delete head;
-            head = nullptr;
-            return;
-        }
-
-        Node<T>* temp = head;
-        while (temp->next != tail) 
-        {
-            temp = temp->next;
-        }
-
-        Node<T>* deleted = tail;
-        tail = temp;
-        tail->next = nullptr;
-
-        delete deleted;
-    }
-
-    void pop_front() 
-    {
-        if (head == nullptr)
-            return;
-
-        if (head->next == nullptr) 
-        {
-            delete head;
-            head = nullptr;
-            return; 
-        }
-
-        Node<T>* deleted = head; 
-        head = head->next;
-
-        delete deleted;
-    }
-
-    const T& get_head_data() const
-    {
-        return head->data;
-    }
-
-    const T& get_tail_data() const
-    {
-        return tail->data;
-    }
-
-    void push_front(const T& value)
-    {
-
-        if (head == nullptr) 
-        {
-            head = new Node<T>(value);  
-            return;  
-        }
-
-        auto* temp = new Node<T>(value); 
-        temp->next = head;  
-        head = temp;  
-    }
-
-    void print() const
-    {
-        Node<T>* current = head;  
-        while (current != nullptr) 
-        {
-            std::cout << current->data <<"; "; 
-            current = current->next; 
-        }
-    }
-
-    T at(int id) const   
-    {
-        Node<T>* current = head;  
-
-        for (int i = 0; current != nullptr; ++i)  
+	~List()
+	{
+		while (head != nullptr)
 		{
-			if (i == id)  
-			{
-				return current->data;  
-			}
-			current = current->next;  
+			Node<T>* temp = head;
+			head = head->next;
+			//std::cout<< "\n Destruct\n";
+
+			delete temp;
+		}
+	}
+
+	int size() const
+	{
+		int size = 0;
+		Node<T>* current = head;
+		while (current != nullptr)
+		{
+			++size;
+			current = current->next;
+		}
+		return size;
+	}
+
+	void push_back(const T& value)
+	{
+		if (head == nullptr)
+		{
+			head = new Node<T>(value);
+			tail = head;
+			return;
 		}
 
-		throw std::out_of_range("Index out of range"); 
-    }
+		tail->next = new Node<T>(value);
+		tail = tail->next;
+	}
+
+	void pop_back()
+	{
+		if (head == nullptr)
+		{
+			return;  //!!! throw
+		}
+
+		if (head->next == nullptr)
+		{
+			delete head;
+			head = nullptr;
+			tail = nullptr;
+			return;
+		}
+
+		Node<T>* temp = head;
+		while (temp->next != tail)
+		{
+			temp = temp->next;
+		}
+
+		Node<T>* deleted = tail;
+		tail = temp;
+		tail->next = nullptr;
+
+		delete deleted;
+	}
+
+	void pop_front()
+	{
+		if (head == nullptr)
+			return; //!!! throw
+
+		if (head->next == nullptr)
+		{
+			delete head;
+			head = nullptr;
+			tail = nullptr;
+			return;
+		}
+
+		Node<T>* deleted = head;
+		head = head->next;
+
+		delete deleted;
+	}
+
+	const T& get_head_data() const
+	{
+		//!!! throw
+		return head->data;
+	}
+
+	const T& get_tail_data() const
+	{
+		//!!! throw
+		return tail->data;
+	}
+
+	void push_front(const T& value)
+	{
+		if (head == nullptr)
+		{
+			head = new Node<T>(value);
+			tail = head;
+			return;
+		}
+
+		auto* temp = new Node<T>(value);
+		temp->next = head;
+		head = temp;
+	}
+
+	void print() const
+	{
+		Node<T>* current = head;
+		while (current != nullptr)
+		{
+			std::cout << current->data << "; ";
+			current = current->next;
+		}
+	}
+
+	T at(int id) const
+	{
+		Node<T>* current = head;
+
+		for (int i = 0; current != nullptr; ++i)
+		{
+			if (i == id)
+			{
+				return current->data;
+			}
+			current = current->next;
+		}
+
+		throw std::out_of_range("Index out of range");
+	}
 
 
-    std::vector<T> to_vector() const  
-    {
-        Node<T>* current = head;   
-        std::vector<T> data_accum;  
+	std::vector<T> to_vector() const
+	{
+		Node<T>* current = head;
+		std::vector<T> data_accum;
 
-        while (current != nullptr)  
-        {
-            data_accum.push_back(current->data);
-            current = current->next;
-        }
+		while (current != nullptr)
+		{
+			data_accum.push_back(current->data);
+			current = current->next;
+		}
 
-        return data_accum;  
-    }
+		return data_accum;
+	}
 
-    void insert(int id, const T& value)
-    {
-        auto* inserted = new Node<T>(value);  
+	void insert(int id, const T& value)
+	{
+		auto* inserted = new Node<T>(value);
 
-        if (head == nullptr || id == 0)  
-        {
-            inserted->next = head;  
-            head = inserted;  
-            return;  
-        }
+		if (head == nullptr)
+			if (id == 0)
+			{
+				inserted->next = head;
+				head = inserted;
+				tail = head;
+				return;
+			}
+			else
+				throw std::out_of_range("Index out of range");
 
-        auto* temp = head;
+		auto* temp = head;
 
-        int cntr = 0;       
-        while (temp != nullptr && cntr != id-1)  
-        {
-            temp = temp->next;
-            ++cntr;
-        }
+		int counter = 0;
+		while (temp != nullptr && counter != id - 1)
+		{
+			temp = temp->next;
+			++counter;
+		}
 
-        if (temp == nullptr)  
-        {
-            delete inserted;  
-            return;  
-        }
+		if (temp == nullptr)
+		{
+			delete inserted;
+			throw std::out_of_range("Index out of range");
+		}
 
-        inserted->next = temp->next;  
+		inserted->next = temp->next;
 
-        temp->next = inserted;  
-    }
+		temp->next = inserted;
 
-
-    class iterator 
-    {
-        public:
-            explicit iterator(Node<T>* startNode) : current(startNode) {}
-
-            bool operator!=(const iterator& other) const
-            {
-                return current != other.current;
-            }
-            
-            bool operator==(const iterator& other) const
-            {
-                return current == other.current;
-            }
-
-            iterator& operator ++() 
-            {
-                current = current->next;
-                return *this;
-            }
-
-            Node<T>* operator->() const
-            {
-                return current;
-            }
-
-            const T& operator *() const
-            {
-                return current->data;
-            }
-
-            const T& value() const 
-            {
-                return current->data;
-            }
+		if (temp == tail)
+			tail = inserted;
+	}
 
 
-        private:
-            Node<T>* current;
-    };
+	class iterator
+	{
+		friend class List;
+	public:
+		explicit iterator(Node<T>* startNode) : current(startNode) {}
 
-    iterator begin() {
-        return iterator(head);
-    }
+		bool operator!=(const iterator& other) const
+		{
+			return !this->operator == (other);
+		}
 
-    iterator end() {
-        return iterator(nullptr);
-    }
+		bool operator==(const iterator& other) const
+		{
+			return current == other.current;
+		}
 
-    void insert(iterator it, const T& value) const
-    {
-        auto* inserted = new Node<T>(value);
+		iterator& operator ++() //+ postfix
+		{
+			current = current->next;
+			return *this;
+		}
 
-        inserted->next = it->next;
-        it->next = inserted;
-    }
+		T* operator->()
+		{
+			return &current->data;
+		}
 
-    void insert(const T& value, iterator it)
-    {
-        auto* inserted = new Node<T>(value);
+		T& operator *()
+		{
+			return current->data;
+		}
 
-        if (it == begin()) 
-        {
-            inserted->next = head;
-            head = inserted;
-            return;
-        }
-
-        auto previous = head;
-
-        for (auto current = begin(); current != it; ++current) 
-            previous = current->next;
-        
-        inserted->next = it->next;
-        previous->next = inserted;
-
-    }
-
-void erase(iterator &it)
-{
-    if(it == begin())
-    {
-        auto* temp = head;
-        head = head->next;
-        delete temp;
-        return;
-    }
+		/*const T& value() const
+		{
+			return current->data;
+		}*/
 
 
-    auto current = head;
-    auto old = head;
-    for (auto cntr = begin(); cntr != it; ++cntr) 
-    {
-        old=current;
-        current = current->next;
+	private:
+		Node<T>* current;
+	};
 
-    }
-    //std::cout << old->data << "/" << ";\n";
+	iterator begin() {
+		return iterator(head);
+	}
 
-    old->next = it->next;
-    
-    delete current;
-}
+	iterator end() {
+		return iterator(nullptr);
+	}
+
+	void insert(iterator it, const T& value)
+	{
+		//if (it.current == nullptr)
+		//throw;
+
+		auto* inserted = new Node<T>(value);
+
+		inserted->next = it.current->next;
+		it.current->next = inserted;
+
+		if (it.current == tail)
+			tail = inserted;
+	}
+
+	void insert(const T& value, iterator it)
+	{
+		auto* inserted = new Node<T>(value);
+
+		if (it.current == head)
+		{
+			inserted->next = head;
+			head = inserted;
+
+			if (it.current == nullptr)
+				tail = head;
+
+			return;
+		}
+
+		auto old = head;
+		auto current = head->next;
+		while (current != it.current)
+		{
+			old = current;
+			current = current->next;
+		}
+
+		inserted->next = it.current->next;
+		old->next = inserted;
+
+		if (old == tail)
+			tail = inserted;
+
+	}
+
+	void erase(const iterator& it)
+	{
+		//if (it.current == nullptr)
+			//throw
+
+		if (it == begin())
+		{
+			auto* temp = head;
+			head = head->next;
+			delete temp;
+
+			if (head == nullptr)
+				tail = nullptr;
+
+			return;
+		}
+
+		auto old = head;
+		auto current = head->next;
+		while (current != it.current)
+		{
+			old = current;
+			current = current->next;
+		}
+		//std::cout << old->data << "/" << ";\n";
+
+		if (current == tail)
+			tail = current->next;
+
+		old->next = current->next;
+
+		delete current;
+	}
 
 
-    void reverse(Node<T>* current = nullptr)
-    {
-        if (current == nullptr)
-        {
-            current = head;  
-        }
+	void reverse()
+	{
+		//reverse_(head);
+		reverse_();
+		std::cout << "\n";
+	}
 
-        if (current->next == nullptr)
-        {
-            std::cout << current->data << "/" << current->index << ";\n";
-            return;
-        }
+private:
+	static void reverse_(Node<T>* current)
+	{
+		if (current == nullptr)
+		{
+			return;
+		}
 
-        reverse(current->next);
-        std::cout << current->data << "/" << current->index << ";\n";
-    }
+		reverse_(current->next);
+		std::cout << current->data << "; ";
+	}
+
+	void reverse_()
+	{
+		std::stack<T> st;
+
+		auto* current = head;
+		while (current != nullptr)
+		{
+			st.push(current->data);
+			current = current->next;
+		}
+
+		while (!st.empty())
+		{
+			std::cout << st.top() << "; ";
+
+			st.pop();
+		}
+	}
 
 };
 
 int main()
 {
-    List<int> myList;
+	List<int> myList;
 
-    myList.push_back(10);
-    myList.push_back(20);
-    myList.push_back(30);
+	myList.push_back(10);
+	myList.push_back(20);
+	myList.push_back(30);
 
-    Node<int>* temp = myList.head;
-    assert(temp->data == 10);
-    temp = temp->next;
-    assert(temp->data == 20);
-    temp = temp->next;
-    assert(temp->data == 30);
-    assert(temp->next == nullptr);
+	Node<int>* temp = myList.head;
+	assert(temp->data == 10);
+	temp = temp->next;
+	assert(temp->data == 20);
+	temp = temp->next;
+	assert(temp->data == 30);
+	assert(temp->next == nullptr);
 
-    assert(myList.size() == 3);
+	assert(myList.size() == 3);
 
-    std::vector<int> expected = { 10, 20, 30 };
-    std::vector<int> to_vector = myList.to_vector();
-    for (size_t i = 0; i < to_vector.size(); i++)
-    {
-        assert(to_vector[i] == expected[i]);
-    }
+	std::vector<int> expected = { 10, 20, 30 };
+	std::vector<int> to_vector = myList.to_vector();
+	for (size_t i = 0; i < to_vector.size(); i++)
+	{
+		assert(to_vector[i] == expected[i]);
+	}
 
-    //myList.print(); // Выведет: 10 20 30
-    //std::cout << "\n\n\n";
+	//myList.print(); // Выведет: 10 20 30
+	//std::cout << "\n\n\n";
 
-    assert(myList.at(2) == 30);
- 
-    //myList.print();
-    //std::cout << "\n" << myList.size() << "\n";
+	assert(myList.at(2) == 30);
 
-    myList.push_front(-10);
-    std::vector<int> expected_front = { -10, 10, 20, 30 };
-    std::vector<int> to_vector_front = myList.to_vector();
-    for (size_t i = 0; i < to_vector_front.size(); i++)
-        assert(to_vector_front[i] == expected_front[i]);
-    
-    //myList.print();
-    //std::cout << "\n" << myList.size() << "\n";
+	//myList.print();
+	//std::cout << "\n" << myList.size() << "\n";
 
-    assert(myList.get_head_data() == -10);
-    assert(myList.get_tail_data() == 30);
-    myList.pop_back();
-    assert(myList.get_tail_data() == 20);
-    myList.push_back(30);
-    assert(myList.get_tail_data() == 30);
-    myList.pop_back();
-    assert(myList.get_tail_data() == 20);
-    assert(myList.get_head_data() == -10);
+	myList.push_front(-10);
+	std::vector<int> expected_front = { -10, 10, 20, 30 };
+	std::vector<int> to_vector_front = myList.to_vector();
+	for (size_t i = 0; i < to_vector_front.size(); i++)
+		assert(to_vector_front[i] == expected_front[i]);
 
-    std::vector<int> expected_2 = { -10, 10,-20, 20 };
-    myList.insert(2,-20);
+	//myList.print();
+	//std::cout << "\n" << myList.size() << "\n";
 
-    std::vector<int> to_vector_2 = myList.to_vector();
+	assert(myList.get_head_data() == -10);
+	assert(myList.get_tail_data() == 30);
+	myList.pop_back();
+	assert(myList.get_tail_data() == 20);
+	myList.push_back(30);
+	assert(myList.get_tail_data() == 30);
+	myList.pop_back();
+	assert(myList.get_tail_data() == 20);
+	assert(myList.get_head_data() == -10);
 
-    for (size_t i = 0; i < to_vector_2.size(); i++)
-         assert(to_vector_2[i] == expected_2[i]);
+	std::vector<int> expected_2 = { -10, 10,-20, 20 };
+	myList.insert(2, -20);
 
+	std::vector<int> to_vector_2 = myList.to_vector();
 
-    int i = 0;
-    for ( auto it = myList.begin(); it != myList.end(); ++it, ++i)
-        assert(it.value() == expected_2[i]);
-
-    myList.print();
-    std::cout << std::endl;
-    {
-    auto it = myList.begin();
-    myList.insert(100, it);
-    myList.print();
-    std::cout << std::endl;
-    }
-
-    {
-    auto it = myList.begin();
-    ++it;
-    myList.insert(it, 99);
-    myList.print();
-    std::cout << std::endl;
-    } 
+	for (size_t i = 0; i < to_vector_2.size(); i++)
+		assert(to_vector_2[i] == expected_2[i]);
 
 
-    auto it_2 = myList.begin();
-    ++it_2;
-    myList.erase(it_2);
+	int i = 0;
+	for (auto it = myList.begin(); it != myList.end(); ++it, ++i)
+		//assert(it.value() == expected_2[i]);
+		assert(*it == expected_2[i]);
 
-    myList.print();
-    std::cout << std::endl;
+	myList.print();
+	std::cout << std::endl;
+	{
+		auto it = myList.begin();
+		++it;
 
-    std::cout << "\nAll tests passed successfully!\n\n" << std::endl;
-    return 0;
+		myList.insert(100, it);
+		myList.print();
+		std::cout << std::endl;
+	}
+
+	/*{
+		List<int> myList2;
+
+		myList2.push_back(1);
+
+		auto it = myList2.begin();
+
+		myList.insert(100, it);
+
+		myList.print();
+		myList2.print();
+		std::cout << std::endl;
+	}*/
+
+	{
+		auto it = myList.begin();
+		++it;
+		myList.insert(it, 99);
+		myList.print();
+		std::cout << std::endl;
+	}
+
+
+	auto it_2 = myList.begin();
+	++it_2;
+	myList.erase(it_2);
+
+	myList.print();
+	std::cout << std::endl;
+	myList.reverse();
+	std::cout << std::endl;
+
+	std::cout << "\nAll tests passed successfully!\n\n" << std::endl;
+	return 0;
 }
