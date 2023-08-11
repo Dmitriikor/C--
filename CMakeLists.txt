@@ -56,7 +56,7 @@ enable_testing()
 add_executable(MAIN.out ${SOURCES} ${HEADERS})
 
 # Линковка с библиотекой Nana
-target_link_libraries(MAIN.out PUBLIC ${CMAKE_SOURCE_DIR}/lib/libnana.a ${RUNNANA_LINK_LIBS} stdc++fs)
+#target_link_libraries(MAIN.out PUBLIC ${CMAKE_SOURCE_DIR}/lib/libnana.a ${RUNNANA_LINK_LIBS} stdc++fs)
 
 
 

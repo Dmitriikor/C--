@@ -1,15 +1,15 @@
 #include <iostream>
 #include <vector>
 #include <cassert>
-#include "LinkedListIterator.hpp"
-
 #include <stack>
+#include <vector>
+
+
 
 template <typename T>
 struct Node
 {
 	T data;
-	
 	Node* next = nullptr;
 
 	explicit Node(const T& value) : data(value)
@@ -28,7 +28,7 @@ private:
 	Node<T>* tail = nullptr;
 	Node<T>* head = nullptr;
 	size_t _size = 0;
-
+ 	friend class iterator;
 	Node<T>* create_node(const T& value) 
 	{
 		Node<T>* new_node_ = nullptr;
@@ -302,16 +302,22 @@ public:
 		return data_accum;
 	}
 
+
 	class iterator
 	{
-		friend class List;
-		
+
 	public:
+		using iterator_category = std::forward_iterator_tag;  
+		using value_type = T;
+		using difference_type = std::ptrdiff_t;
+		using pointer = T*;
+		using reference = T&;
+
 		explicit iterator(Node<T>* startNode) : current(startNode) {}
 
 		bool operator!=(const iterator& other) const
 		{
-			return !this->operator == (other);
+			return !(*this == other);
 		}
 
 		bool operator==(const iterator& other) const
@@ -319,7 +325,7 @@ public:
 			return current == other.current;
 		}
 
-		iterator& operator ++() //+ postfix
+		iterator& operator++() 
 		{
 			current = current->next;
 			return *this;
@@ -327,9 +333,9 @@ public:
 
 		iterator operator++(int) 
 		{
-			iterator temp = *this;   
-			current = current->next;   
-			return temp;   
+			iterator temp = *this;
+			current = current->next;
+			return temp;
 		}
 
 		T* operator->()
@@ -337,17 +343,14 @@ public:
 			return &current->data;
 		}
 
-		T& operator *()
+		T& operator*()
 		{
 			return current->data;
 		}
 
-		/*const T& value() const
-		{
-			return current->data;
-		}*/
-
 	private:
+		
+		friend class List<T>; 
 		Node<T>* current;
 	};
 
@@ -513,6 +516,10 @@ private:
 	}
 
 };
+
+
+ 
+
 
 int main()
 {
