@@ -7,7 +7,7 @@ class __TESTS__
 private:
     T data;
 public:
-    __TESTS__(T data) : data(data) {}  
+    explicit __TESTS__(T data) : data(data) {}  
     ~__TESTS__() = default;
     
 };
