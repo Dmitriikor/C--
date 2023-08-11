@@ -8,7 +8,7 @@ struct Node;
 template <typename T>
 	class LL_Iterator
 	{
-        friend class LL_List<T>;
+        //friend class LL_List<T>;
 	public:
 		using iterator_category = std::forward_iterator_tag;  
 		using value_type = T;
