@@ -71,7 +71,7 @@ private:
             thisCurrent = thisCurrent->next;
             if (thisCurrent == nullptr) 
 			{
-				clearerr();
+				clerar();
                 throw std::bad_alloc();
             }
             otherCurrent = otherCurrent->next;
@@ -80,7 +80,7 @@ private:
     }
 	void check_node(Node<T>* current) const
 	{
-		if (temp == nullptr)
+		if (current == nullptr)
 		{
 			throw std::bad_alloc();
 		}
@@ -198,9 +198,10 @@ public:
 			tail = head;
 			return;
 		}
-
-		tail->next = create_node(value); //new Node<T>(value);
+		
+		auto* current = create_node(value); //new Node<T>(value);
 		check_node(current);
+		tail->next = current;
 		tail = tail->next;
 	}
 	void pop_front()
@@ -378,7 +379,7 @@ public:
 	{
 		auto* inserted = create_node(value); //new Node<T>(value);
 		check_node(inserted);
-		
+
 		if (head == nullptr)
 		{
 			if (id == 0)
