@@ -198,7 +198,7 @@ public:
 			tail = head;
 			return;
 		}
-		
+
 		auto* current = create_node(value); //new Node<T>(value);
 		check_node(current);
 		tail->next = current;
