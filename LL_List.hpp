@@ -71,12 +71,20 @@ private:
             thisCurrent = thisCurrent->next;
             if (thisCurrent == nullptr) 
 			{
+				clearerr();
                 throw std::bad_alloc();
             }
             otherCurrent = otherCurrent->next;
         }
         tail = thisCurrent;
     }
+	void check_node(Node<T>* current) const
+	{
+		if (temp == nullptr)
+		{
+			throw std::bad_alloc();
+		}
+	}
 	size_t debug_size() const
 	{
 		int size = 0;
@@ -171,24 +179,28 @@ public:
 		if (head == nullptr)
 		{
 			head = create_node(value); //new Node<T>(value);
+			check_node(head);
 			tail = head;
 			return;
 		}
 
-		auto* temp = create_node(value); //new Node<T>(value);
-		temp->next = head;
-		head = temp;
+		auto* current = create_node(value); //new Node<T>(value);
+		check_node(current);
+		current->next = head;
+		head = current;
 	}
 	void push_back(const T& value)
 	{
 		if (head == nullptr)
 		{
 			head = create_node(value);//new Node<T>(value);
+			check_node(head);
 			tail = head;
 			return;
 		}
 
 		tail->next = create_node(value); //new Node<T>(value);
+		check_node(current);
 		tail = tail->next;
 	}
 	void pop_front()
@@ -317,11 +329,11 @@ public:
 
 	void insert(iterator it, const T& value)
 	{
-		//if (it.current == nullptr)
-		//throw;
+		if (it.current == nullptr)
+			throw std::out_of_range("it.current == nullptr");
 
 		auto* inserted = create_node(value); //new Node<T>(value);
-
+		check_node(inserted);
 		inserted->next = it.current->next;
 		it.current->next = inserted;
 
@@ -330,7 +342,11 @@ public:
 	}
 	void insert(const T& value, iterator it)
 	{
+		if (it.current == nullptr)
+			throw std::out_of_range("it.current == nullptr");
+
 		auto* inserted = create_node(value); //new Node<T>(value);
+		check_node(inserted);
 
 		if (it.current == head)
 		{
@@ -361,7 +377,8 @@ public:
 	void insert(int id, const T& value)
 	{
 		auto* inserted = create_node(value); //new Node<T>(value);
-
+		check_node(inserted);
+		
 		if (head == nullptr)
 		{
 			if (id == 0)
