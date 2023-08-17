@@ -11,7 +11,7 @@ int main()
     // Create an instance of the __TESTS__ class with the template type int
     __TESTS__<int> p(9);
 
-    // Create an instance of the LL_List class with the template type int
+    // Create an instance of the LL_List<int> class with the template type int
     LL_List<int> myList;
 
     // Add elements to the list using the push_back function
@@ -74,10 +74,10 @@ int main()
     assert(myList.get_head_data() == -10);
 
     // Create a vector with the expected values after inserting an element at index 2
-    std::vector<int> expected_2 = { -10, 10, -20, 20 };
+    std::vector<int> expected_2 = { -10, 10, 20 };
 
     // Insert an element at index 2 of the list
-    myList.insert(2, -20);
+    //myList.insert(2, -20);
 
     // Convert the list to a vector and compare it with the expected vector
     std::vector<int> to_vector_2 = myList.to_vector();
@@ -93,13 +93,13 @@ int main()
     {
         auto it = myList.begin();
         ++it;
-        myList.insert(100, it);
+        myList.insert(it, 100);
     }
 
 	{
 		auto it = myList.begin();
 		++it;
-		myList.insert(it, 99);
+		myList.insert_after(it, 99);
 		std::cout << std::endl;
 	}
 
@@ -127,29 +127,31 @@ int main()
 		myList2.push_back(6);
 		LL_List<int> movedList(std::move(myList2));
 		assert(myList2.size() == 0);
+		
 		try
 		{
 			//myList2.pop_back();
 			myList2.pop_front();
-		}
-		catch(const std::exception& e)
+		} catch(const std::exception& e)
 		{
-			assert(std::cerr << e.what() << " | ");
+			std::cout << e.what() << " | ";
 		}
+
 		try
 		{
 			myList2.pop_back();
 			//myList2.pop_front();
-		}
-		catch(const std::exception& ee)
+		} catch(const std::exception& ee)
 		{
-			assert(std::cerr << ee.what() << "\n\n");
+			std::cout << ee.what() << " | ";
 		}
+
 		assert(movedList.size() == 3);
 		assert(movedList.at(0) == 4);
 		assert(movedList.at(1) == 5);
 		assert(movedList.at(2) == 6);
 	}
+
 	{
 		LL_List<int> list1;
 		list1.push_back(1);
@@ -172,6 +174,52 @@ int main()
 			++iter1;
 			iter2++;
 		}
+	}
+	{
+		
+		LL_List<int> list1;
+		for (int i = 0; i < 5; ++i) 
+		{
+			list1.push_back(i);
+		}
+
+		
+		LL_List<int> list2;
+		for (int i = 5; i < 10; ++i) 
+		{
+			list2.push_back(i);
+		}
+
+		
+		LL_List<int> list3 = list1; 
+		list3 = std::move(list2);
+
+		
+		assert(list2.size() == 0);
+		assert(list2.empty());
+		assert(list2.begin() == list2.end());
+
+		
+		assert(list3.size() == 5);
+		assert(!list3.empty());
+		for (size_t i = 0; i < list3.size(); ++i) 
+		{
+			assert(list3.at(i) == i+5); 
+		}
+
+		
+		assert(list3.begin() != list3.end());
+		assert(list3.size() == 5);
+
+		
+		assert(list1.size() == 5);
+		assert(!list1.empty());
+		std::cout << " \n";
+		for (size_t i = 0; i < list1.size(); ++i) 
+		{
+			assert(list1.at(i) == i); 
+		}
+
 	}
 
 	assert(std::cout << "\nAll tests passed successfully!\n\n" << std::endl);

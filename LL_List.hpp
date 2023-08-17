@@ -112,6 +112,12 @@ private:
 		}
 		tail_ = nullptr;
 	}
+	void test_head_tail_(const LL_List& other_)
+	{
+		assert(head_->data == other_.head_->data);
+		assert(tail_->data == other_.tail_->data);
+		assert(size_ == other_.size_);
+	}
 
 public: 
 	LL_List() = default;
@@ -125,9 +131,7 @@ public:
 		clear_(); 
         copy_nodes_(other);
 
-		assert(head_->data == other.head_->data);
-		assert(tail_->data == other.tail_->data);
-		assert(size_ == other.size_);
+		test_head_tail_(other);
 
         return *this;
 	}
@@ -138,9 +142,7 @@ public:
 
 		//std::cout << "\n other.tail_->data = " << other.tail_->data << std::endl;
 		//std::cout << "\n tail_->data = " << tail_->data;
-		assert(head_->data == other.head_->data);
-		assert(tail_->data == other.tail_->data);
-		assert(size_ == other.size_);
+		test_head_tail_(other);	
 	}
 
 	LL_List(LL_List&& other) noexcept
@@ -154,6 +156,22 @@ public:
 		other.size_ = 0;			// set other.size_ to 0
 	}
 	//!!! move-assignment operator
+	LL_List& operator=(LL_List&& other) noexcept
+	{
+		if (this == &other)
+		{
+			return *this;
+		}
+		clear_();
+		head_ = other.head_;
+		tail_ = other.tail_;
+		size_ = other.size_;
+
+		other.head_ = nullptr;
+		other.tail_ = nullptr;
+		other.size_ = 0;
+		return *this;
+	}
 
 	~LL_List()
 	{
@@ -167,6 +185,19 @@ public:
 		assert(debugsize_() == size_);
 
 		return size_;
+	}
+
+	bool empty() const
+	{
+		if(head_ == nullptr && tail_ == nullptr && size_ == 0)
+		{
+			return true;
+		}
+		return false;
+	}
+	void clear()
+	{
+		clear_();
 	}
 	void push_front(const T& value)
 	{
@@ -321,8 +352,7 @@ public:
 		return iterator(nullptr);
 	}
 
-	//!!! naming: insert_after(it, value)
-	void insert(iterator it, const T& value)
+	void insert_after(iterator it, const T& value)
 	{
 		if (it.current == nullptr)
 			throw std::out_of_range("it.current == nullptr");
@@ -334,9 +364,10 @@ public:
 
 		if (it.current == tail_)
 			tail_ = inserted;
+
 	}
-	//!!! naming: insert(it, value)
-	void insert(const T& value, iterator it)
+
+	void insert(iterator it, const T& value )
 	{
 		if (it.current == nullptr)
 			throw std::out_of_range("it.current == nullptr");
@@ -370,48 +401,7 @@ public:
 			tail_ = inserted;
 
 	}
-	//!!! no needed
-	void insert(int id, const T& value)
-	{
-		auto* inserted = create_node_(value); //new Node<T>(value);
-		
-
-		if (head_ == nullptr)
-		{
-			if (id == 0)
-			{
-				inserted->next = head_;
-				head_ = inserted;
-				tail_ = head_;
-				return;
-			}
-			else
-				throw std::out_of_range("Index out of range");
-		}
-
-		auto* temp = head_;
-
-		int counter = 0;
-		while (temp != nullptr && counter != id - 1)
-		{
-			temp = temp->next;
-			++counter;
-		}
-
-		if (temp == nullptr)
-		{
-			delete_node_(inserted);
-			//delete inserted;
-			throw std::out_of_range("Index out of range");
-		}
-
-		inserted->next = temp->next;
-
-		temp->next = inserted;
-
-		if (temp == tail_)
-			tail_ = inserted;
-	}
+	
 	void erase(const iterator& it)
 	{
 		if (it.current == nullptr)
@@ -483,5 +473,48 @@ private:
 			st.pop();
 		}
 	}
+
+	void insert(int id, const T& value)
+	{
+		auto* inserted = create_node_(value); //new Node<T>(value);
+		
+
+		if (head_ == nullptr)
+		{
+			if (id == 0)
+			{
+				inserted->next = head_;
+				head_ = inserted;
+				tail_ = head_;
+				return;
+			}
+			else
+				throw std::out_of_range("Index out of range");
+		}
+
+		auto* temp = head_;
+
+		int counter = 0;
+		while (temp != nullptr && counter != id - 1)
+		{
+			temp = temp->next;
+			++counter;
+		}
+
+		if (temp == nullptr)
+		{
+			delete_node_(inserted);
+			//delete inserted;
+			throw std::out_of_range("Index out of range");
+		}
+
+		inserted->next = temp->next;
+
+		temp->next = inserted;
+
+		if (temp == tail_)
+			tail_ = inserted;
+	}
+
 
 };

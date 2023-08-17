@@ -1,0 +1,10 @@
+In file included from /usr/include/c++/11/cassert:44,
+                 from /home/dmitriy/Desktop/C++/LL_List.hpp:7,
+                 from /home/dmitriy/Desktop/C++/main.cpp:7:
+/home/dmitriy/Desktop/C++/main.cpp: In function ‘int main()’:
+/home/dmitriy/Desktop/C++/main.cpp:207:44: warning: comparison of integer expressions of different signedness: ‘int’ and ‘size_t’ {aka ‘long unsigned int’} [-Wsign-compare]
+  207 |                         assert(list3.at(i) == i+5);
+      |                                ~~~~~~~~~~~~^~~~~~
+/home/dmitriy/Desktop/C++/main.cpp:220:44: warning: comparison of integer expressions of different signedness: ‘int’ and ‘size_t’ {aka ‘long unsigned int’} [-Wsign-compare]
+  220 |                         assert(list1.at(i) == i);
+      |                                ~~~~~~~~~~~~^~~~
