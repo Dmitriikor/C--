@@ -1,14 +1,13 @@
 #pragma once
 
+//!!! check_node
+
 #include <iostream>
 #include <vector>
 #include <cassert>
 #include <stack>
 #include <vector>
 #include "LL_iterator.hpp"
-
-// template <typename T>
-// class LL_Iterator;
 
 template <typename T>
 struct Node
@@ -20,63 +19,66 @@ struct Node
 	{
 	}
 	~Node() = default;
-	//{	
-		//std::cout<< "\n NODE  Destruct\n";
-	//}
 };
 
 template <typename T>
 class LL_List
 {
 private:
-	Node<T>* tail = nullptr;
-	Node<T>* head = nullptr;
-	size_t _size = 0;
+	Node<T>* head_ = nullptr;
+	Node<T>* tail_ = nullptr;
+	size_t size_ = 0;
  	friend class iterator;
+
 	Node<T>* create_node(const T& value) 
 	{
-		Node<T>* new_node_ = nullptr;
-
-		new_node_ = new(std::nothrow) Node<T>(value);
+		Node<T>* new_node_ = new(std::nothrow) Node<T>(value);
 
 		if (new_node_ == nullptr)
 		{
 			//throw std::bad_alloc();
 			return nullptr;
 		}
-		++_size;
+		++size_;
 		return new_node_;
 	}
-	void delete_node(Node<T>*& current)
+	void delete_node(Node<T>* current)
 	{
 		//std::cout << "\n delete statrt\n";
 		delete current;
+		//current = nullptr; //with refernce only
 		//std::cout << "\n delete end\n";
-		--_size;
+		--size_;
 	}
-	void copy_node(const LL_List& other) 
+	void copy_nodes(const LL_List& other) 
 	{
-        if (other.head == nullptr) 
+        if (other.head_ == nullptr) 
 		{
+			head_ = nullptr;
+			tail_ = nullptr;
             return;
         }
 
-        auto* otherCurrent = other.head;
-        head = create_node(otherCurrent->data);
+        auto* otherCurrent = other.head_;
+        head_ = create_node(otherCurrent->data);
+		check_node(head_);
         otherCurrent = otherCurrent->next;
-        auto* thisCurrent = head;
+        auto* thisCurrent = head_;
 
         while (otherCurrent != nullptr) {
+			//!!!try
             thisCurrent->next = create_node(otherCurrent->data);
             thisCurrent = thisCurrent->next;
             if (thisCurrent == nullptr) 
+			//!!! catch
 			{
-				clerar();
+				clear();
                 throw std::bad_alloc();
+				//throw;
             }
             otherCurrent = otherCurrent->next;
         }
-        tail = thisCurrent;
+        tail_ = thisCurrent;
     }
 	void check_node(Node<T>* current) const
 	{
@@ -85,10 +87,10 @@ private:
 			throw std::bad_alloc();
 		}
 	}
-	size_t debug_size() const
+	size_t debugsize_() const
 	{
 		int size = 0;
-		Node<T>* current = head;
+		Node<T>* current = head_;
 		while (current != nullptr)
 		{
 			++size;
@@ -97,14 +99,15 @@ private:
 		//std::cout << "\n size = " << size << std::endl;
 		return size;
 	}
-	void clerar()
+	void clear()
 	{
-		while (head != nullptr)
+		while (head_ != nullptr)
 		{
-			Node<T>* temp = head;
-			head = head->next;
+			Node<T>* temp = head_;
+			head_ = head_->next;
 			delete_node(temp); //delete temp;
 		}
+		tail_ = nullptr;
 	}
 
 public:
@@ -116,173 +119,156 @@ public:
 		{
 			return *this;
 		}
-		if (other.head == nullptr)
-		{
-			return *this;
-		}
-		clerar(); 
-        copy_node(other);
+		clear(); 
+        copy_nodes(other);
 
-		assert(head->data == other.head->data);
-		assert(tail->data == other.tail->data);
-		assert(_size == other._size);
+		assert(head_->data == other.head_->data);
+		assert(tail_->data == other.tail_->data);
+		assert(size_ == other.size_);
 
         return *this;
 	}
 
 	LL_List(const LL_List& other)
-	{
-		if (this == &other)
-		{
-			return;
-		}
-		if (other.head == nullptr)
-		{
-			return;
-		}
-		 
-		copy_node(other);
+	{ 
+		copy_nodes(other);
 
-		//std::cout << "\n other.tail->data = " << other.tail->data << std::endl;
-		//std::cout << "\n tail->data = " << tail->data;
-		assert(head->data == other.head->data);
-		assert(tail->data == other.tail->data);
-		assert(_size == other._size);
+		//std::cout << "\n other.tail_->data = " << other.tail_->data << std::endl;
+		//std::cout << "\n tail_->data = " << tail_->data;
+		assert(head_->data == other.head_->data);
+		assert(tail_->data == other.tail_->data);
+		assert(size_ == other.size_);
 	}
 
 	LL_List(LL_List&& other) noexcept
 	{
-		head = other.head; 		// tacked other.head to us
-		tail = other.tail; 		// tacked other.tail to us
-		_size = other._size; 	// tacked other._size to us
+		head_ = other.head_; 		// tacked other.head_ to us
+		tail_ = other.tail_; 		// tacked other.tail_ to us
+		size_ = other.size_; 	// tacked other.size_ to us
 
-		other.head = nullptr;  	// block "empty" other.head LL_List
-		other.tail = nullptr;	// block "empty" other.tail LL_List
-		other._size = 0;		// set other._size to 0
+		other.head_ = nullptr;  	// block "empty" other.head_ LL_List
+		other.tail_ = nullptr;	// block "empty" other.tail_ LL_List
+		other.size_ = 0;		// set other.size_ to 0
 	}
+	//!!! move-assignment operator
 
 	~LL_List()
 	{
 		//std::cout<< "\n Destruct LIST\n";
-		clerar();
+		clear();
 	}
 
 	size_t size() const
 	{
-		//std::cout << "\n _size = " << _size << std::endl;
-		assert(debug_size() == _size);
+		//std::cout << "\n size_ = " << size_ << std::endl;
+		assert(debugsize_() == size_);
 
-		return _size;
+		return size_;
 	}
 	void push_front(const T& value)
 	{
-		if (head == nullptr)
+		if (head_ == nullptr)
 		{
-			head = create_node(value); //new Node<T>(value);
-			check_node(head);
-			tail = head;
+			head_ = create_node(value); //new Node<T>(value);
+			check_node(head_);
+			tail_ = head_;
 			return;
 		}
 
 		auto* current = create_node(value); //new Node<T>(value);
 		check_node(current);
-		current->next = head;
-		head = current;
+		current->next = head_;
+		head_ = current;
 	}
 	void push_back(const T& value)
 	{
-		if (head == nullptr)
+		if (head_ == nullptr)
 		{
-			head = create_node(value);//new Node<T>(value);
-			check_node(head);
-			tail = head;
+			head_ = create_node(value);//new Node<T>(value);
+			check_node(head_);
+			tail_ = head_;
 			return;
 		}
 
 		auto* current = create_node(value); //new Node<T>(value);
 		check_node(current);
-		tail->next = current;
-		tail = tail->next;
+		tail_->next = current;
+		tail_ = tail_->next;
 	}
 	void pop_front()
 	{
-		if (head == nullptr)
+		if (head_ == nullptr)
 		{
-			throw std::out_of_range("Head is nullptr");
-			return; //!!! throw
+			throw std::out_of_range("head_ is nullptr");
 		}
 
-		if (head->next == nullptr)
+		if (head_->next == nullptr)
 		{
-			delete_node(head);//delete head;
-			head = nullptr;
-			tail = nullptr;
+			delete_node(head_);//delete head_;
+			head_ = nullptr;
+			tail_ = nullptr;
 			return;
 		}
 
-		Node<T>* deleted = head;
-		head = head->next;
+		Node<T>* deleted = head_;
+		head_ = head_->next;
 
 		delete_node(deleted);
 		//delete deleted;
-		//--_size;
+		//--size_;
 	}
 	void pop_back()
 	{
-		if (tail == nullptr)
+		//tail_ == nullptr
+		if (head_ == nullptr)
 		{
-			throw std::out_of_range("Tail is nullptr");
-			return;  //!!! throw
+			throw std::out_of_range("tail_ is nullptr");
 		}
 
-		if (head == nullptr)
+		if (head_->next == nullptr)
 		{
-			return; 
-		}
-
-		if (head->next == nullptr)
-		{
-			delete_node(head);//delete head;
-			head = nullptr;
-			tail = nullptr;
+			delete_node(head_);//delete head_;
+			head_ = nullptr;
+			tail_ = nullptr;
 			return;
 		}
-
-		Node<T>* temp = head;
-		while (temp->next != tail)
+		
+		//!!! search
+		Node<T>* temp = head_;
+		while (temp->next != tail_)
 		{
 			temp = temp->next;
 		}
 
-		Node<T>* deleted = tail;
-		tail = temp;
-		tail->next = nullptr;
+		Node<T>* deleted = tail_;
+		tail_ = temp;
+		tail_->next = nullptr;
 
 		delete_node(deleted);
 		//delete deleted;
-		//--_size;
+		//--size_;
 	}
 
 	const T& get_head_data() const
 	{
-		if (head == nullptr)
+		if (head_ == nullptr)
 		{
-			throw std::out_of_range("Head is nullptr");
+			throw std::out_of_range("head_ is nullptr");
 		}
-		return head->data;
+		return head_->data;
 	}
 
 	const T& get_tail_data() const
 	{
-		if (tail == nullptr)
+		if (tail_ == nullptr)
 		{
-			throw std::out_of_range("Tail is nullptr");
+			throw std::out_of_range("tail_ is nullptr");
 		}
-		return tail->data;
+		return tail_->data;
 	}
 	void print() const
 	{
-		Node<T>* current = head;
+		Node<T>* current = head_;
 		while (current != nullptr)
 		{
 			std::cout << current->data << "; ";
@@ -292,7 +278,7 @@ public:
 
 	T& at(size_t id) const
 	{
-		Node<T>* current = head;
+		Node<T>* current = head_;
 
 		for (size_t i = 0; current != nullptr; ++i)
 		{
@@ -307,9 +293,10 @@ public:
 	}
 	std::vector<T> to_vector() const
 	{
-		Node<T>* current = head;
 		std::vector<T> data_accum;
+		data_accum.reserve(size_);
 
+		Node<T>* current = head_;
 		while (current != nullptr)
 		{
 			data_accum.push_back(current->data);
@@ -322,12 +309,13 @@ public:
     using iterator = LL_Iterator<T>;
 
 	iterator begin() {
-		return iterator(head);
+		return iterator(head_);
 	}
 	iterator end() {
 		return iterator(nullptr);
 	}
 
+	//!!! naming: insert_after(it, value)
 	void insert(iterator it, const T& value)
 	{
 		if (it.current == nullptr)
@@ -338,9 +326,10 @@ public:
 		inserted->next = it.current->next;
 		it.current->next = inserted;
 
-		if (it.current == tail)
-			tail = inserted;
+		if (it.current == tail_)
+			tail_ = inserted;
 	}
+	//!!! naming: insert(it, value)
 	void insert(const T& value, iterator it)
 	{
 		if (it.current == nullptr)
@@ -349,51 +338,52 @@ public:
 		auto* inserted = create_node(value); //new Node<T>(value);
 		check_node(inserted);
 
-		if (it.current == head)
+		if (it.current == head_)
 		{
-			inserted->next = head;
-			head = inserted;
+			inserted->next = head_;
+			head_ = inserted;
 
 			if (it.current == nullptr)
-				tail = head;
+				tail_ = head_;
 
 			return;
 		}
 
-		auto old = head;
-		auto current = head->next;
+		auto old = head_;
+		auto current = head_->next;
 		while (current != it.current)
 		{
 			old = current;
 			current = current->next;
 		}
 
-		inserted->next = it.current; // not it.current->next; !!!!
+		inserted->next = it.current;
 		old->next = inserted;
 
-		if (old == tail)
-			tail = inserted;
+		if (old == tail_)
+			tail_ = inserted;
 
 	}
+	//!!! no needed
 	void insert(int id, const T& value)
 	{
 		auto* inserted = create_node(value); //new Node<T>(value);
 		check_node(inserted);
 
-		if (head == nullptr)
+		if (head_ == nullptr)
 		{
 			if (id == 0)
 			{
-				inserted->next = head;
-				head = inserted;
-				tail = head;
+				inserted->next = head_;
+				head_ = inserted;
+				tail_ = head_;
 				return;
 			}
 			else
 				throw std::out_of_range("Index out of range");
 		}
 
-		auto* temp = head;
+		auto* temp = head_;
 
 		int counter = 0;
 		while (temp != nullptr && counter != id - 1)
@@ -413,8 +403,8 @@ public:
 
 		temp->next = inserted;
 
-		if (temp == tail)
-			tail = inserted;
+		if (temp == tail_)
+			tail_ = inserted;
 	}
 	void erase(const iterator& it)
 	{
@@ -423,18 +413,18 @@ public:
 
 		if (it == begin())
 		{
-			auto* temp = head;
-			head = head->next;
+			auto* temp = head_;
+			head_ = head_->next;
 			delete_node(temp);//delete temp;
 
-			if (head == nullptr)
-				tail = nullptr;
+			if (head_ == nullptr)
+				tail_ = nullptr;
 
 			return;
 		}
 
-		auto old = head;
-		auto current = head->next;
+		auto old = head_;
+		auto current = head_->next;
 		while (current != it.current)
 		{
 			old = current;
@@ -442,8 +432,8 @@ public:
 		}
 		//std::cout << old->data << "/" << ";\n";
 
-		if (current == tail)
-			tail = current->next;
+		if (current == tail_)
+			tail_ = current->next;
 
 		old->next = current->next;
 
@@ -453,7 +443,7 @@ public:
 private:
 	void reverse()
 	{
-		//reverse_(head);
+		//reverse_(head_);
 		reverse_();
 		std::cout << "\n";
 	}
@@ -473,7 +463,7 @@ private:
 	{
 		std::stack<T> st;
 
-		auto* current = head;
+		auto* current = head_;
 		while (current != nullptr)
 		{
 			st.push(current->data);
