@@ -1,27 +1,27 @@
 [
 {
   "directory": "/home/dmitriy/Desktop/C++/build",
-  "command": "/usr/bin/g++  -I/home/dmitriy/Desktop/C++/include  -g -Wall -Wextra -Wpedantic -Wconversion -Wformat=2 -Wfloat-equal -Wlogical-op -Wshift-overflow=2 -Wduplicated-cond -Wcast-align -fstack-protector -O -march=native -g -std=gnu++20 -o CMakeFiles/MAIN.out.dir/KATE_.cpp.o -c /home/dmitriy/Desktop/C++/KATE_.cpp",
+  "command": "/usr/bin/c++  -I/home/dmitriy/Desktop/C++/include  -g -Wall -Wextra -Wpedantic -Wconversion -Wformat=2 -Wfloat-equal -Wlogical-op -Wshift-overflow=2 -Wduplicated-cond -Wcast-align -fstack-protector -O -march=native -g -std=gnu++20 -o CMakeFiles/MAIN.out.dir/KATE_.cpp.o -c /home/dmitriy/Desktop/C++/KATE_.cpp",
   "file": "/home/dmitriy/Desktop/C++/KATE_.cpp"
 },
 {
   "directory": "/home/dmitriy/Desktop/C++/build",
-  "command": "/usr/bin/g++  -I/home/dmitriy/Desktop/C++/include  -g -Wall -Wextra -Wpedantic -Wconversion -Wformat=2 -Wfloat-equal -Wlogical-op -Wshift-overflow=2 -Wduplicated-cond -Wcast-align -fstack-protector -O -march=native -g -std=gnu++20 -o CMakeFiles/MAIN.out.dir/TEST.cpp.o -c /home/dmitriy/Desktop/C++/TEST.cpp",
+  "command": "/usr/bin/c++  -I/home/dmitriy/Desktop/C++/include  -g -Wall -Wextra -Wpedantic -Wconversion -Wformat=2 -Wfloat-equal -Wlogical-op -Wshift-overflow=2 -Wduplicated-cond -Wcast-align -fstack-protector -O -march=native -g -std=gnu++20 -o CMakeFiles/MAIN.out.dir/TEST.cpp.o -c /home/dmitriy/Desktop/C++/TEST.cpp",
   "file": "/home/dmitriy/Desktop/C++/TEST.cpp"
 },
 {
   "directory": "/home/dmitriy/Desktop/C++/build",
-  "command": "/usr/bin/g++  -I/home/dmitriy/Desktop/C++/include  -g -Wall -Wextra -Wpedantic -Wconversion -Wformat=2 -Wfloat-equal -Wlogical-op -Wshift-overflow=2 -Wduplicated-cond -Wcast-align -fstack-protector -O -march=native -g -std=gnu++20 -o CMakeFiles/MAIN.out.dir/main.cpp.o -c /home/dmitriy/Desktop/C++/main.cpp",
+  "command": "/usr/bin/c++  -I/home/dmitriy/Desktop/C++/include  -g -Wall -Wextra -Wpedantic -Wconversion -Wformat=2 -Wfloat-equal -Wlogical-op -Wshift-overflow=2 -Wduplicated-cond -Wcast-align -fstack-protector -O -march=native -g -std=gnu++20 -o CMakeFiles/MAIN.out.dir/main.cpp.o -c /home/dmitriy/Desktop/C++/main.cpp",
   "file": "/home/dmitriy/Desktop/C++/main.cpp"
 },
 {
   "directory": "/home/dmitriy/Desktop/C++/build",
-  "command": "/usr/bin/g++  -I/home/dmitriy/Desktop/C++/include  -g -Wall -Wextra -Wpedantic -Wconversion -Wformat=2 -Wfloat-equal -Wlogical-op -Wshift-overflow=2 -Wduplicated-cond -Wcast-align -fstack-protector -O -march=native -g -std=gnu++20 -o CMakeFiles/MAIN.out.dir/x_.cpp.o -c /home/dmitriy/Desktop/C++/x_.cpp",
+  "command": "/usr/bin/c++  -I/home/dmitriy/Desktop/C++/include  -g -Wall -Wextra -Wpedantic -Wconversion -Wformat=2 -Wfloat-equal -Wlogical-op -Wshift-overflow=2 -Wduplicated-cond -Wcast-align -fstack-protector -O -march=native -g -std=gnu++20 -o CMakeFiles/MAIN.out.dir/x_.cpp.o -c /home/dmitriy/Desktop/C++/x_.cpp",
   "file": "/home/dmitriy/Desktop/C++/x_.cpp"
 },
 {
   "directory": "/home/dmitriy/Desktop/C++/build",
-  "command": "/usr/bin/g++  -I/home/dmitriy/Desktop/C++/include  -g -Wall -Wextra -Wpedantic -Wconversion -Wformat=2 -Wfloat-equal -Wlogical-op -Wshift-overflow=2 -Wduplicated-cond -Wcast-align -fstack-protector -O -march=native -g -std=gnu++20 -o CMakeFiles/MAIN.out.dir/x__.cpp.o -c /home/dmitriy/Desktop/C++/x__.cpp",
+  "command": "/usr/bin/c++  -I/home/dmitriy/Desktop/C++/include  -g -Wall -Wextra -Wpedantic -Wconversion -Wformat=2 -Wfloat-equal -Wlogical-op -Wshift-overflow=2 -Wduplicated-cond -Wcast-align -fstack-protector -O -march=native -g -std=gnu++20 -o CMakeFiles/MAIN.out.dir/x__.cpp.o -c /home/dmitriy/Desktop/C++/x__.cpp",
   "file": "/home/dmitriy/Desktop/C++/x__.cpp"
 }
 ]

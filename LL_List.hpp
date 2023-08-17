@@ -30,27 +30,26 @@ private:
 	size_t size_ = 0;
  	friend class iterator;
 
-	Node<T>* create_node(const T& value) 
+	Node<T>* create_node_(const T& value) 
 	{
-		Node<T>* new_node_ = new(std::nothrow) Node<T>(value);
+		auto* new_node_ = new(std::nothrow) Node<T>(value);
 
 		if (new_node_ == nullptr)
 		{
-			//throw std::bad_alloc();
-			return nullptr;
+			throw std::bad_alloc();
+			//return nullptr;
 		}
 		++size_;
+
 		return new_node_;
 	}
-	void delete_node(Node<T>* current)
+	void delete_node_(Node<T>* current)
 	{
-		//std::cout << "\n delete statrt\n";
 		delete current;
 		//current = nullptr; //with refernce only
-		//std::cout << "\n delete end\n";
 		--size_;
 	}
-	void copy_nodes(const LL_List& other) 
+	void copy_nodes_(const LL_List& other) 
 	{
         if (other.head_ == nullptr) 
 		{
@@ -58,35 +57,39 @@ private:
 			tail_ = nullptr;
             return;
         }
-
+		
         auto* otherCurrent = other.head_;
-        head_ = create_node(otherCurrent->data);
-		check_node(head_);
+        head_ = create_node_(otherCurrent->data);
+		
         otherCurrent = otherCurrent->next;
         auto* thisCurrent = head_;
 
-        while (otherCurrent != nullptr) {
-			//!!!try
-            thisCurrent->next = create_node(otherCurrent->data);
-            thisCurrent = thisCurrent->next;
-            if (thisCurrent == nullptr) 
-			//!!! catch
+        while (otherCurrent != nullptr) 
+		{
+			try
 			{
-				clear();
-                throw std::bad_alloc();
-				//throw;
-            }
+            thisCurrent->next = create_node_(otherCurrent->data);
+            thisCurrent = thisCurrent->next;
+            //if (thisCurrent == nullptr) 
+			}
+			catch(const std::exception& e)
+			{
+				clear_();
+				std::cerr << e.what() << '\n';
+                throw;
+			}
+			
             otherCurrent = otherCurrent->next;
         }
         tail_ = thisCurrent;
     }
-	void check_node(Node<T>* current) const
-	{
-		if (current == nullptr)
-		{
-			throw std::bad_alloc();
-		}
-	}
+	// void check_node(Node<T>* current) const
+	// {
+	// 	if (current == nullptr)
+	// 	{
+	// 		throw std::bad_alloc();
+	// 	}
+	// }
 	size_t debugsize_() const
 	{
 		int size = 0;
@@ -99,18 +102,18 @@ private:
 		//std::cout << "\n size = " << size << std::endl;
 		return size;
 	}
-	void clear()
+	void clear_()
 	{
 		while (head_ != nullptr)
 		{
 			Node<T>* temp = head_;
 			head_ = head_->next;
-			delete_node(temp); //delete temp;
+			delete_node_(temp); //delete temp;
 		}
 		tail_ = nullptr;
 	}
 
-public:
+public: 
 	LL_List() = default;
 
 	LL_List& operator=(const LL_List& other)
@@ -119,8 +122,8 @@ public:
 		{
 			return *this;
 		}
-		clear(); 
-        copy_nodes(other);
+		clear_(); 
+        copy_nodes_(other);
 
 		assert(head_->data == other.head_->data);
 		assert(tail_->data == other.tail_->data);
@@ -131,7 +134,7 @@ public:
 
 	LL_List(const LL_List& other)
 	{ 
-		copy_nodes(other);
+		copy_nodes_(other);
 
 		//std::cout << "\n other.tail_->data = " << other.tail_->data << std::endl;
 		//std::cout << "\n tail_->data = " << tail_->data;
@@ -144,18 +147,18 @@ public:
 	{
 		head_ = other.head_; 		// tacked other.head_ to us
 		tail_ = other.tail_; 		// tacked other.tail_ to us
-		size_ = other.size_; 	// tacked other.size_ to us
+		size_ = other.size_; 		// tacked other.size_ to us
 
 		other.head_ = nullptr;  	// block "empty" other.head_ LL_List
-		other.tail_ = nullptr;	// block "empty" other.tail_ LL_List
-		other.size_ = 0;		// set other.size_ to 0
+		other.tail_ = nullptr;		// block "empty" other.tail_ LL_List
+		other.size_ = 0;			// set other.size_ to 0
 	}
 	//!!! move-assignment operator
 
 	~LL_List()
 	{
 		//std::cout<< "\n Destruct LIST\n";
-		clear();
+		clear_();
 	}
 
 	size_t size() const
@@ -169,14 +172,14 @@ public:
 	{
 		if (head_ == nullptr)
 		{
-			head_ = create_node(value); //new Node<T>(value);
-			check_node(head_);
+			head_ = create_node_(value); //new Node<T>(value);
+			
 			tail_ = head_;
 			return;
 		}
 
-		auto* current = create_node(value); //new Node<T>(value);
-		check_node(current);
+		auto* current = create_node_(value); //new Node<T>(value);
+		
 		current->next = head_;
 		head_ = current;
 	}
@@ -184,14 +187,14 @@ public:
 	{
 		if (head_ == nullptr)
 		{
-			head_ = create_node(value);//new Node<T>(value);
-			check_node(head_);
+			head_ = create_node_(value);//new Node<T>(value);
+			
 			tail_ = head_;
 			return;
 		}
 
-		auto* current = create_node(value); //new Node<T>(value);
-		check_node(current);
+		auto* current = create_node_(value); //new Node<T>(value);
+		
 		tail_->next = current;
 		tail_ = tail_->next;
 	}
@@ -204,7 +207,7 @@ public:
 
 		if (head_->next == nullptr)
 		{
-			delete_node(head_);//delete head_;
+			delete_node_(head_);//delete head_;
 			head_ = nullptr;
 			tail_ = nullptr;
 			return;
@@ -213,7 +216,7 @@ public:
 		Node<T>* deleted = head_;
 		head_ = head_->next;
 
-		delete_node(deleted);
+		delete_node_(deleted);
 		//delete deleted;
 		//--size_;
 	}
@@ -227,7 +230,7 @@ public:
 
 		if (head_->next == nullptr)
 		{
-			delete_node(head_);//delete head_;
+			delete_node_(head_);//delete head_;
 			head_ = nullptr;
 			tail_ = nullptr;
 			return;
@@ -244,7 +247,7 @@ public:
 		tail_ = temp;
 		tail_->next = nullptr;
 
-		delete_node(deleted);
+		delete_node_(deleted);
 		//delete deleted;
 		//--size_;
 	}
@@ -280,13 +283,16 @@ public:
 	{
 		Node<T>* current = head_;
 
-		for (size_t i = 0; current != nullptr; ++i)
+		size_t i = 0;
+
+		while (current != nullptr)
 		{
 			if (i == id)
 			{
 				return current->data;
 			}
 			current = current->next;
+			++i;
 		}
 
 		throw std::out_of_range("Index out of range");
@@ -321,8 +327,8 @@ public:
 		if (it.current == nullptr)
 			throw std::out_of_range("it.current == nullptr");
 
-		auto* inserted = create_node(value); //new Node<T>(value);
-		check_node(inserted);
+		auto* inserted = create_node_(value); //new Node<T>(value);
+		
 		inserted->next = it.current->next;
 		it.current->next = inserted;
 
@@ -335,8 +341,8 @@ public:
 		if (it.current == nullptr)
 			throw std::out_of_range("it.current == nullptr");
 
-		auto* inserted = create_node(value); //new Node<T>(value);
-		check_node(inserted);
+		auto* inserted = create_node_(value); //new Node<T>(value);
+		
 
 		if (it.current == head_)
 		{
@@ -367,8 +373,8 @@ public:
 	//!!! no needed
 	void insert(int id, const T& value)
 	{
-		auto* inserted = create_node(value); //new Node<T>(value);
-		check_node(inserted);
+		auto* inserted = create_node_(value); //new Node<T>(value);
+		
 
 		if (head_ == nullptr)
 		{
@@ -394,7 +400,7 @@ public:
 
 		if (temp == nullptr)
 		{
-			delete_node(inserted);
+			delete_node_(inserted);
 			//delete inserted;
 			throw std::out_of_range("Index out of range");
 		}
@@ -415,7 +421,7 @@ public:
 		{
 			auto* temp = head_;
 			head_ = head_->next;
-			delete_node(temp);//delete temp;
+			delete_node_(temp);//delete temp;
 
 			if (head_ == nullptr)
 				tail_ = nullptr;
@@ -437,7 +443,7 @@ public:
 
 		old->next = current->next;
 
-		delete_node(current);
+		delete_node_(current);
 	}
 
 private:
