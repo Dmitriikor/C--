@@ -225,47 +225,39 @@ int main()
 
 		assert(std::cout << "\nAll tests passed successfully!\n\n" << std::endl);
 
-
-}
-	
-	carnifex<int> test(new int(10));
-
-	// Test Case 1: Basic usage
-   	carnifex<int> sharedPtr1(new int(42));
-	assert(*sharedPtr1 == 42);
-
-    // Test Case 2: Copy construction
-   	carnifex<int> sharedPtr2 = sharedPtr1;
-
-    assert(*sharedPtr2 == 42);
-	//std::cout << "\n " << sharedPtr1.counter_ << "\n";
-    assert(*sharedPtr1.counter_ == 2);
-
-    // Test Case 3: Assignment
-    sharedPtr2 = new int(84);
-    assert(*sharedPtr2 == 84);
-    assert(*sharedPtr1.counter_ == 1);
-
-    // Test Case 4: Null pointers
-   	carnifex<int> nullSharedPtr;
-    assert(nullSharedPtr.object_ == nullptr);
-
-    // Test Case 5: Custom classes
-    struct MyClass 
+	}
 	{
-        int value;
-        MyClass(int v) : value(v) {}
-    };
+		carnifex<int> test(new int(10));
 
-   	carnifex<MyClass> classPtr(new MyClass(10));
-    assert(classPtr->value == 10);
+		carnifex<int> sharedPtr1(new int(42));
+		assert(*sharedPtr1 == 42);
 
-    // Test Case 6: Shared ownership
-   	carnifex<MyClass> sharedClassPtr1 = classPtr;
-   	carnifex<MyClass> sharedClassPtr2 = sharedClassPtr1;
-    sharedClassPtr1->value = 20;
-    assert(sharedClassPtr2->value == 20);
+		carnifex<int> sharedPtr2 = sharedPtr1;
 
+		assert(*sharedPtr2 == 42);
+		assert(*sharedPtr1.counter_ == 2);
+
+		sharedPtr2 = new int(84);
+		assert(*sharedPtr2 == 84);
+		assert(*sharedPtr1.counter_ == 1);
+
+		carnifex<int> nullSharedPtr;
+		assert(nullSharedPtr.object_ == nullptr);
+
+		struct MyClass 
+		{
+			int value;
+			MyClass(int v) : value(v) {}
+		};
+
+		carnifex<MyClass> classPtr(new MyClass(10));
+		assert(classPtr->value == 10);
+
+		carnifex<MyClass> sharedClassPtr1 = classPtr;
+		carnifex<MyClass> sharedClassPtr2 = sharedClassPtr1;
+		sharedClassPtr1->value = 20;
+		assert(sharedClassPtr2->value == 20);
+	}
 
     printf("Press Enter to continue...\n");
     getchar(); // Wait for user to press Enter
