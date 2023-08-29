@@ -5,97 +5,103 @@ template<typename T>
 class __TESTS__
 {
 private:
-    T data;
+	T data;
 public:
-    explicit __TESTS__(T data) : data(data) {}  
-    ~__TESTS__() = default;
-    
+	explicit __TESTS__(T data) : data(data) {}
+	~__TESTS__() = default;
+
 };
 
 
 template<typename T>
-class carnifex
+class Carnifex
 {
-    public: //private:
-        T* object_;
-        size_t* counter_;
-        void destruct()
-        {
-            if (object_ == nullptr)
-                return;
+private:
+	struct Block
+	{
+		size_t counter_ = 0;
+		T* object_;
 
-            --(*counter_);
+		Block(T* pointer) : object_(pointer)
+		{
 
-            if (*counter_ == 0)
-            {
-                delete object_;
-            }
-            object_ = nullptr;
-            counter_ = nullptr;
-        }
+		}
 
-    public:
+		~Block()
+		{
+			delete object_;
+		}
+	};
 
-        carnifex() 
-        {
-            object_ = nullptr;
-            counter_= new size_t(0);
-        }
+private:
+public:
+	Block* block_;
 
-        explicit carnifex (T* data) : object_(data), counter_(new size_t(0))
-        {
-            ++(*counter_);
-        }
+	void destruct()
+	{
+		assert(block_->counter_ != 0);
 
-        carnifex (const carnifex& other) : object_(other.object_), counter_(other.counter_) 
-        {
-            ++(*counter_);
-        }
+		--(block_->counter_);
 
-        ~carnifex()
-        {
-           destruct();
-        }
+		if (block_->counter_ == 0)
+		{
+			delete block_;
+		}
 
-        carnifex<T>& operator = (const carnifex& other)
-       {
-            if (this != &other) 
-                {
-                    destruct();
-                    object_ = other.object_;
-                    counter_ = other.counter_;
+		block_ = nullptr;
+	}
 
-                    //++(*counter_);
-                    
-                }
-            return *this;
-       }
-       carnifex<T> operator = (T* data)
-       {
-           if (*counter_ == 0)
-           {
-               object_ = data;
-               ++(*counter_);
-               return *this;
-           }
-           object_ = nullptr;
-           delete object_;
+public:
+	
+	Carnifex() : Carnifex(nullptr)
+	{
+	}
 
-           *counter_ = 0;
+	explicit Carnifex(T* data) : block_(new Block(data))
+	{
+		++(block_->counter_);
+	}
 
-           object_ = data;
-           ++(*counter_);
+	Carnifex(const Carnifex& other) : block_(other.block_)
+	{
+		++(block_->counter_);
+	}
 
-           return *this;
-       }
+	~Carnifex()
+	{
+		destruct();
+	}
 
-        T* operator->() const 
-        {
-            return object_;
-        }
+	Carnifex<T>& operator = (const Carnifex& other)
+	{
+		if (this != &other)
+		{
+			destruct();
+			block_ = other.block_;
 
-        T& operator*() const 
-        {
-            return *object_;
-        }
+			++(block_->counter_);
+
+		}
+		return *this;
+	}
+
+	Carnifex<T> operator = (T* data)
+	{
+		destruct();
+
+		block_ = new Block(data);
+		++(block_->counter_);
+
+		return *this;
+	}
+
+	T* operator->() const
+	{
+		return block_->object_;
+	}
+
+	T& operator*() const
+	{
+		return *(block_->object_);
+	}
 };

@@ -227,37 +227,56 @@ int main()
 
 	}
 	{
-		carnifex<int> test(new int(10));
+		Carnifex<int> test(new int(10));
 
-		carnifex<int> sharedPtr1(new int(42));
+		Carnifex<int> sharedPtr1(new int(42));
 		assert(*sharedPtr1 == 42);
+		assert(sharedPtr1.block_->counter_ == 1);
 
-		carnifex<int> sharedPtr2 = sharedPtr1;
+		Carnifex<int> sharedPtr2 = sharedPtr1;
 
+		assert(*sharedPtr1 == 42);
+		assert(sharedPtr1.block_->counter_ == 2);
 		assert(*sharedPtr2 == 42);
-		assert(*sharedPtr1.counter_ == 2);
+		assert(sharedPtr2.block_->counter_ == 2);
 
 		sharedPtr2 = new int(84);
+		assert(*sharedPtr1 == 42);
+		assert(sharedPtr1.block_->counter_ == 1);
 		assert(*sharedPtr2 == 84);
-		assert(*sharedPtr1.counter_ == 1);
+		assert(sharedPtr2.block_->counter_ == 1);
 
-		carnifex<int> nullSharedPtr;
-		assert(nullSharedPtr.object_ == nullptr);
+		Carnifex<int> nullSharedPtr;
+		assert(nullSharedPtr.block_->object_ == nullptr);
+		assert(nullSharedPtr.block_->counter_ == 1);
+	}
 
+	int number = 0;
+	{
 		struct MyClass 
 		{
+			int* flag;
 			int value;
-			MyClass(int v) : value(v) {}
+			MyClass(int v, int* const flag = nullptr) :  flag(flag), value(v){ 
+				if (flag) *flag = +1; 
+			}
+			~MyClass() { 
+				if (flag) *flag = -1; 
+			}
 		};
 
-		carnifex<MyClass> classPtr(new MyClass(10));
+		Carnifex<MyClass> classPtr(new MyClass(10, &number));
 		assert(classPtr->value == 10);
+		assert(number == 1);
 
-		carnifex<MyClass> sharedClassPtr1 = classPtr;
-		carnifex<MyClass> sharedClassPtr2 = sharedClassPtr1;
+		Carnifex<MyClass> sharedClassPtr1 = classPtr;
+		Carnifex<MyClass> sharedClassPtr2 = sharedClassPtr1;
 		sharedClassPtr1->value = 20;
 		assert(sharedClassPtr2->value == 20);
+		assert(number == 1);
 	}
+
+	assert(number == -1);
 
     printf("Press Enter to continue...\n");
     getchar(); // Wait for user to press Enter

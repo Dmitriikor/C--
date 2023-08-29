@@ -1,6 +1,6 @@
 #pragma once
 
-//!!! check_node
+//!!! change
 
 #include <iostream>
 #include <vector>
@@ -37,7 +37,6 @@ private:
 		if (new_node_ == nullptr)
 		{
 			throw std::bad_alloc();
-			//return nullptr;
 		}
 		++size_;
 
@@ -46,7 +45,6 @@ private:
 	void delete_node_(Node<T>* current)
 	{
 		delete current;
-		//current = nullptr; //with refernce only
 		--size_;
 	}
 	void copy_nodes_(const LL_List& other) 
@@ -70,7 +68,6 @@ private:
 			{
             thisCurrent->next = create_node_(otherCurrent->data);
             thisCurrent = thisCurrent->next;
-            //if (thisCurrent == nullptr) 
 			}
 			catch(const std::exception& e)
 			{
@@ -83,13 +80,7 @@ private:
         }
         tail_ = thisCurrent;
     }
-	// void check_node(Node<T>* current) const
-	// {
-	// 	if (current == nullptr)
-	// 	{
-	// 		throw std::bad_alloc();
-	// 	}
-	// }
+
 	size_t debugsize_() const
 	{
 		int size = 0;
@@ -108,7 +99,7 @@ private:
 		{
 			Node<T>* temp = head_;
 			head_ = head_->next;
-			delete_node_(temp); //delete temp;
+			delete_node_(temp); 
 		}
 		tail_ = nullptr;
 	}
@@ -155,7 +146,7 @@ public:
 		other.tail_ = nullptr;		// block "empty" other.tail_ LL_List
 		other.size_ = 0;			// set other.size_ to 0
 	}
-	//!!! move-assignment operator
+
 	LL_List& operator=(LL_List&& other) noexcept
 	{
 		if (this == &other)
@@ -189,8 +180,9 @@ public:
 
 	bool empty() const
 	{
-		if(head_ == nullptr && tail_ == nullptr && size_ == 0)
+		if (head_ == nullptr)
 		{
+			assert(head_ == nullptr && tail_ == nullptr && size_ == 0);
 			return true;
 		}
 		return false;
@@ -201,44 +193,44 @@ public:
 	}
 	void push_front(const T& value)
 	{
-		if (head_ == nullptr)
+		if (head_ == nullptr) //!!! empty()
 		{
-			head_ = create_node_(value); //new Node<T>(value);
+			head_ = create_node_(value);
 			
 			tail_ = head_;
 			return;
 		}
 
-		auto* current = create_node_(value); //new Node<T>(value);
+		auto* current = create_node_(value);
 		
 		current->next = head_;
 		head_ = current;
 	}
 	void push_back(const T& value)
 	{
-		if (head_ == nullptr)
+		if (head_ == nullptr) //!!! empty()
 		{
-			head_ = create_node_(value);//new Node<T>(value);
+			head_ = create_node_(value); //
 			
 			tail_ = head_;
 			return;
 		}
 
-		auto* current = create_node_(value); //new Node<T>(value);
+		auto* current = create_node_(value);
 		
 		tail_->next = current;
 		tail_ = tail_->next;
 	}
 	void pop_front()
 	{
-		if (head_ == nullptr)
+		if (head_ == nullptr) //!!! empty()
 		{
 			throw std::out_of_range("head_ is nullptr");
 		}
 
 		if (head_->next == nullptr)
 		{
-			delete_node_(head_);//delete head_;
+			delete_node_(head_);
 			head_ = nullptr;
 			tail_ = nullptr;
 			return;
@@ -248,13 +240,10 @@ public:
 		head_ = head_->next;
 
 		delete_node_(deleted);
-		//delete deleted;
-		//--size_;
 	}
 	void pop_back()
 	{
-		//tail_ == nullptr
-		if (head_ == nullptr)
+		if (head_ == nullptr) //!!! empty()
 		{
 			throw std::out_of_range("tail_ is nullptr");
 		}
@@ -279,8 +268,6 @@ public:
 		tail_->next = nullptr;
 
 		delete_node_(deleted);
-		//delete deleted;
-		//--size_;
 	}
 
 	const T& get_head_data() const
@@ -357,7 +344,7 @@ public:
 		if (it.current == nullptr)
 			throw std::out_of_range("it.current == nullptr");
 
-		auto* inserted = create_node_(value); //new Node<T>(value);
+		auto* inserted = create_node_(value);
 		
 		inserted->next = it.current->next;
 		it.current->next = inserted;
@@ -372,7 +359,7 @@ public:
 		if (it.current == nullptr)
 			throw std::out_of_range("it.current == nullptr");
 
-		auto* inserted = create_node_(value); //new Node<T>(value);
+		auto* inserted = create_node_(value);
 		
 
 		if (it.current == head_)
@@ -404,14 +391,14 @@ public:
 	
 	void erase(const iterator& it)
 	{
-		if (it.current == nullptr)
+		if (it.current == nullptr) //!!! empty()
 			throw std::out_of_range("it.current == nullptr");
 
 		if (it == begin())
 		{
 			auto* temp = head_;
 			head_ = head_->next;
-			delete_node_(temp);//delete temp;
+			delete_node_(temp);
 
 			if (head_ == nullptr)
 				tail_ = nullptr;
@@ -474,12 +461,13 @@ private:
 		}
 	}
 
+	//!!! remove this insert ?
 	void insert(int id, const T& value)
 	{
-		auto* inserted = create_node_(value); //new Node<T>(value);
+		auto* inserted = create_node_(value);
 		
 
-		if (head_ == nullptr)
+		if (head_ == nullptr) //!!! empty()
 		{
 			if (id == 0)
 			{
