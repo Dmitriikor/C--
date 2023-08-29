@@ -74,7 +74,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall")
 file(GLOB SOURCES *.cpp)
 # Поиск и добавление всех файлов hpp в директории include
 file(GLOB HEADERS *.hpp)
-
+file(GLOB HEADERS *.ixx)
 set (NANA_INCLUDE include/)
 set (NANA_LINK build/)
 # Добавление пути к заголовочным файлам Nana
