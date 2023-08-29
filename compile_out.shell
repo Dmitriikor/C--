@@ -1,0 +1,11 @@
+/home/dmitriy/Desktop/C++/main.cpp:8:1: error: ‘import’ does not name a type
+    8 | import Module;
+      | ^~~~~~
+/home/dmitriy/Desktop/C++/main.cpp:8:1: note: C++20 ‘import’ only available with ‘-fmodules-ts’, which is not yet enabled with ‘-std=c++20’
+/home/dmitriy/Desktop/C++/main.cpp: In function ‘int main()’:
+/home/dmitriy/Desktop/C++/main.cpp:12:9: error: ‘MyFunc’ was not declared in this scope
+   12 |         MyFunc();
+      |         ^~~~~~
+make[2]: *** [CMakeFiles/MAIN.out.dir/build.make:104: CMakeFiles/MAIN.out.dir/main.cpp.o] Error 1
+make[1]: *** [CMakeFiles/Makefile2:839: CMakeFiles/MAIN.out.dir/all] Error 2
+make: *** [Makefile:121: all] Error 2
