@@ -1,7 +1,7 @@
 {
     "Version": "1.2",
     "Data": {
-        "Source": "z:\\module.ixx",
+        "Source": "z:\\c++\\c--\\module.ixx",
         "ProvidedModule": "Module",
         "Includes": [],
         "ImportedModules": [],

@@ -5,14 +5,14 @@
         {
             "primary-output": "x64\\Debug\\std.ixx.obj",
             "outputs": [
-                "Z:\\ConsoleApplication\\x64\\Debug\\vc143.pdb",
+                "Z:\\c++\\C--\\ConsoleApplication\\x64\\Debug\\vc143.pdb",
                 "x64\\Debug\\",
-                "Z:\\ConsoleApplication\\x64\\Debug\\std.ixx.ifc"
+                "Z:\\c++\\C--\\ConsoleApplication\\x64\\Debug\\std.ixx.ifc"
             ],
             "provides": [
                 {
                     "logical-name": "std",
-                    "source-path": "c:\\program files\\microsoft visual studio\\2022\\community\\vc\\tools\\msvc\\14.36.32532\\modules\\std.ixx",
+                    "source-path": "c:\\program files\\microsoft visual studio\\2022\\community\\vc\\tools\\msvc\\14.37.32822\\modules\\std.ixx",
                     "is-interface": true
                 }
             ],
