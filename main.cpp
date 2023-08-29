@@ -9,6 +9,8 @@ import Module;
 
 int main()
 {
+	MyFunc();
+
 	{
 		// Create an instance of the __TESTS__ class with the template type int
 		__TESTS__<int> p(9);
