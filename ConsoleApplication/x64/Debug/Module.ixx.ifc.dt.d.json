@@ -4,7 +4,12 @@
         "Source": "z:\\c++\\c--\\module.ixx",
         "ProvidedModule": "Module",
         "Includes": [],
-        "ImportedModules": [],
+        "ImportedModules": [
+            {
+                "Name": "std",
+                "BMI": "Z:\\c++\\C--\\ConsoleApplication\\x64\\Debug\\std.ixx.ifc.dt"
+            }
+        ],
         "ImportedHeaderUnits": []
     }
 }
