@@ -1,0 +1,11 @@
+﻿  Scanning sources for module dependencies...
+  main.cpp
+Z:\main.cpp(185,13): warning C4456: declaration of 'i' hides previous local declaration
+Z:\main.cpp(92,7): message : see declaration of 'i'
+Z:\main.cpp(192,13): warning C4456: declaration of 'i' hides previous local declaration
+Z:\main.cpp(92,7): message : see declaration of 'i'
+Z:\main.cpp(209,16): warning C4456: declaration of 'i' hides previous local declaration
+Z:\main.cpp(92,7): message : see declaration of 'i'
+Z:\main.cpp(222,16): warning C4456: declaration of 'i' hides previous local declaration
+Z:\main.cpp(92,7): message : see declaration of 'i'
+  ConsoleApplication.vcxproj -> Z:\ConsoleApplication\x64\Debug\ConsoleApplication.exe

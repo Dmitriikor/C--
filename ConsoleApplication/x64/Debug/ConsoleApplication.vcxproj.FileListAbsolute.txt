@@ -1,0 +1,4 @@
+Z:\ConsoleApplication\x64\Debug\ConsoleApplication.vcxproj.MdMergeInputs.cache
+Z:\ConsoleApplication\x64\Debug\ConsoleApplication.vcxproj.cppwinrt_plat.cache
+Z:\ConsoleApplication\x64\Debug\ConsoleApplication.vcxproj.cppwinrt_comp.cache
+Z:\ConsoleApplication\x64\Debug\ConsoleApplication.exe
