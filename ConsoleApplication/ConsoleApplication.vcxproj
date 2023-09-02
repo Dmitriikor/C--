@@ -111,6 +111,7 @@
       <EnableModules>true</EnableModules>
       <BuildStlModules>true</BuildStlModules>
       <OpenMPSupport>true</OpenMPSupport>
+      <AdditionalOptions>/EHsc /c /Og %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -141,7 +142,8 @@
     <ClCompile Include="..\x_.cpp" />
     <ClCompile Include="..\x__.cpp" />
     <ClCompile Include="CarnifexModule.ixx" />
-    <ClCompile Include="Module.cpp" />
+    <ClCompile Include="LL_iterator.ixx" />
+    <ClCompile Include="LL_List.ixx" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\LL_iterator.hpp" />

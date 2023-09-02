@@ -1,0 +1,15 @@
+{
+    "Version": "1.2",
+    "Data": {
+        "Source": "z:\\c++\\c--\\consoleapplication\\ll_iterator.ixx",
+        "ProvidedModule": "List:iterator",
+        "Includes": [],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": [
+            {
+                "Header": "c:\\program files\\microsoft visual studio\\2022\\community\\vc\\tools\\msvc\\14.38.32919\\include\\iterator",
+                "BMI": "Z:\\c++\\C--\\ConsoleApplication\\x64\\Debug\\iterator_489D7971786A7785.ifc.dt"
+            }
+        ]
+    }
+}

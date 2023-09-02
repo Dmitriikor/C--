@@ -28,7 +28,7 @@ private:
 	Node<T>* head_ = nullptr;
 	Node<T>* tail_ = nullptr;
 	size_t size_ = 0;
- 	friend class iterator;
+ 	//friend class iterator;
 
 	Node<T>* create_node_(const T& value) 
 	{

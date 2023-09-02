@@ -1,6 +1,4 @@
 ﻿  Проверка источников на наличие зависимостей модуля…
+cl : командная строка  warning D9035: использование параметра "Og" нежелательно, он будет удален в следующих выпусках
   main.cpp
-Z:\c++\C--\main.cpp(1,18): error C7612: Не удалось найти единицу заголовка для "iostream".
-Z:\c++\C--\main.cpp(2,16): error C7612: Не удалось найти единицу заголовка для "vector".
-Z:\c++\C--\main.cpp(4,15): error C7612: Не удалось найти единицу заголовка для "stack".
-Z:\c++\C--\main.cpp(5,16): error C7612: Не удалось найти единицу заголовка для "vector".
+  ConsoleApplication.vcxproj -> Z:\c++\C--\ConsoleApplication\x64\Debug\ConsoleApplication.exe

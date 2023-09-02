@@ -1,0 +1,9 @@
+{
+    "Version": "1.1",
+    "Data": {
+        "Source": "z:\\c++\\c--\\ll_list.ixx",
+        "ProvidedModule": "List",
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}

@@ -1,0 +1,10 @@
+{
+    "Version": "1.2",
+    "Data": {
+        "Source": "z:\\c++\\c--\\ll_list_iterator.ixx",
+        "ProvidedModule": "LL_iterator",
+        "Includes": [],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}

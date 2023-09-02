@@ -1,0 +1,10 @@
+{
+    "Version": "1.2",
+    "Data": {
+        "Source": "z:\\c++\\c--\\consoleapplication\\ll_node.ixx",
+        "ProvidedModule": "List:Node",
+        "Includes": [],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}

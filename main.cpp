@@ -4,20 +4,21 @@
 #include <stack>
 #include <vector>
 #include "TEST.hpp"
-#include "LL_List.hpp"
+
 
 import Module.test; //test module
 import CarnifexModule; //carnifex module
-
+import List; //ll_list module
 
 int main()
 {
 	std::cout << "Testing" << std::endl;
+		MyClassModule<int> aModule;
+		aModule.MyFunc();
+		LL_List<int> aList;
 
 	try
 	{
-		MyClassModule aModule;
-		aModule.MyFuncModule();
 
 		//MyFunc();
 		{

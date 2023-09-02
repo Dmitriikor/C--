@@ -1,0 +1,22 @@
+{
+    "version": 1,
+    "revision": 0,
+    "rules": [
+        {
+            "primary-output": "x64\\Debug\\LL_Node.ixx.obj",
+            "outputs": [
+                "Z:\\c++\\C--\\ConsoleApplication\\x64\\Debug\\vc143.pdb",
+                "x64\\Debug\\",
+                "Z:\\c++\\C--\\ConsoleApplication\\x64\\Debug\\LL_Node.ixx.ifc"
+            ],
+            "provides": [
+                {
+                    "logical-name": "List:Node",
+                    "source-path": "z:\\c++\\c--\\consoleapplication\\ll_node.ixx",
+                    "is-interface": true
+                }
+            ],
+            "requires": []
+        }
+    ]
+}

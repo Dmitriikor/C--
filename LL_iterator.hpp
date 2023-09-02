@@ -53,6 +53,6 @@ template <typename T>
 
 	private:
 		
-		friend class LL_List<T>; 
+		//friend class LL_List<T>; 
 		Node<T>* current;
 	};
