@@ -64,36 +64,70 @@ target_link_libraries(MAIN.out PUBLIC ${CMAKE_SOURCE_DIR}/lib/libnana.a ${RUNNAN
 elseif(CMAKE_SYSTEM_NAME STREQUAL "Windows")
     # Конфигурации для Windows
     # Конфигурации для Windows
+# Use Clang as the compiler
+set(CMAKE_CXX_COMPILER "clang")
 
-# Установка флагов компилятора
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall")
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall")
-
-
-# Поиск и добавление всех файлов cpp в директории src
-file(GLOB SOURCES *.cpp)
-# Поиск и добавление всех файлов hpp в директории include
-file(GLOB HEADERS *.hpp)
-file(GLOB HEADERS *.ixx)
-set (NANA_INCLUDE include/)
-set (NANA_LINK build/)
-# Добавление пути к заголовочным файлам Nana
-include_directories(${CMAKE_SOURCE_DIR}/include)
-
-include(CTest)
-enable_testing()
-
-add_definitions(-D__STDC_WANT_SECURE_LIB__)
-
-# Добавление исполняемого файла
-add_executable(MAIN.exe ${SOURCES} ${HEADERS})
-
-set (RUNNANA_LINK_LIBS
- 
+# Add compiler flags for warnings and errors
+add_compile_options(
+  -Wall # Включить все предупреждения
+  -Werror # Считать все предупреждения ошибками
+  -Wextra # Включить дополнительные предупреждения
+  -Wshadow # Предупреждать о теневом замещении переменных
+  -Wunused # Предупреждать о неиспользуемых переменных, параметрах и функциях
+  -pedantic # Предупреждать о нарушении стандарта ISO C++
+  -pedantic-errors # Считать нарушение стандарта ISO C++ ошибкой
+  -std=c++20 # Указать стандарт языка C++20
+  -Og # Включить уровень оптимизации для отладки
+  -g # Включить генерацию отладочной информации
+  -fsanitize=address # Включить инструмент AddressSanitizer
+  -Wconversion # Включить предупреждения о неявных преобразованиях типов
 )
 
-# Линковка с библиотекой Nana
-target_link_libraries(MAIN.exe PUBLIC ${CMAKE_SOURCE_DIR}/lib/nana_v143_Debug_x64.lib ${RUNNANA_LINK_LIBS})
+# Add compiler flags for modules
+add_compile_options(-fmodules-ts --precompile-module -Xclang -fmodules-embed-all-files)
+
+# Add linker flags for modules
+add_link_options(-fmodules-ts -Xclang -fmodules-embed-all-files)
+
+# Add an extra flag to handle ixx files as modules
+add_compile_options(-Xclang -fmodules-embed-all-files)
+
+# Find all source files in the current directory and store them in a variable
+file(GLOB_RECURSE SOURCES_ "*.ixx" "*.hpp" "*.cpp")
+
+# Add the executable target with the source files
+add_executable(my_project ${SOURCES_})
+
+
+# # Установка флагов компилятора
+# set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall")
+# set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall")
+
+
+# # Поиск и добавление всех файлов cpp в директории src
+# file(GLOB SOURCES *.cpp)
+# # Поиск и добавление всех файлов hpp в директории include
+# file(GLOB HEADERS *.hpp)
+# file(GLOB HEADERS *.ixx)
+# set (NANA_INCLUDE include/)
+# set (NANA_LINK build/)
+# # Добавление пути к заголовочным файлам Nana
+# include_directories(${CMAKE_SOURCE_DIR}/include)
+
+# include(CTest)
+# enable_testing()
+
+# add_definitions(-D__STDC_WANT_SECURE_LIB__)
+
+# # Добавление исполняемого файла
+# add_executable(MAIN.exe ${SOURCES} ${HEADERS})
+
+# set (RUNNANA_LINK_LIBS
+ 
+# )
+
+# # Линковка с библиотекой Nana
+# target_link_libraries(MAIN.exe PUBLIC ${CMAKE_SOURCE_DIR}/lib/nana_v143_Debug_x64.lib ${RUNNANA_LINK_LIBS})
 
 
     endif()
