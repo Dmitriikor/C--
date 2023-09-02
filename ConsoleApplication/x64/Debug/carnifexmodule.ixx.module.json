@@ -1,0 +1,29 @@
+{
+    "version": 1,
+    "revision": 0,
+    "rules": [
+        {
+            "primary-output": "x64\\Debug\\CarnifexModule.ixx.obj",
+            "outputs": [
+                "Z:\\c++\\C--\\ConsoleApplication\\x64\\Debug\\vc143.pdb",
+                "x64\\Debug\\",
+                "Z:\\c++\\C--\\ConsoleApplication\\x64\\Debug\\CarnifexModule.ixx.ifc"
+            ],
+            "provides": [
+                {
+                    "logical-name": "CarnifexModule",
+                    "source-path": "z:\\c++\\c--\\consoleapplication\\carnifexmodule.ixx",
+                    "is-interface": true
+                }
+            ],
+            "requires": [
+                {
+                    "logical-name": "cassert",
+                    "source-path": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.38.32919\\include\\cassert",
+                    "lookup-method": "include-angle",
+                    "unique-on-source-path": true
+                }
+            ]
+        }
+    ]
+}

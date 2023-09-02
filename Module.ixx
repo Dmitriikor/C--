@@ -1,9 +1,18 @@
-export module Module;
-import std;
+export module Module.test;
 
-export void MyFunc();
+//export void MyFunc();
+//
+//void MyFunc()
+//{
+//	std::cout << "\nModule WW\n";
+//}
 
-void MyFunc()
-{
-	std::cout << "\nModule WW\n";
-}
+export class MyClassModule {
+public:
+
+	void MyFuncModule();
+
+private:
+
+};
+

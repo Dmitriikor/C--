@@ -2,14 +2,9 @@
     "Version": "1.2",
     "Data": {
         "Source": "z:\\c++\\c--\\module.ixx",
-        "ProvidedModule": "Module",
+        "ProvidedModule": "Module.test",
         "Includes": [],
-        "ImportedModules": [
-            {
-                "Name": "std",
-                "BMI": "Z:\\c++\\C--\\ConsoleApplication\\x64\\Debug\\std.ixx.ifc.dt"
-            }
-        ],
+        "ImportedModules": [],
         "ImportedHeaderUnits": []
     }
 }

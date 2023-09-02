@@ -11,16 +11,12 @@
             ],
             "provides": [
                 {
-                    "logical-name": "Module",
+                    "logical-name": "Module.test",
                     "source-path": "z:\\c++\\c--\\module.ixx",
                     "is-interface": true
                 }
             ],
-            "requires": [
-                {
-                    "logical-name": "std"
-                }
-            ]
+            "requires": []
         }
     ]
 }

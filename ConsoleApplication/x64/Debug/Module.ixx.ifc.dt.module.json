@@ -2,10 +2,8 @@
     "Version": "1.1",
     "Data": {
         "Source": "z:\\c++\\c--\\module.ixx",
-        "ProvidedModule": "Module",
-        "ImportedModules": [
-            "std"
-        ],
+        "ProvidedModule": "Module.test",
+        "ImportedModules": [],
         "ImportedHeaderUnits": []
     }
 }
