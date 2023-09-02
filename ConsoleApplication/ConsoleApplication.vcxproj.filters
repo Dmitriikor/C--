@@ -36,18 +36,15 @@
     <ClCompile Include="CarnifexModule.ixx">
       <Filter>Файлы заголовков</Filter>
     </ClCompile>
-    <ClCompile Include="LL_iterator.ixx">
-      <Filter>Файлы заголовков</Filter>
-    </ClCompile>
     <ClCompile Include="LL_List.ixx">
       <Filter>Файлы заголовков</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\LL_iterator.hpp">
+    <ClInclude Include="..\LL_iterator.hpp.old">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="..\LL_List.hpp">
+    <ClInclude Include="..\LL_List.hpp.old">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="..\TEST.hpp">

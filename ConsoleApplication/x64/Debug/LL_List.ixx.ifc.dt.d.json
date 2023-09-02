@@ -5,23 +5,6 @@
         "ProvidedModule": "List",
         "Includes": [],
         "ImportedModules": [],
-        "ImportedHeaderUnits": [
-            {
-                "Header": "c:\\program files\\microsoft visual studio\\2022\\community\\vc\\tools\\msvc\\14.38.32919\\include\\iostream",
-                "BMI": "Z:\\c++\\C--\\ConsoleApplication\\x64\\Debug\\iostream_ABA96BDDB36C4FA7.ifc.dt"
-            },
-            {
-                "Header": "c:\\program files\\microsoft visual studio\\2022\\community\\vc\\tools\\msvc\\14.38.32919\\include\\cassert",
-                "BMI": "Z:\\c++\\C--\\ConsoleApplication\\x64\\Debug\\cassert_64646D7D51BAE066.ifc.dt"
-            },
-            {
-                "Header": "c:\\program files\\microsoft visual studio\\2022\\community\\vc\\tools\\msvc\\14.38.32919\\include\\stack",
-                "BMI": "Z:\\c++\\C--\\ConsoleApplication\\x64\\Debug\\stack_D7C33A04BA21F6D1.ifc.dt"
-            },
-            {
-                "Header": "c:\\program files\\microsoft visual studio\\2022\\community\\vc\\tools\\msvc\\14.38.32919\\include\\vector",
-                "BMI": "Z:\\c++\\C--\\ConsoleApplication\\x64\\Debug\\vector_97DB2781681E361C.ifc.dt"
-            }
-        ]
+        "ImportedHeaderUnits": []
     }
 }
