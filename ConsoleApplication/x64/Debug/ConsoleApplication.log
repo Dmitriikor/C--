@@ -1,20 +1,62 @@
 ﻿  Проверка источников на наличие зависимостей модуля…
-  Module.ixx
-  LL_List.ixx
-  std.compat.ixx
   std.ixx
   CarnifexModule.ixx
+  LL_List.ixx
+  Module.ixx
+  std.compat.ixx
   stack
+  vector
   cassert
   iostream
-  vector
   Компиляция…
-  cassert
-  iostream
+  vector
   std.ixx
   stack
-  vector
-  Module.ixx
+  iostream
+  cassert
   CarnifexModule.ixx
-  LL_List.ixx
+  Module.ixx
   std.compat.ixx
+  LL_List.ixx
+  main.cpp
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.32919\include\vector(437,49): error C2572: std::vector: переопределение аргумента по умолчанию: параметр 1
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.32919\include\vector(438,1): message : см. объявление "std::vector"
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.32919\include\vector(437,49): message : контекст создания экземпляра шаблона (сначала самый старый)
+Z:\c++\C--\main.cpp(18,16): message : выполняется компиляция ссылки на экземпляр класс шаблон функции "LL_List<int>"
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.32919\include\xmemory(534,51): error C2572: std::allocation_result: переопределение аргумента по умолчанию: параметр 1
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.32919\include\xmemory(535,1): message : см. объявление "std::allocation_result"
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.32919\include\xmemory(534,51): message : контекст создания экземпляра шаблона (сначала самый старый)
+Z:\c++\C--\main.cpp(41,21): message : выполняется компиляция ссылки на экземпляр класс шаблон функции "std::vector<T,std::allocator<int>>"
+          with
+          [
+              T=int
+          ]
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.32919\include\vector(444,26): message : выполняется компиляция ссылки на экземпляр псевдоним шаблон функции "std::_Rebind_alloc_t<_Alloc,_Ty>"
+          with
+          [
+              _Alloc=std::allocator<int>,
+              _Ty=int
+          ]
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.32919\include\vector(444,50): message : выполняется компиляция ссылки на экземпляр класс шаблон функции "std::allocator_traits<_Alloc>"
+          with
+          [
+              _Alloc=std::allocator<int>
+          ]
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.32919\include\xmemory(742,27): message : выполняется компиляция ссылки на экземпляр класс шаблон функции "std::_Default_allocator_traits<_Alloc>"
+          with
+          [
+              _Alloc=std::allocator<int>
+          ]
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.32919\include\xmemory(645,1): message : выполняется компиляция ссылки на экземпляр класс шаблон функции "std::allocator<int>"
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.32919\include\xutility(7085,65): error C2572: std::iterator: переопределение аргумента по умолчанию: параметр 1
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.32919\include\xutility(7087,1): message : см. объявление "std::iterator"
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.32919\include\xutility(7085,93): error C2572: std::iterator: переопределение аргумента по умолчанию: параметр 2
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.32919\include\xutility(7087,1): message : см. объявление "std::iterator"
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.32919\include\xutility(7086,24): error C2572: std::iterator: переопределение аргумента по умолчанию: параметр 3
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.32919\include\xutility(7087,1): message : см. объявление "std::iterator"
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.32919\include\xutility(775,9): error C2373: std::input_iterator: переопределение; различные модификаторы типа
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.32919\include\xutility(775,9): message : см. объявление "std::input_iterator"
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.32919\include\vector(608,1): fatal  error C1907: не удается восстановить после предыдущих ошибок; остановка компиляции
+  ВНУТРЕННЯЯ ОШИБКА КОМПИЛЯТОРА в "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.32919\bin\HostX64\x64\CL.exe"
+      Выберите команду "Техническая поддержка" в меню "Справка" Visual C++ или
+      откройте справочный файл технической поддержки для получения доп. сведений
