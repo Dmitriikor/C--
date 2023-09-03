@@ -1,9 +1,20 @@
 ﻿  Проверка источников на наличие зависимостей модуля…
-cl : командная строка  warning D9035: использование параметра "Og" нежелательно, он будет удален в следующих выпусках
+  Module.ixx
   LL_List.ixx
+  std.compat.ixx
+  std.ixx
+  CarnifexModule.ixx
+  stack
+  cassert
+  iostream
+  vector
   Компиляция…
-cl : командная строка  warning D9035: использование параметра "Og" нежелательно, он будет удален в следующих выпусках
+  cassert
+  iostream
+  std.ixx
+  stack
+  vector
+  Module.ixx
+  CarnifexModule.ixx
   LL_List.ixx
-cl : командная строка  warning D9035: использование параметра "Og" нежелательно, он будет удален в следующих выпусках
-  main.cpp
-  ConsoleApplication.vcxproj -> Z:\c++\C--\ConsoleApplication\x64\Debug\ConsoleApplication.exe
+  std.compat.ixx

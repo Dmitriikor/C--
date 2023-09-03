@@ -1,4 +1,5 @@
 export module List;
+import CarnifexModule;
 //#pragma once
 
 //!!! change
@@ -7,13 +8,12 @@ import <iostream>;
 import <cassert>;
 import <stack>;
 import <vector>;
-//export import :iterator;
 template <typename T>
 struct Node
 {
 	T data;
-	Node* next = nullptr;
-
+	//Node* next = nullptr;
+	Carnifex<Node<T>> next;
 	explicit Node(const T& value) : data(value)
 	{
 	}
@@ -27,42 +27,47 @@ export template <typename T>
 class LL_List
 {
 private:
-	Node<T>* head_ = nullptr;
-	Node<T>* tail_ = nullptr;
+	//Node<T>* head_ = nullptr;
+	Carnifex<Node<T>> head_;
+	//Node<T>* tail_ = nullptr;
+	Carnifex<Node<T>> tail_;
+
+	Carnifex<Node<T>> dummy_node;
+
 	size_t size_ = 0;
 	friend class iterator;
 
-	Node<T>* create_node_(const T& value)
+	Carnifex<Node<T>>* create_node_(const T& value)
 	{
-		auto* new_node_ = new(std::nothrow) Node<T>(value);
+		Carnifex<Node<T>> new_node_(new Node<T>(value));
 
-		if (new_node_ == nullptr)
+		if (new_node_ == dummy_node)
 		{
 			throw std::bad_alloc();
 		}
 		++size_;
 
-		return new_node_;
+		return &new_node_;
 	}
-	void delete_node_(Node<T>* current)
+	void delete_node_(Carnifex<Node<T>>* current)
 	{
 		delete current;
 		--size_;
 	}
 	void copy_nodes_(const LL_List& other)
 	{
-		if (other.head_ == nullptr)
+		if (other.head_ == dummy_node)
 		{
 			head_ = nullptr;
 			tail_ = nullptr;
 			return;
 		}
 
-		auto* otherCurrent = other.head_;
+		Node<T>* otherCurrent = other.head_;
 		head_ = create_node_(otherCurrent->data);
 
 		otherCurrent = otherCurrent->next;
-		auto* thisCurrent = head_;
+		Node<T>* thisCurrent = head_;
 
 		while (otherCurrent != nullptr)
 		{
@@ -203,7 +208,7 @@ public:
 			return;
 		}
 
-		auto* current = create_node_(value);
+		Node<T>* current = create_node_(value);
 
 		current->next = head_;
 		head_ = current;
@@ -218,7 +223,7 @@ public:
 			return;
 		}
 
-		auto* current = create_node_(value);
+		Node<T>* current = create_node_(value);
 
 		tail_->next = current;
 		tail_ = tail_->next;
@@ -398,7 +403,7 @@ public:
 		if (it.current == nullptr)
 			throw std::out_of_range("it.current == nullptr");
 
-		auto* inserted = create_node_(value);
+		Node<T>* inserted = create_node_(value);
 
 		inserted->next = it.current->next;
 		it.current->next = inserted;
@@ -413,7 +418,7 @@ public:
 		if (it.current == nullptr)
 			throw std::out_of_range("it.current == nullptr");
 
-		auto* inserted = create_node_(value);
+		Node<T>* inserted = create_node_(value);
 
 
 		if (it.current == head_)
@@ -450,7 +455,7 @@ public:
 
 		if (it == begin())
 		{
-			auto* temp = head_;
+			Node<T>* temp = head_;
 			head_ = head_->next;
 			delete_node_(temp);
 
@@ -500,7 +505,7 @@ private:
 	{
 		std::stack<T> st;
 
-		auto* current = head_;
+		Node<T>* current = head_;
 		while (current != nullptr)
 		{
 			st.push(current->data);
@@ -518,7 +523,7 @@ private:
 	//!!! remove this insert ?
 	void insert(int id, const T& value)
 	{
-		auto* inserted = create_node_(value);
+		Node<T>* inserted = create_node_(value);
 
 
 		if (head_ == nullptr) //!!! empty()
@@ -534,7 +539,7 @@ private:
 				throw std::out_of_range("Index out of range");
 		}
 
-		auto* temp = head_;
+		Node<T>* temp = head_;
 
 		int counter = 0;
 		while (temp != nullptr && counter != id - 1)

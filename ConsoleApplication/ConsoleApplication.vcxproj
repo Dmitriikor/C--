@@ -111,7 +111,7 @@
       <EnableModules>true</EnableModules>
       <BuildStlModules>true</BuildStlModules>
       <OpenMPSupport>true</OpenMPSupport>
-      <AdditionalOptions>/EHsc /c /Og %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/EHsc /c /Od %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

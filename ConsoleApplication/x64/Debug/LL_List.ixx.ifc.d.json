@@ -4,7 +4,12 @@
         "Source": "z:\\c++\\c--\\consoleapplication\\ll_list.ixx",
         "ProvidedModule": "List",
         "Includes": [],
-        "ImportedModules": [],
+        "ImportedModules": [
+            {
+                "Name": "CarnifexModule",
+                "BMI": "Z:\\c++\\C--\\ConsoleApplication\\x64\\Debug\\CarnifexModule.ixx.ifc"
+            }
+        ],
         "ImportedHeaderUnits": [
             {
                 "Header": "c:\\program files\\microsoft visual studio\\2022\\community\\vc\\tools\\msvc\\14.38.32919\\include\\iostream",

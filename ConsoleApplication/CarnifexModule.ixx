@@ -93,4 +93,10 @@ public:
 	{
 		return *(block_->object_);
 	}
+
+	bool operator==(const Carnifex<T>& other)
+	{
+		return this->block_ == other.block_;
+	}
+
 };
