@@ -13,9 +13,9 @@ import List; //ll_list module
 int main()
 {
 	std::cout << "Testing" << std::endl;
-		MyClassModule<int> aModule;
-		aModule.MyFunc();
-		LL_List<int> aList;
+	MyClassModule<int> aModule;
+	aModule.MyFunc();
+	LL_List<int> aList;
 
 	try
 	{
@@ -103,7 +103,7 @@ int main()
 			int i = 0;
 			for (auto it = myList.begin(); it != myList.end(); ++it, ++i)
 				assert(*it == expected_2[i]);
-			
+
 			// Insert an element with the value 100 at the position after the first element
 			{
 				auto it = myList.begin();
@@ -126,7 +126,7 @@ int main()
 			//std::cout << std::endl;
 			//myList.reverse();
 			//std::cout << std::endl;
-			
+
 			{
 				LL_List<int> copiedList(myList);
 				//std::cout << "\n" << myList.size() << "\n";
@@ -135,7 +135,7 @@ int main()
 				for (size_t ii = 0; ii < copiedList.size(); ++ii)
 					assert(copiedList.at(ii) == myList.at(ii));
 			}
-		
+
 			{
 				LL_List<int> myList2;
 				myList2.push_back(4);
@@ -243,7 +243,7 @@ int main()
 			assert(std::cout << "\nAll tests passed successfully!\n\n" << std::endl);
 
 		}
-		
+
 		{
 			Carnifex<int> test(new int(10));
 

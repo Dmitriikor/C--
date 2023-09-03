@@ -1,10 +1,11 @@
+#include <iostream>
 export module List;
 import CarnifexModule;
 //#pragma once
 
-//!!! change
+//TODO change
+
 import std;
-import <iostream>;
 import <cassert>;
 import <stack>;
 import <vector>;
@@ -16,6 +17,7 @@ struct Node
 	Carnifex<Node<T>> next;
 	explicit Node(const T& value) : data(value)
 	{
+		std::cout << "" << std::endl;
 	}
 	~Node() = default;
 };
@@ -79,7 +81,7 @@ private:
 			catch (const std::exception& e)
 			{
 				clear_();
-				std::cerr << e.what() << '\n';
+				std::cout << e.what() << '\n';
 				throw;
 			}
 
@@ -188,7 +190,7 @@ public:
 
 	bool empty() const
 	{
-		if (head_ == nullptr)
+		if (head_ == dummy_node)
 		{
 			//assert(head_ == nullptr && tail_ == nullptr && size_ == 0);
 			return true;
@@ -201,7 +203,7 @@ public:
 	}
 	void push_front(const T& value)
 	{
-		if (head_ == nullptr) //!!! empty()
+		if (head_ == dummy_node) //TODO empty()
 		{
 			head_ = create_node_(value);
 
@@ -216,7 +218,7 @@ public:
 	}
 	void push_back(const T& value)
 	{
-		if (head_ == nullptr) //!!! empty()
+		if (head_ == nullptr) //TODO empty()
 		{
 			head_ = create_node_(value); //
 
@@ -231,7 +233,7 @@ public:
 	}
 	void pop_front()
 	{
-		if (head_ == nullptr) //!!! empty()
+		if (head_ == nullptr) //TODO empty()
 		{
 			throw std::out_of_range("head_ is nullptr");
 		}
@@ -251,7 +253,7 @@ public:
 	}
 	void pop_back()
 	{
-		if (head_ == nullptr) //!!! empty()
+		if (head_ == nullptr) //TODO empty()
 		{
 			throw std::out_of_range("tail_ is nullptr");
 		}
@@ -264,7 +266,7 @@ public:
 			return;
 		}
 
-		//!!! search
+		//TODO search
 		Node<T>* temp = head_;
 		while (temp->next != tail_)
 		{
@@ -451,7 +453,7 @@ public:
 
 	void erase(const iterator& it)
 	{
-		if (it.current == nullptr) //!!! empty()
+		if (it.current == nullptr) //TODO empty()
 			throw std::out_of_range("it.current == nullptr");
 
 		if (it == begin())
@@ -521,13 +523,13 @@ private:
 		}
 	}
 
-	//!!! remove this insert ?
+	//TODO remove this insert ?
 	void insert(int id, const T& value)
 	{
 		Node<T>* inserted = create_node_(value);
 
 
-		if (head_ == nullptr) //!!! empty()
+		if (head_ == nullptr) //TODO empty()
 		{
 			if (id == 0)
 			{

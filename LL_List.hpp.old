@@ -1,6 +1,6 @@
 #pragma once
 
-//!!! change
+//TODO change
 
 #include <iostream>
 #include <vector>
@@ -193,7 +193,7 @@ public:
 	}
 	void push_front(const T& value)
 	{
-		if (head_ == nullptr) //!!! empty()
+		if (head_ == nullptr) //TODO empty()
 		{
 			head_ = create_node_(value);
 			
@@ -208,7 +208,7 @@ public:
 	}
 	void push_back(const T& value)
 	{
-		if (head_ == nullptr) //!!! empty()
+		if (head_ == nullptr) //TODO empty()
 		{
 			head_ = create_node_(value); //
 			
@@ -223,7 +223,7 @@ public:
 	}
 	void pop_front()
 	{
-		if (head_ == nullptr) //!!! empty()
+		if (head_ == nullptr) //TODO empty()
 		{
 			throw std::out_of_range("head_ is nullptr");
 		}
@@ -243,7 +243,7 @@ public:
 	}
 	void pop_back()
 	{
-		if (head_ == nullptr) //!!! empty()
+		if (head_ == nullptr) //TODO empty()
 		{
 			throw std::out_of_range("tail_ is nullptr");
 		}
@@ -256,7 +256,7 @@ public:
 			return;
 		}
 		
-		//!!! search
+		//TODO search
 		Node<T>* temp = head_;
 		while (temp->next != tail_)
 		{
@@ -391,7 +391,7 @@ public:
 	
 	void erase(const iterator& it)
 	{
-		if (it.current == nullptr) //!!! empty()
+		if (it.current == nullptr) //TODO empty()
 			throw std::out_of_range("it.current == nullptr");
 
 		if (it == begin())
@@ -461,13 +461,13 @@ private:
 		}
 	}
 
-	//!!! remove this insert ?
+	//TODO remove this insert ?
 	void insert(int id, const T& value)
 	{
 		auto* inserted = create_node_(value);
 		
 
-		if (head_ == nullptr) //!!! empty()
+		if (head_ == nullptr) //TODO empty()
 		{
 			if (id == 0)
 			{
