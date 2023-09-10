@@ -1,0 +1,22 @@
+{
+    "version": 1,
+    "revision": 0,
+    "rules": [
+        {
+            "primary-output": "x64\\Debug\\vector_FAVB8QVEWA9CS6O8.obj",
+            "outputs": [
+                "Z:\\c++\\C--\\ConsoleApplication\\x64\\Debug\\vc143.pdb",
+                "x64\\Debug\\vector_FAVB8QVEWA9CS6O8.module.json",
+                "x64\\Debug\\vector_FAVB8QVEWA9CS6O8.ifc"
+            ],
+            "provides": [
+                {
+                    "logical-name": "Y:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.37.32822\\include\\vector",
+                    "source-path": "y:\\program files\\microsoft visual studio\\2022\\community\\vc\\tools\\msvc\\14.37.32822\\include\\vector",
+                    "lookup-method": "absolute"
+                }
+            ],
+            "requires": []
+        }
+    ]
+}

@@ -1,22 +1,45 @@
 ﻿  Проверка источников на наличие зависимостей модуля…
+  std.compat.ixx
+  LL_List.ixx
   Module.ixx
   std.ixx
   CarnifexModule.ixx
-  std.compat.ixx
-  LL_List.ixx
+  vector
+  cassert
   iostream
   stack
-  cassert
-  vector
   Компиляция…
   vector
+  std.ixx
+  stack
   iostream
   cassert
-  stack
-  std.ixx
-  CarnifexModule.ixx
   Module.ixx
+  CarnifexModule.ixx
+Z:\c++\C--\ConsoleApplication\CarnifexModule.ixx(101,35): warning C4227: устаревший элемент: пропуск квалификаторов для ссылки
+Z:\c++\C--\ConsoleApplication\CarnifexModule.ixx(105,2): message : выполняется компиляция ссылки на экземпляр класс шаблон функции "Carnifex<T>"
   LL_List.ixx
-  std.compat.ixx
 Z:\c++\C--\ConsoleApplication\LL_List.ixx(2,19): warning C5201: объявление модуля может располагаться только в начале единицы трансляции, если только не используется фрагмент глобального модуля
-Z:\c++\C--\ConsoleApplication\LL_List.ixx(23,1): fatal  error C1117: неустранимая ошибка при импорте модуль "std": символ "byte" уже был определен
+  std.compat.ixx
+  KATE_.cpp
+  main.cpp
+Z:\c++\C--\ConsoleApplication\CarnifexModule.ixx(101,35): warning C4227: устаревший элемент: пропуск квалификаторов для ссылки
+Z:\c++\C--\ConsoleApplication\LL_List.ixx(36,20): message : выполняется компиляция ссылки на экземпляр класс шаблон функции "Carnifex<Node<T>>"
+          with
+          [
+              T=int
+          ]
+Z:\c++\C--\main.cpp(18,15): message : выполняется компиляция ссылки на экземпляр класс шаблон функции "LL_List<int>"
+Z:\c++\C--\ConsoleApplication\LL_List.ixx(367,21): error C2440: =: невозможно преобразовать "Carnifex<Node<T>>" в "Node<T> *"
+          with
+          [
+              T=int
+          ]
+Z:\c++\C--\ConsoleApplication\LL_List.ixx(367,21): message : Для выполнения данного преобразования нет доступного оператора преобразования, определенного пользователем, или вызов оператора невозможен
+Z:\c++\C--\ConsoleApplication\LL_List.ixx(364,12): message : во время компиляции функции-члена класс шаблон "LL_List<int>::iterator LL_List<int>::iterator::operator ++(int)"
+Z:\c++\C--\main.cpp(193,11): message : см. первую ссылку на "LL_List<int>::iterator::operator ++" в "main"
+Z:\c++\C--\main.cpp(104,33): message : выполняется компиляция ссылки на экземпляр класс шаблон функции "LL_List<int>::iterator"
+  TEST.cpp
+  x_.cpp
+  x__.cpp
+  Создание кода...

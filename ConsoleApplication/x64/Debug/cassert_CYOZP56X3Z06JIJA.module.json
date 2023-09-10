@@ -1,0 +1,22 @@
+{
+    "version": 1,
+    "revision": 0,
+    "rules": [
+        {
+            "primary-output": "x64\\Debug\\cassert_CYOZP56X3Z06JIJA.obj",
+            "outputs": [
+                "Z:\\c++\\C--\\ConsoleApplication\\x64\\Debug\\vc143.pdb",
+                "x64\\Debug\\cassert_CYOZP56X3Z06JIJA.module.json",
+                "x64\\Debug\\cassert_CYOZP56X3Z06JIJA.ifc"
+            ],
+            "provides": [
+                {
+                    "logical-name": "Y:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.37.32822\\include\\cassert",
+                    "source-path": "y:\\program files\\microsoft visual studio\\2022\\community\\vc\\tools\\msvc\\14.37.32822\\include\\cassert",
+                    "lookup-method": "absolute"
+                }
+            ],
+            "requires": []
+        }
+    ]
+}

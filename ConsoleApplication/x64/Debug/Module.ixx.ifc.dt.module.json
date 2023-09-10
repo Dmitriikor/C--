@@ -5,7 +5,7 @@
         "ProvidedModule": "Module.test",
         "ImportedModules": [],
         "ImportedHeaderUnits": [
-            "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.38.32919\\include\\iostream"
+            "Y:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.37.32822\\include\\iostream"
         ]
     }
 }
