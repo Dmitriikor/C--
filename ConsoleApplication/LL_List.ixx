@@ -5,7 +5,7 @@ import CarnifexModule;
 
 //TODO change
 
-import std;
+//import std;
 import <cassert>;
 import <stack>;
 import <vector>;
@@ -14,7 +14,10 @@ struct Node
 {
 	T data;
 	//Node* next = nullptr;
-	Carnifex<Node<T>> next;
+
+	//TODO
+	Carnifex<Node<T>> next = nullptr;
+
 	explicit Node(const T& value) : data(value)
 	{
 		std::cout << "" << std::endl;
@@ -34,31 +37,26 @@ private:
 	//Node<T>* tail_ = nullptr;
 	Carnifex<Node<T>> tail_;
 
-	Carnifex<Node<T>> dummy_node;
-
 	size_t size_ = 0;
 	friend class iterator;
 
-	Carnifex<Node<T>>* create_node_(const T& value)
+	Carnifex<Node<T>> create_node_(const T& value)
 	{
-		Carnifex<Node<T>> new_node_(new Node<T>(value));
+		Carnifex<Node<T>> new_node_(new(std::nothrow) Node<T>(value));
 
-		if (new_node_ == dummy_node)
+		if (new_node_ == nullptr)
 		{
 			throw std::bad_alloc();
 		}
 		++size_;
 
-		return &new_node_;
+		return new_node_;
 	}
-	void delete_node_(Carnifex<Node<T>>* current)
-	{
-		delete current;
-		--size_;
-	}
+
+	//TODO похитрее
 	void copy_nodes_(const LL_List& other)
 	{
-		if (other.head_ == dummy_node)
+		if (other.head_ == nullptr)
 		{
 			head_ = nullptr;
 			tail_ = nullptr;
@@ -71,7 +69,7 @@ private:
 		otherCurrent = otherCurrent->next;
 		Carnifex<Node<T>> thisCurrent = head_;
 
-		while (otherCurrent != dummy_node)
+		while (otherCurrent != nullptr)
 		{
 			try
 			{
@@ -94,7 +92,7 @@ private:
 	{
 		int size = 0;
 		Carnifex<Node<T>> current = head_;
-		while (current != dummy_node)
+		while (current != nullptr)
 		{
 			++size;
 			current = current->next;
@@ -104,12 +102,7 @@ private:
 	}
 	void clear_()
 	{
-		while (head_ != dummy_node)
-		{
-			Carnifex<Node<T>> temp = head_;
-			head_ = head_->next;
-			delete_node_(&temp);
-		}
+		head_ = nullptr;
 		tail_ = nullptr;
 	}
 
@@ -177,7 +170,7 @@ public:
 	~LL_List()
 	{
 		//std::cout<< "\n Destruct LIST\n";
-		clear_();
+		//clear_();
 	}
 
 	size_t size() const
@@ -190,7 +183,7 @@ public:
 
 	bool empty() const
 	{
-		if (head_ == dummy_node)
+		if (head_ == nullptr)
 		{
 			//assert(head_ == nullptr && tail_ == nullptr && size_ == 0);
 			return true;
@@ -203,7 +196,7 @@ public:
 	}
 	void push_front(const T& value)
 	{
-		if (head_ == dummy_node) //TODO empty()
+		if (head_ == nullptr) //TODO empty()
 		{
 			head_ = create_node_(value);
 
