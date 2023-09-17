@@ -1,7 +1,8 @@
-#include <iostream>
-#include <cassert>
-#include <stack>
-#include <vector>
+import <iostream>;
+import <cassert>;
+import <stack>;
+import <vector>;
+
 #include "TEST.hpp"
 
 
