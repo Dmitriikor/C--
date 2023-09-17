@@ -1,5 +1,7 @@
-#include <iostream>;
 export module Module.test;
+
+import <iostream>;
+
 
 //export void MyFunc();
 //
@@ -8,11 +10,11 @@ export module Module.test;
 //	std::cout << "\nModule WW\n";
 //}
 export template <typename T>
- class MyClassModule {
+class MyClassModule {
 public:
 	void MyFunc()
 	{
-	 std::cout << " MyClassModule" << std::endl;
+		std::cout << " MyClassModule" << std::endl;
 	}
 private:
 

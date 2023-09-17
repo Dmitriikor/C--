@@ -16,7 +16,14 @@
                     "is-interface": true
                 }
             ],
-            "requires": []
+            "requires": [
+                {
+                    "logical-name": "iostream",
+                    "source-path": "Y:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.37.32822\\include\\iostream",
+                    "lookup-method": "include-angle",
+                    "unique-on-source-path": true
+                }
+            ]
         }
     ]
 }
