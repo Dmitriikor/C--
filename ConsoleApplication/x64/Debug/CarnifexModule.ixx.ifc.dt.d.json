@@ -5,11 +5,6 @@
         "ProvidedModule": "CarnifexModule",
         "Includes": [],
         "ImportedModules": [],
-        "ImportedHeaderUnits": [
-            {
-                "Header": "y:\\program files\\microsoft visual studio\\2022\\community\\vc\\tools\\msvc\\14.37.32822\\include\\cassert",
-                "BMI": "Z:\\c++\\C--\\ConsoleApplication\\x64\\Debug\\cassert_2039BB6337CF87C.ifc.dt"
-            }
-        ]
+        "ImportedHeaderUnits": []
     }
 }

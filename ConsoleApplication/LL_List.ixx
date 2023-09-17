@@ -16,7 +16,7 @@ struct Node
 
 	explicit Node(const T& value) : data(value)
 	{
-		std::cout << "" << std::endl;
+		//std::cout << "" << std::endl;
 	}
 	~Node() = default;
 };
@@ -217,13 +217,13 @@ public:
 	{
 		if (head_ == nullptr) //empty()
 		{
-			head_ = create_node_(value); 
+			head_ = create_node_(value);
 
 			tail_ = head_;
 			return;
 		}
 
-		Carnifex<Node<T>> current = create_node_(value); 
+		Carnifex<Node<T>> current = create_node_(value);
 
 		tail_->next = current;
 		tail_ = tail_->next;
@@ -238,14 +238,14 @@ public:
 
 		if (head_->next == nullptr)
 		{
-			Carnifex<Node<T>> deleted = head_; 
+			Carnifex<Node<T>> deleted = head_;
 			head_ = nullptr;
 			tail_ = nullptr;
 			--size_;
 			return;
 		}
 
-		Carnifex<Node<T>> deleted = head_; 
+		Carnifex<Node<T>> deleted = head_;
 		head_ = head_->next;
 		--size_;
 	}
@@ -259,7 +259,7 @@ public:
 
 		if (head_->next == nullptr)
 		{
-			Carnifex<Node<T>> deleted = head_;  
+			Carnifex<Node<T>> deleted = head_;
 			head_ = nullptr;
 			tail_ = nullptr;
 			--size_;
@@ -268,17 +268,17 @@ public:
 
 		//TODO search
 
-		Carnifex<Node<T>> temp = head_; 
+		Carnifex<Node<T>> temp = head_;
 		while (temp->next != tail_)
 		{
 			temp = temp->next;
 		}
 
-		Carnifex<Node<T>> deleted = tail_;  
+		Carnifex<Node<T>> deleted = tail_;
 		tail_ = temp;
 		tail_->next = nullptr;
 		--size_;
-		 
+
 	}
 
 	const T& get_head_data() const
@@ -405,12 +405,25 @@ public:
 		return iterator(nullptr);
 	}
 
+	iterator search(const T& value)
+	{
+		for (auto it = begin(); it != end(); ++it)
+		{
+			if (*it == value)
+			{
+				return it;
+			}
+		}
+		return end();
+	}
+
+
 	void insert_after(iterator it, const T& value)
 	{
 		if (it.current == nullptr)
 			throw std::out_of_range("it.current == nullptr");
 
-		Carnifex<Node<T>> inserted = create_node_(value); 
+		Carnifex<Node<T>> inserted = create_node_(value);
 
 		inserted->next = it.current->next;
 		it.current->next = inserted;
@@ -425,7 +438,7 @@ public:
 		if (it.current == nullptr)
 			throw std::out_of_range("it.current == nullptr");
 
-		Carnifex<Node<T>> inserted = create_node_(value); 
+		Carnifex<Node<T>> inserted = create_node_(value);
 
 
 		if (it.current == head_)
@@ -457,14 +470,14 @@ public:
 
 	void erase(const iterator& it)
 	{
-		if (it.current == nullptr) 
+		if (it.current == nullptr)
 			throw std::out_of_range("it.current == nullptr");
 
 		if (it == begin())
 		{
-			Carnifex<Node<T>> temp = head_;  
+			Carnifex<Node<T>> temp = head_;
 			head_ = head_->next;
-			 
+
 			if (head_ == nullptr)
 				tail_ = nullptr;
 
@@ -485,7 +498,7 @@ public:
 			tail_ = current->next;
 
 		old->next = current->next;
-		--size_; 
+		--size_;
 		// Удаление узла будет автоматически при уничтожении Carnifex
 	}
 
@@ -494,7 +507,7 @@ private:
 	{
 		//reverse_(head_);
 		reverse_();
-		std::cout << "\n";
+		//std::cout << "\n";
 	}
 
 	static void reverse_(Carnifex<Node<T>> current)
@@ -528,7 +541,7 @@ private:
 	}
 
 	// remove this insert ?
-	
+
 	//void insert(int id, const T& value)
 	//{
 	//	auto inserted = create_node_(value);

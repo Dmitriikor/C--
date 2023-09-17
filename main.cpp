@@ -22,6 +22,24 @@ int main()
 
 		//MyFunc();
 		{
+			{
+				LL_List<int> myList;
+				myList.push_back(1);
+				myList.push_back(3);
+				myList.push_back(0);
+
+				auto foundNode = myList.search(1);
+
+				if (foundNode != myList.end())
+				{
+					std::cout << "Element found: " << *foundNode << std::endl;
+				}
+				else
+				{
+					std::cout << "Element not found" << std::endl;
+				}
+			}
+
 			// Create an instance of the __TESTS__ class with the template type int
 			__TESTS__<int> p(9);
 
@@ -116,7 +134,7 @@ int main()
 				auto it = myList.begin();
 				++it;
 				myList.insert_after(it, 99);
-				std::cout << std::endl;
+				//std::cout << std::endl;
 			}
 
 			auto it_2 = myList.begin();
