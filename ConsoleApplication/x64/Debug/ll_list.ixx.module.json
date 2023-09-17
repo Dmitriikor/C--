@@ -19,24 +19,6 @@
             "requires": [
                 {
                     "logical-name": "CarnifexModule"
-                },
-                {
-                    "logical-name": "cassert",
-                    "source-path": "Y:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.37.32822\\include\\cassert",
-                    "lookup-method": "include-angle",
-                    "unique-on-source-path": true
-                },
-                {
-                    "logical-name": "stack",
-                    "source-path": "Y:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.37.32822\\include\\stack",
-                    "lookup-method": "include-angle",
-                    "unique-on-source-path": true
-                },
-                {
-                    "logical-name": "vector",
-                    "source-path": "Y:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.37.32822\\include\\vector",
-                    "lookup-method": "include-angle",
-                    "unique-on-source-path": true
                 }
             ]
         }

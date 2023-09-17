@@ -1,5 +1,4 @@
 #include <iostream>
-#include <vector>
 #include <cassert>
 #include <stack>
 #include <vector>
@@ -129,8 +128,12 @@ int main()
 
 			{
 				LL_List<int> copiedList(myList);
+
 				//std::cout << "\n" << myList.size() << "\n";
+				//myList.print();
 				//std::cout << "\n" << copiedList.size() << "\n";
+				//copiedList.print();
+
 				assert(copiedList.size() == myList.size());
 				for (size_t ii = 0; ii < copiedList.size(); ++ii)
 					assert(copiedList.at(ii) == myList.at(ii));

@@ -1,5 +1,5 @@
+#include <iostream>;
 export module Module.test;
-import <iostream>;
 
 //export void MyFunc();
 //

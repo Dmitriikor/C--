@@ -4,8 +4,6 @@
         "Source": "z:\\c++\\c--\\module.ixx",
         "ProvidedModule": "Module.test",
         "ImportedModules": [],
-        "ImportedHeaderUnits": [
-            "Y:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.37.32822\\include\\iostream"
-        ]
+        "ImportedHeaderUnits": []
     }
 }

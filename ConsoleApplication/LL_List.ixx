@@ -1,14 +1,11 @@
 #include <iostream>
+#include <cassert>
+#include <stack>
+#include <vector>
+
 export module List;
 import CarnifexModule;
-//#pragma once
 
-//TODO change
-
-//import std;
-import <cassert>;
-import <stack>;
-import <vector>;
 template <typename T>
 struct Node
 {
@@ -24,9 +21,6 @@ struct Node
 	}
 	~Node() = default;
 };
-
-
-
 
 export template <typename T>
 class LL_List
@@ -64,7 +58,7 @@ private:
 		}
 
 		Carnifex<Node<T>> otherCurrent = other.head_;
-		head_ = *create_node_(otherCurrent->data);
+		head_ = create_node_(otherCurrent->data);
 
 		otherCurrent = otherCurrent->next;
 		Carnifex<Node<T>> thisCurrent = head_;
@@ -73,7 +67,7 @@ private:
 		{
 			try
 			{
-				thisCurrent->next = *create_node_(otherCurrent->data);
+				thisCurrent->next = create_node_(otherCurrent->data);
 				thisCurrent = thisCurrent->next;
 			}
 			catch (const std::exception& e)
@@ -100,10 +94,12 @@ private:
 		//std::cout << "\n size = " << size << std::endl;
 		return size;
 	}
+
 	void clear_()
 	{
 		head_ = nullptr;
 		tail_ = nullptr;
+		size_ = 0;
 	}
 
 	void test_head_tail_(const LL_List& other_)
@@ -136,6 +132,7 @@ public:
 
 		//std::cout << "\n other.tail_->data = " << other.tail_->data << std::endl;
 		//std::cout << "\n tail_->data = " << tail_->data;
+
 		test_head_tail_(other);
 	}
 
@@ -170,7 +167,7 @@ public:
 	~LL_List()
 	{
 		//std::cout<< "\n Destruct LIST\n";
-		//clear_();
+		clear_();
 	}
 
 	size_t size() const
@@ -190,10 +187,12 @@ public:
 		}
 		return false;
 	}
+
 	void clear()
 	{
 		clear_();
 	}
+
 	void push_front(const T& value)
 	{
 		if (head_ == nullptr) //TODO empty()
@@ -204,11 +203,12 @@ public:
 			return;
 		}
 
-		Node<T>* current = create_node_(value);
+		Carnifex<Node<T>> current = create_node_(value); // Замените Node<T>* на Carnifex<Node<T>>
 
 		current->next = head_;
 		head_ = current;
 	}
+
 	void push_back(const T& value)
 	{
 		if (head_ == nullptr) //TODO empty()
@@ -219,11 +219,12 @@ public:
 			return;
 		}
 
-		Node<T>* current = create_node_(value);
+		Carnifex<Node<T>> current = create_node_(value); 
 
 		tail_->next = current;
 		tail_ = tail_->next;
 	}
+
 	void pop_front()
 	{
 		if (head_ == nullptr) //TODO empty()
@@ -233,17 +234,18 @@ public:
 
 		if (head_->next == nullptr)
 		{
-			delete_node_(head_);
+			Carnifex<Node<T>> deleted = head_; 
 			head_ = nullptr;
 			tail_ = nullptr;
+			--size_;
 			return;
 		}
 
-		Node<T>* deleted = head_;
+		Carnifex<Node<T>> deleted = head_; 
 		head_ = head_->next;
-
-		delete_node_(deleted);
+		--size_;
 	}
+
 	void pop_back()
 	{
 		if (head_ == nullptr) //TODO empty()
@@ -253,24 +255,25 @@ public:
 
 		if (head_->next == nullptr)
 		{
-			delete_node_(head_);//delete head_;
+			Carnifex<Node<T>> deleted = head_;  
 			head_ = nullptr;
 			tail_ = nullptr;
+			--size_;
 			return;
 		}
 
 		//TODO search
-		Node<T>* temp = head_;
+		Carnifex<Node<T>> temp = head_; 
 		while (temp->next != tail_)
 		{
 			temp = temp->next;
 		}
 
-		Node<T>* deleted = tail_;
+		Carnifex<Node<T>> deleted = tail_;  
 		tail_ = temp;
 		tail_->next = nullptr;
-
-		delete_node_(deleted);
+		--size_;
+		 
 	}
 
 	const T& get_head_data() const
@@ -290,9 +293,10 @@ public:
 		}
 		return tail_->data;
 	}
+
 	void print() const
 	{
-		Node<T>* current = head_;
+		Carnifex<Node<T>> current = head_; // Замените Node<T>* на Carnifex<Node<T>>
 		while (current != nullptr)
 		{
 			std::cout << current->data << "; ";
@@ -302,7 +306,7 @@ public:
 
 	T& at(size_t id) const
 	{
-		Node<T>* current = head_;
+		Carnifex<Node<T>> current = head_; // Замените Node<T>* на Carnifex<Node<T>>
 
 		size_t i = 0;
 
@@ -318,12 +322,13 @@ public:
 
 		throw std::out_of_range("Index out of range");
 	}
+
 	std::vector<T> to_vector() const
 	{
 		std::vector<T> data_accum;
 		data_accum.reserve(size_);
 
-		Node<T>* current = head_;
+		Carnifex<Node<T>> current = head_; // Замените Node<T>* на Carnifex<Node<T>>
 		while (current != nullptr)
 		{
 			data_accum.push_back(current->data);
@@ -332,6 +337,7 @@ public:
 
 		return data_accum;
 	}
+
 private:
 	class iterator
 	{
@@ -343,7 +349,7 @@ private:
 		using pointer = T*;
 		using reference = T&;
 
-		explicit iterator(Node<T>* startNode) : current(startNode) {}
+		explicit iterator(Carnifex<Node<T>> startNode) : current(startNode) {} //TODO Замените Node<T>* на Carnifex<Node<T>>
 
 		bool operator!=(const iterator& other) const
 		{
@@ -381,7 +387,7 @@ private:
 	private:
 
 		friend class LL_List<T>;
-		Node<T>* current;
+		Carnifex<Node<T>> current; // Замените Node<T>* на Carnifex<Node<T>>
 	};
 
 public:
@@ -399,7 +405,7 @@ public:
 		if (it.current == nullptr)
 			throw std::out_of_range("it.current == nullptr");
 
-		Node<T>* inserted = create_node_(value);
+		Carnifex<Node<T>> inserted = create_node_(value); 
 
 		inserted->next = it.current->next;
 		it.current->next = inserted;
@@ -414,7 +420,7 @@ public:
 		if (it.current == nullptr)
 			throw std::out_of_range("it.current == nullptr");
 
-		Node<T>* inserted = create_node_(value);
+		Carnifex<Node<T>> inserted = create_node_(value); 
 
 
 		if (it.current == head_)
@@ -446,18 +452,18 @@ public:
 
 	void erase(const iterator& it)
 	{
-		if (it.current == nullptr) //TODO empty()
+		if (it.current == nullptr) 
 			throw std::out_of_range("it.current == nullptr");
 
 		if (it == begin())
 		{
-			Node<T>* temp = head_;
+			Carnifex<Node<T>> temp = head_;  
 			head_ = head_->next;
-			delete_node_(temp);
-
+			 
 			if (head_ == nullptr)
 				tail_ = nullptr;
 
+			--size_;
 			return;
 		}
 
@@ -474,8 +480,8 @@ public:
 			tail_ = current->next;
 
 		old->next = current->next;
-
-		delete_node_(current);
+		--size_; 
+		// Удаление узла будет автоматически при уничтожении Carnifex
 	}
 
 private:
@@ -486,7 +492,7 @@ private:
 		std::cout << "\n";
 	}
 
-	static void reverse_(Node<T>* current)
+	static void reverse_(Carnifex<Node<T>> current)
 	{
 		if (current == nullptr)
 		{
@@ -501,7 +507,7 @@ private:
 	{
 		std::stack<T> st;
 
-		Node<T>* current = head_;
+		auto current = head_;
 		while (current != nullptr)
 		{
 			st.push(current->data);
@@ -519,7 +525,7 @@ private:
 	//TODO remove this insert ?
 	void insert(int id, const T& value)
 	{
-		Node<T>* inserted = create_node_(value);
+		auto inserted = create_node_(value);
 
 
 		if (head_ == nullptr) //TODO empty()
@@ -535,7 +541,7 @@ private:
 				throw std::out_of_range("Index out of range");
 		}
 
-		Node<T>* temp = head_;
+		auto temp = head_;
 
 		int counter = 0;
 		while (temp != nullptr && counter != id - 1)
@@ -546,7 +552,6 @@ private:
 
 		if (temp == nullptr)
 		{
-			delete_node_(inserted);
 			//delete inserted;
 			throw std::out_of_range("Index out of range");
 		}
@@ -559,9 +564,3 @@ private:
 			tail_ = inserted;
 	}
 };
-
-//export namespace test_template
-//{
-//	template <typename T>
-//	
-//}

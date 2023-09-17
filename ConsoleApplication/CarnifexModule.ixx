@@ -1,5 +1,7 @@
-export module CarnifexModule;
 import <cassert>;
+
+export module CarnifexModule;
+//import <cassert>;
 
 
 export template<typename T>
@@ -41,15 +43,20 @@ public:
 	}
 
 public:
+	explicit Carnifex(T* data) : block_(new Block(data))
+	{
+		++(block_->counter_);
+	}
+
+	Carnifex(std::nullptr_t) : block_(new Block(nullptr))
+	{
+		++(block_->counter_);
+	}
 
 	Carnifex() : Carnifex(nullptr)
 	{
 	}
 
-	explicit Carnifex(T* data) : block_(new Block(data))
-	{
-		++(block_->counter_);
-	}
 
 	Carnifex(const Carnifex& other) : block_(other.block_)
 	{
@@ -94,12 +101,13 @@ public:
 		return *(block_->object_);
 	}
 
-	bool operator==(const Carnifex<T>& other)
+	bool operator==(const Carnifex<T>& other) const
 	{
-		return this->block_ == other.block_;
+		return this->block_->object_ == other.block_->object_;
 	}
-	bool operator==(const Carnifex<T>& const other) const
+
+	bool operator==(std::nullptr_t) const
 	{
-		return this->block_ == other.block_;
+		return this->block_->object_ == nullptr;
 	}
 };
