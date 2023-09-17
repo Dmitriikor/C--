@@ -1,18 +1,17 @@
-#include <iostream>
-#include <cassert>
-#include <stack>
-#include <vector>
-
 export module List;
+
+import <iostream>;
+import <cassert>;
+import <stack>;
+import <vector>;
+
 import CarnifexModule;
 
 template <typename T>
 struct Node
 {
 	T data;
-	//Node* next = nullptr;
 
-	//TODO
 	Carnifex<Node<T>> next = nullptr;
 
 	explicit Node(const T& value) : data(value)
@@ -47,9 +46,11 @@ private:
 		return new_node_;
 	}
 
-	//TODO похитрее
+	// похитрее
 	void copy_nodes_(const LL_List& other)
 	{
+		clear_();
+
 		if (other.head_ == nullptr)
 		{
 			head_ = nullptr;
@@ -57,11 +58,14 @@ private:
 			return;
 		}
 
-		Carnifex<Node<T>> otherCurrent = other.head_;
-		head_ = create_node_(otherCurrent->data);
-
-		otherCurrent = otherCurrent->next;
+		head_ = create_node_(other.head_->data);
 		Carnifex<Node<T>> thisCurrent = head_;
+		Carnifex<Node<T>> otherCurrent = other.head_->next;
+
+		//Carnifex<Node<T>> otherCurrent = other.head_;
+		//head_ = create_node_(otherCurrent->data);
+		//otherCurrent = otherCurrent->next;
+		//Carnifex<Node<T>> thisCurrent = head_;
 
 		while (otherCurrent != nullptr)
 		{
@@ -195,7 +199,7 @@ public:
 
 	void push_front(const T& value)
 	{
-		if (head_ == nullptr) //TODO empty()
+		if (head_ == nullptr) //empty()
 		{
 			head_ = create_node_(value);
 
@@ -203,7 +207,7 @@ public:
 			return;
 		}
 
-		Carnifex<Node<T>> current = create_node_(value); // Замените Node<T>* на Carnifex<Node<T>>
+		Carnifex<Node<T>> current = create_node_(value);
 
 		current->next = head_;
 		head_ = current;
@@ -211,9 +215,9 @@ public:
 
 	void push_back(const T& value)
 	{
-		if (head_ == nullptr) //TODO empty()
+		if (head_ == nullptr) //empty()
 		{
-			head_ = create_node_(value); //
+			head_ = create_node_(value); 
 
 			tail_ = head_;
 			return;
@@ -227,7 +231,7 @@ public:
 
 	void pop_front()
 	{
-		if (head_ == nullptr) //TODO empty()
+		if (head_ == nullptr) //empty()
 		{
 			throw std::out_of_range("head_ is nullptr");
 		}
@@ -248,7 +252,7 @@ public:
 
 	void pop_back()
 	{
-		if (head_ == nullptr) //TODO empty()
+		if (head_ == nullptr) //empty()
 		{
 			throw std::out_of_range("tail_ is nullptr");
 		}
@@ -263,6 +267,7 @@ public:
 		}
 
 		//TODO search
+
 		Carnifex<Node<T>> temp = head_; 
 		while (temp->next != tail_)
 		{
@@ -349,7 +354,7 @@ private:
 		using pointer = T*;
 		using reference = T&;
 
-		explicit iterator(Carnifex<Node<T>> startNode) : current(startNode) {} //TODO Замените Node<T>* на Carnifex<Node<T>>
+		explicit iterator(Carnifex<Node<T>> startNode) : current(startNode) {} //!!!
 
 		bool operator!=(const iterator& other) const
 		{
@@ -522,45 +527,38 @@ private:
 		}
 	}
 
-	//TODO remove this insert ?
-	void insert(int id, const T& value)
-	{
-		auto inserted = create_node_(value);
-
-
-		if (head_ == nullptr) //TODO empty()
-		{
-			if (id == 0)
-			{
-				inserted->next = head_;
-				head_ = inserted;
-				tail_ = head_;
-				return;
-			}
-			else
-				throw std::out_of_range("Index out of range");
-		}
-
-		auto temp = head_;
-
-		int counter = 0;
-		while (temp != nullptr && counter != id - 1)
-		{
-			temp = temp->next;
-			++counter;
-		}
-
-		if (temp == nullptr)
-		{
-			//delete inserted;
-			throw std::out_of_range("Index out of range");
-		}
-
-		inserted->next = temp->next;
-
-		temp->next = inserted;
-
-		if (temp == tail_)
-			tail_ = inserted;
-	}
+	// remove this insert ?
+	
+	//void insert(int id, const T& value)
+	//{
+	//	auto inserted = create_node_(value);
+	//	if (head_ == nullptr) //TODO empty()
+	//	{
+	//		if (id == 0)
+	//		{
+	//			inserted->next = head_;
+	//			head_ = inserted;
+	//			tail_ = head_;
+	//			return;
+	//		}
+	//		else
+	//			throw std::out_of_range("Index out of range");
+	//	}
+	//	auto temp = head_;
+	//	int counter = 0;
+	//	while (temp != nullptr && counter != id - 1)
+	//	{
+	//		temp = temp->next;
+	//		++counter;
+	//	}
+	//	if (temp == nullptr)
+	//	{
+	//		//delete inserted;
+	//		throw std::out_of_range("Index out of range");
+	//	}
+	//	inserted->next = temp->next;
+	//	temp->next = inserted;
+	//	if (temp == tail_)
+	//		tail_ = inserted;
+	//}
 };

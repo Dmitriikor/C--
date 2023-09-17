@@ -1,7 +1,7 @@
-import <cassert>;
 
 export module CarnifexModule;
 //import <cassert>;
+import <cassert>;
 
 
 export template<typename T>

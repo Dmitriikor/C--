@@ -1,3 +1,12 @@
 ﻿  Проверка источников на наличие зависимостей модуля…
+  CarnifexModule.ixx
+  Компиляция…
+  CarnifexModule.ixx
+  LL_List.ixx
+  KATE_.cpp
   main.cpp
+  TEST.cpp
+  x_.cpp
+  x__.cpp
+  Создание кода...
   ConsoleApplication.vcxproj -> Z:\c++\C--\ConsoleApplication\x64\Debug\ConsoleApplication.exe
