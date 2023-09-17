@@ -4,7 +4,8 @@
         "Source": "z:\\c++\\c--\\consoleapplication\\ll_list.ixx",
         "ProvidedModule": "List",
         "ImportedModules": [
-            "CarnifexModule"
+            "CarnifexModule",
+            "Node"
         ],
         "ImportedHeaderUnits": [
             "Y:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.37.32822\\include\\iostream",

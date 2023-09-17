@@ -8,6 +8,10 @@
             {
                 "Name": "CarnifexModule",
                 "BMI": "Z:\\c++\\C--\\ConsoleApplication\\x64\\Debug\\CarnifexModule.ixx.ifc"
+            },
+            {
+                "Name": "Node",
+                "BMI": "Z:\\c++\\C--\\ConsoleApplication\\x64\\Debug\\Node.ixx.ifc"
             }
         ],
         "ImportedHeaderUnits": [

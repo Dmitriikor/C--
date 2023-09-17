@@ -1,0 +1,26 @@
+{
+    "version": 1,
+    "revision": 0,
+    "rules": [
+        {
+            "primary-output": "x64\\Debug\\Node.ixx.obj",
+            "outputs": [
+                "Z:\\c++\\C--\\ConsoleApplication\\x64\\Debug\\vc143.pdb",
+                "x64\\Debug\\",
+                "Z:\\c++\\C--\\ConsoleApplication\\x64\\Debug\\Node.ixx.ifc"
+            ],
+            "provides": [
+                {
+                    "logical-name": "Node",
+                    "source-path": "z:\\c++\\c--\\consoleapplication\\node.ixx",
+                    "is-interface": true
+                }
+            ],
+            "requires": [
+                {
+                    "logical-name": "CarnifexModule"
+                }
+            ]
+        }
+    ]
+}

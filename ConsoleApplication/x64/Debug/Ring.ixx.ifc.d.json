@@ -1,0 +1,36 @@
+{
+    "Version": "1.2",
+    "Data": {
+        "Source": "z:\\c++\\c--\\consoleapplication\\ring.ixx",
+        "ProvidedModule": "Ring",
+        "Includes": [],
+        "ImportedModules": [
+            {
+                "Name": "CarnifexModule",
+                "BMI": "Z:\\c++\\C--\\ConsoleApplication\\x64\\Debug\\CarnifexModule.ixx.ifc"
+            },
+            {
+                "Name": "Node",
+                "BMI": "Z:\\c++\\C--\\ConsoleApplication\\x64\\Debug\\Node.ixx.ifc"
+            }
+        ],
+        "ImportedHeaderUnits": [
+            {
+                "Header": "y:\\program files\\microsoft visual studio\\2022\\community\\vc\\tools\\msvc\\14.37.32822\\include\\iostream",
+                "BMI": "Z:\\c++\\C--\\ConsoleApplication\\x64\\Debug\\iostream_02IID7KVDY5C1GKI.ifc"
+            },
+            {
+                "Header": "y:\\program files\\microsoft visual studio\\2022\\community\\vc\\tools\\msvc\\14.37.32822\\include\\cassert",
+                "BMI": "Z:\\c++\\C--\\ConsoleApplication\\x64\\Debug\\cassert_CYOZP56X3Z06JIJA.ifc"
+            },
+            {
+                "Header": "y:\\program files\\microsoft visual studio\\2022\\community\\vc\\tools\\msvc\\14.37.32822\\include\\stack",
+                "BMI": "Z:\\c++\\C--\\ConsoleApplication\\x64\\Debug\\stack_M1055FZPH0JHWGJZ.ifc"
+            },
+            {
+                "Header": "y:\\program files\\microsoft visual studio\\2022\\community\\vc\\tools\\msvc\\14.37.32822\\include\\vector",
+                "BMI": "Z:\\c++\\C--\\ConsoleApplication\\x64\\Debug\\vector_FAVB8QVEWA9CS6O8.ifc"
+            }
+        ]
+    }
+}

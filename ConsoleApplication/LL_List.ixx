@@ -6,20 +6,21 @@ import <stack>;
 import <vector>;
 
 import CarnifexModule;
+import Node;
 
-template <typename T>
-struct Node
-{
-	T data;
-
-	Carnifex<Node<T>> next = nullptr;
-
-	explicit Node(const T& value) : data(value)
-	{
-		//std::cout << "" << std::endl;
-	}
-	~Node() = default;
-};
+//template <typename T>
+//struct Node
+//{
+//	T data;
+//
+//	Carnifex<Node<T>> next = nullptr;
+//
+//	explicit Node(const T& value) : data(value)
+//	{
+//		//std::cout << "" << std::endl;
+//	}
+//	~Node() = default;
+//};
 
 export template <typename T>
 class LL_List
@@ -35,7 +36,7 @@ private:
 
 	Carnifex<Node<T>> create_node_(const T& value)
 	{
-		Carnifex<Node<T>> new_node_(new(std::nothrow) Node<T>(value));
+		Carnifex<Node<T>> new_node_(new Node<T>(value));
 
 		if (new_node_ == nullptr)
 		{

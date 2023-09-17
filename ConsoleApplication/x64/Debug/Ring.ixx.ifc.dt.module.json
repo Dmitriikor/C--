@@ -1,0 +1,17 @@
+{
+    "Version": "1.1",
+    "Data": {
+        "Source": "z:\\c++\\c--\\consoleapplication\\ring.ixx",
+        "ProvidedModule": "Ring",
+        "ImportedModules": [
+            "CarnifexModule",
+            "Node"
+        ],
+        "ImportedHeaderUnits": [
+            "Y:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.37.32822\\include\\iostream",
+            "Y:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.37.32822\\include\\cassert",
+            "Y:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.37.32822\\include\\stack",
+            "Y:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.37.32822\\include\\vector"
+        ]
+    }
+}

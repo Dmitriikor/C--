@@ -39,6 +39,12 @@
     <ClCompile Include="LL_List.ixx">
       <Filter>Файлы заголовков</Filter>
     </ClCompile>
+    <ClCompile Include="Ring.ixx">
+      <Filter>Файлы заголовков</Filter>
+    </ClCompile>
+    <ClCompile Include="Node.ixx">
+      <Filter>Файлы заголовков</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\LL_iterator.hpp.old">

@@ -1,0 +1,11 @@
+{
+    "Version": "1.1",
+    "Data": {
+        "Source": "z:\\c++\\c--\\consoleapplication\\node.ixx",
+        "ProvidedModule": "Node",
+        "ImportedModules": [
+            "CarnifexModule"
+        ],
+        "ImportedHeaderUnits": []
+    }
+}

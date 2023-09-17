@@ -8,6 +8,7 @@ import <vector>;
 import Module.test; //test module
 import CarnifexModule; //carnifex module
 import List; //ll_list module
+import Ring; //ring module
 
 int main()
 {
@@ -22,6 +23,14 @@ int main()
 
 		//MyFunc();
 		{
+			{
+				Ring<int> myList;
+				myList.push_back(1);
+				myList.push_back(3);
+				myList.push_back(0);
+
+			}
+			//return -999;
 			{
 				LL_List<int> myList;
 				myList.push_back(1);

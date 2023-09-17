@@ -5,6 +5,11 @@
         "ProvidedModule": "Module.test",
         "Includes": [],
         "ImportedModules": [],
-        "ImportedHeaderUnits": []
+        "ImportedHeaderUnits": [
+            {
+                "Header": "y:\\program files\\microsoft visual studio\\2022\\community\\vc\\tools\\msvc\\14.37.32822\\include\\iostream",
+                "BMI": "Z:\\c++\\C--\\ConsoleApplication\\x64\\Debug\\iostream_EF3B8FBC131AA95.ifc.dt"
+            }
+        ]
     }
 }
