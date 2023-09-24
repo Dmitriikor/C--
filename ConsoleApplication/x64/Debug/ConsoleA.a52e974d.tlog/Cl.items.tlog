@@ -1,16 +1,11 @@
-Y:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.37.32822\include\iostream;Z:\c++\C--\ConsoleApplication\x64\Debug\iostream_02IID7KVDY5C1GKI.obj
-Y:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.37.32822\include\cassert;Z:\c++\C--\ConsoleApplication\x64\Debug\cassert_CYOZP56X3Z06JIJA.obj
-Y:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.37.32822\include\stack;Z:\c++\C--\ConsoleApplication\x64\Debug\stack_M1055FZPH0JHWGJZ.obj
-Y:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.37.32822\include\vector;Z:\c++\C--\ConsoleApplication\x64\Debug\vector_FAVB8QVEWA9CS6O8.obj
 Z:\c++\C--\KATE_.cpp;Z:\c++\C--\ConsoleApplication\x64\Debug\KATE_.obj
 Z:\c++\C--\main.cpp;Z:\c++\C--\ConsoleApplication\x64\Debug\main.obj
-Z:\c++\C--\Module.ixx;Z:\c++\C--\ConsoleApplication\x64\Debug\Module.ixx.obj
+Z:\c++\C--\Module.h;Z:\c++\C--\ConsoleApplication\x64\Debug\Module.h.obj
 Z:\c++\C--\TEST.cpp;Z:\c++\C--\ConsoleApplication\x64\Debug\TEST.obj
 Z:\c++\C--\x_.cpp;Z:\c++\C--\ConsoleApplication\x64\Debug\x_.obj
 Z:\c++\C--\x__.cpp;Z:\c++\C--\ConsoleApplication\x64\Debug\x__.obj
-Z:\c++\C--\ConsoleApplication\CarnifexModule.ixx;Z:\c++\C--\ConsoleApplication\x64\Debug\CarnifexModule.ixx.obj
-Z:\c++\C--\ConsoleApplication\LL_List.ixx;Z:\c++\C--\ConsoleApplication\x64\Debug\LL_List.ixx.obj
-Z:\c++\C--\ConsoleApplication\Node.ixx;Z:\c++\C--\ConsoleApplication\x64\Debug\Node.ixx.obj
-Z:\c++\C--\ConsoleApplication\Ring.ixx;Z:\c++\C--\ConsoleApplication\x64\Debug\Ring.ixx.obj
+Z:\c++\C--\ConsoleApplication\CarnifexModule.h;Z:\c++\C--\ConsoleApplication\x64\Debug\CarnifexModule.h.obj
+Z:\c++\C--\ConsoleApplication\LL_List.h;Z:\c++\C--\ConsoleApplication\x64\Debug\LL_List.h.obj
+Z:\c++\C--\ConsoleApplication\Node.h;Z:\c++\C--\ConsoleApplication\x64\Debug\Node.h.obj
 Y:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.37.32822\modules\std.ixx;Z:\c++\C--\ConsoleApplication\x64\Debug\std.ixx.obj
 Y:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.37.32822\modules\std.compat.ixx;Z:\c++\C--\ConsoleApplication\x64\Debug\std.compat.ixx.obj

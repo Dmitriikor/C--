@@ -1,0 +1,22 @@
+{
+    "version": 1,
+    "revision": 0,
+    "rules": [
+        {
+            "primary-output": "x64\\Debug\\LL_List.h.obj",
+            "outputs": [
+                "Z:\\c++\\C--\\ConsoleApplication\\x64\\Debug\\vc143.pdb",
+                "x64\\Debug\\",
+                "Z:\\c++\\C--\\ConsoleApplication\\x64\\Debug\\LL_List.h.ifc"
+            ],
+            "provides": [
+                {
+                    "logical-name": "LL_List.h",
+                    "source-path": "z:\\c++\\c--\\consoleapplication\\ll_list.h",
+                    "lookup-method": "absolute"
+                }
+            ],
+            "requires": []
+        }
+    ]
+}

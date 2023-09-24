@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\Module.ixx">
+    <ClCompile Include="..\Module.h">
       <Filter>Файлы заголовков</Filter>
     </ClCompile>
     <ClCompile Include="..\x__.cpp">
@@ -33,16 +33,13 @@
     <ClCompile Include="..\x_.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="CarnifexModule.ixx">
+    <ClCompile Include="CarnifexModule.h">
       <Filter>Файлы заголовков</Filter>
     </ClCompile>
-    <ClCompile Include="LL_List.ixx">
+    <ClCompile Include="LL_List.h">
       <Filter>Файлы заголовков</Filter>
     </ClCompile>
-    <ClCompile Include="Ring.ixx">
-      <Filter>Файлы заголовков</Filter>
-    </ClCompile>
-    <ClCompile Include="Node.ixx">
+    <ClCompile Include="Node.h">
       <Filter>Файлы заголовков</Filter>
     </ClCompile>
   </ItemGroup>

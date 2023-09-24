@@ -147,14 +147,13 @@
   <ItemGroup>
     <ClCompile Include="..\KATE_.cpp" />
     <ClCompile Include="..\main.cpp" />
-    <ClCompile Include="..\Module.ixx" />
+    <ClCompile Include="..\Module.h" />
     <ClCompile Include="..\TEST.cpp" />
     <ClCompile Include="..\x_.cpp" />
     <ClCompile Include="..\x__.cpp" />
-    <ClCompile Include="CarnifexModule.ixx" />
-    <ClCompile Include="LL_List.ixx" />
-    <ClCompile Include="Node.ixx" />
-    <ClCompile Include="Ring.ixx" />
+    <ClCompile Include="CarnifexModule.h" />
+    <ClCompile Include="LL_List.h" />
+    <ClCompile Include="Node.h" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\LL_iterator.hpp.old" />

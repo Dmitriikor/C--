@@ -1,35 +1,38 @@
-import <iostream>;
-import <cassert>;
-import <stack>;
-import <vector>; 
+#define _CRTDBG_MAP_ALLOC
+#include <stdlib.h>
+#include <crtdbg.h>
+
+#include <iostream>
+#include <cassert>
+#include <stack>
+#include <vector>
 
 #include "TEST.hpp"
 
-import Module.test; //test module
-import CarnifexModule; //carnifex module
-import List; //ll_list module
-import Ring; //ring module
+#include "Module.h" //test module
+#include "ConsoleApplication/CarnifexModule.h" //carnifex module
+#include "ConsoleApplication/LL_List.h" //ll_list module
+//import Ring; //ring module
 
 int main()
 {
+	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+	{
+		std::cout << "Testing" << std::endl;
+		MyClassModule<int> aModule;
+		aModule.MyFunc();
+		LL_List<int> aList; // Detected memory leaks!
+	}
+	_CrtDumpMemoryLeaks();
+	return -99999;
 
-	std::cout << "Testing" << std::endl;
-	MyClassModule<int> aModule;
-	aModule.MyFunc();
-	LL_List<int> aList;
 
 	try
 	{
 
 		//MyFunc();
 		{
-			{
-				Ring<int> myList;
-				myList.push_back(1);
-				myList.push_back(3);
-				myList.push_back(0);
 
-			}
 			//return -999;
 			{
 				LL_List<int> myList;
@@ -334,5 +337,7 @@ int main()
 	}
 	printf("Press Enter to continue...\n");
 	getchar(); // Wait for user to press Enter
+
+	_CrtDumpMemoryLeaks();
 	return 0;
 }
